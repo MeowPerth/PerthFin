@@ -141,6 +141,24 @@ class AppPreferences @Inject constructor(val sharedPreferences: SharedPreference
             .apply()
     }
 
+    fun getSavedAudioLanguage(itemId: java.util.UUID): String? =
+        sharedPreferences.getString("audio_lang_$itemId", null)
+
+    fun setSavedAudioLanguage(itemId: java.util.UUID, language: String?) {
+        sharedPreferences.edit().apply {
+            if (language == null) remove("audio_lang_$itemId") else putString("audio_lang_$itemId", language)
+        }.apply()
+    }
+
+    fun getSavedSubtitleLanguage(itemId: java.util.UUID): String? =
+        sharedPreferences.getString("subtitle_lang_$itemId", null)
+
+    fun setSavedSubtitleLanguage(itemId: java.util.UUID, language: String?) {
+        sharedPreferences.edit().apply {
+            if (language == null) remove("subtitle_lang_$itemId") else putString("subtitle_lang_$itemId", language)
+        }.apply()
+    }
+
     inline fun <reified T> getValue(preference: Preference<T>): T {
         return try {
             @Suppress("UNCHECKED_CAST")

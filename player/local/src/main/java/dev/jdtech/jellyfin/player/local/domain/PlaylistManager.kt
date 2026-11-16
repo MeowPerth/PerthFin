@@ -232,24 +232,74 @@ internal constructor(
                 "1.5" -> 1_500_000
                 else -> null
             }
-        val effectiveAudioStreamIndex =
+        val savedAudioLanguage = appPreferences.getSavedAudioLanguage(id)
+        val savedSubtitleLanguage = appPreferences.getSavedSubtitleLanguage(id)
+        val preferredAudioLanguage =
+            appPreferences.getValue(appPreferences.preferredAudioLanguage)
+        val preferredSubtitleLanguage =
+            appPreferences.getValue(appPreferences.preferredSubtitleLanguage)
+
+        val requestedAudioIndex =
             audioStreamIndex ?: appPreferences.getSavedAudioStreamIndex(id)
-        val effectiveSubtitleStreamIndex =
-            subtitleStreamIndex ?: appPreferences.getSavedSubtitleStreamIndex(id)
-        val mediaSources =
+        val requestedSubtitleIndex =
+            when {
+                subtitleStreamIndex != null -> subtitleStreamIndex
+                savedSubtitleLanguage == "none" -> -1
+                else -> appPreferences.getSavedSubtitleStreamIndex(id)
+            }
+
+        var mediaSources =
             repository.getMediaSources(
                 id,
                 true,
                 maxBitrate,
-                effectiveAudioStreamIndex,
-                effectiveSubtitleStreamIndex,
+                requestedAudioIndex,
+                requestedSubtitleIndex,
             )
-        val mediaSource =
+        var mediaSource =
             if (mediaSourceIndex == null) {
                 mediaSources.firstOrNull { it.type == FindroidSourceType.LOCAL } ?: mediaSources[0]
             } else {
                 mediaSources[mediaSourceIndex]
             }
+
+        var resolvedAudioIndex = requestedAudioIndex
+        var resolvedSubtitleIndex = requestedSubtitleIndex
+        if (resolvedAudioIndex == null) {
+            resolvedAudioIndex =
+                findStreamIndex(mediaSource, MediaStreamType.AUDIO, savedAudioLanguage)
+                    ?: findStreamIndex(mediaSource, MediaStreamType.AUDIO, preferredAudioLanguage)
+        }
+        if (resolvedSubtitleIndex == null) {
+            resolvedSubtitleIndex =
+                findStreamIndex(mediaSource, MediaStreamType.SUBTITLE, savedSubtitleLanguage)
+                    ?: findStreamIndex(
+                        mediaSource,
+                        MediaStreamType.SUBTITLE,
+                        preferredSubtitleLanguage,
+                    )
+        }
+        if (
+            maxBitrate != null &&
+                (resolvedAudioIndex != requestedAudioIndex ||
+                    resolvedSubtitleIndex != requestedSubtitleIndex)
+        ) {
+            mediaSources =
+                repository.getMediaSources(
+                    id,
+                    true,
+                    maxBitrate,
+                    resolvedAudioIndex,
+                    resolvedSubtitleIndex,
+                )
+            mediaSource =
+                if (mediaSourceIndex == null) {
+                    mediaSources.firstOrNull { it.type == FindroidSourceType.LOCAL }
+                        ?: mediaSources[0]
+                } else {
+                    mediaSources[mediaSourceIndex]
+                }
+        }
         Timber.d(
             "Playback source: ${mediaSource.transcodingUrl}, audio=$audioStreamIndex, subtitle=$subtitleStreamIndex"
         )
@@ -338,6 +388,8 @@ internal constructor(
             itemKind = itemKind,
             audioStreams = audioStreams,
             subtitleStreams = subtitleStreams,
+            selectedAudioStreamIndex = resolvedAudioIndex,
+            selectedSubtitleStreamIndex = resolvedSubtitleIndex,
         )
     }
 
@@ -345,5 +397,24 @@ internal constructor(
         return this.map { chapter ->
             PlayerChapter(startPosition = chapter.startPosition, name = chapter.name)
         }
+    }
+
+    private fun findStreamIndex(
+        source: dev.jdtech.jellyfin.models.FindroidSource,
+        type: MediaStreamType,
+        language: String?,
+    ): Int? {
+        if (language.isNullOrBlank() || language == "none") return null
+        return source.mediaStreams
+            .firstOrNull { it.type == type && languageMatches(it.language, language) }
+            ?.index
+    }
+
+    private fun languageMatches(streamLanguage: String?, requestedLanguage: String?): Boolean {
+        if (streamLanguage.isNullOrBlank() || requestedLanguage.isNullOrBlank()) return false
+        val stream = streamLanguage.lowercase()
+        val requested = requestedLanguage.lowercase()
+        return stream == requested ||
+            (stream.length >= 2 && requested.length >= 2 && stream.take(2) == requested.take(2))
     }
 }

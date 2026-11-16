@@ -106,6 +106,13 @@ class TrackSelectionDialogFragment(
                         arrayOf(getString(R.string.none)) + names,
                         tracksGroups.indexOfFirst { it.isSelected } + 1,
                     ) { dialog, which ->
+                        val language =
+                            if (which == 0) {
+                                null
+                            } else {
+                                tracksGroups[which - 1].mediaTrackGroup.getFormat(0).language
+                            }
+                        viewModel.saveDirectStreamSelection(type, language)
                         viewModel.switchToTrack(type, which - 1)
                         dialog.dismiss()
                     }

@@ -220,9 +220,16 @@ constructor(
             currentItemId = startItem.itemId
             currentItemKind = startItem.itemKind
             selectedAudioStreamIndex =
-                audioStreamIndex ?: appPreferences.getSavedAudioStreamIndex(startItem.itemId)
+                startItem.selectedAudioStreamIndex
+                    ?: audioStreamIndex
+                    ?: appPreferences.getSavedAudioStreamIndex(startItem.itemId)
             selectedSubtitleStreamIndex =
-                subtitleStreamIndex ?: appPreferences.getSavedSubtitleStreamIndex(startItem.itemId)
+                startItem.selectedSubtitleStreamIndex
+                    ?: subtitleStreamIndex
+                    ?: appPreferences.getSavedSubtitleStreamIndex(startItem.itemId)
+            if (!startItem.isTranscoding) {
+                applyDirectLanguagePreferences(startItem)
+            }
             items = listOfNotNull(startItem).toMutableList()
             currentMediaItemIndex = items.indexOf(startItem)
 
@@ -250,6 +257,33 @@ constructor(
 
     val selectedQuality: String
         get() = appPreferences.getValue(appPreferences.playerQuality)
+
+    fun saveDirectStreamSelection(type: @C.TrackType Int, language: String?) {
+        val itemId = currentItemId ?: return
+        if (type == C.TRACK_TYPE_AUDIO) {
+            appPreferences.setSavedAudioLanguage(itemId, language)
+        } else {
+            appPreferences.setSavedSubtitleLanguage(itemId, language ?: "none")
+        }
+    }
+
+    private fun applyDirectLanguagePreferences(item: PlayerItem) {
+        val audioLanguage =
+            appPreferences.getSavedAudioLanguage(item.itemId)
+                ?: appPreferences.getValue(appPreferences.preferredAudioLanguage)
+        val subtitleLanguage =
+            appPreferences.getSavedSubtitleLanguage(item.itemId)
+                ?: appPreferences.getValue(appPreferences.preferredSubtitleLanguage)
+        val subtitlesDisabled = subtitleLanguage == "none"
+
+        player.trackSelectionParameters =
+            player.trackSelectionParameters
+                .buildUpon()
+                .setPreferredAudioLanguage(audioLanguage)
+                .setPreferredTextLanguage(if (subtitlesDisabled) null else subtitleLanguage)
+                .setTrackTypeDisabled(C.TRACK_TYPE_TEXT, subtitlesDisabled)
+                .build()
+    }
 
     val isTranscoding: Boolean
         get() = items.getOrNull(currentMediaItemIndex)?.isTranscoding == true

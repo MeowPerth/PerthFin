@@ -21,4 +21,6 @@ data class PlayerItem(
     val itemKind: String = "",
     val audioStreams: List<PlayerStream> = emptyList(),
     val subtitleStreams: List<PlayerStream> = emptyList(),
+    val selectedAudioStreamIndex: Int? = null,
+    val selectedSubtitleStreamIndex: Int? = null,
 ) : Parcelable
