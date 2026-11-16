@@ -609,6 +609,9 @@ class JellyfinRepositoryImpl(
     override suspend fun getUserConfiguration(): UserConfiguration =
         withContext(Dispatchers.IO) { jellyfinApi.userApi.getCurrentUser().content.configuration!! }
 
+    override suspend fun getCurrentUserImageTag(): String? =
+        withContext(Dispatchers.IO) { jellyfinApi.userApi.getCurrentUser().content.primaryImageTag }
+
     override fun getUserId(): UUID {
         return jellyfinApi.userId!!
     }

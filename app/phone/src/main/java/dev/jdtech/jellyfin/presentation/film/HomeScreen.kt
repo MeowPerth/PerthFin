@@ -149,6 +149,7 @@ private fun HomeScreenLayout(state: HomeState, onAction: (HomeAction) -> Unit) {
 
     HomeHeader(
         serverName = state.server?.name ?: "",
+        userAvatarUrl = state.userAvatarUrl,
         isLoading = state.isLoading,
         isError = state.error != null,
         onServerClick = { showServerSelectionBottomSheet = true },

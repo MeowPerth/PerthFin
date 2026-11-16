@@ -239,6 +239,7 @@ class SetupRepositoryImpl(
                 name = authenticationResult.user!!.name!!,
                 serverId = authenticationResult.serverId!!,
                 accessToken = authenticationResult.accessToken!!,
+                primaryImageTag = authenticationResult.user?.primaryImageTag,
             )
 
         database.insertUser(user)

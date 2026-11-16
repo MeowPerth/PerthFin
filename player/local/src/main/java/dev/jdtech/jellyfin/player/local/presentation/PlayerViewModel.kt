@@ -339,17 +339,36 @@ constructor(
         val groups = tracks.groups.filter { it.type == type && it.isSupported }
         if (groups.isEmpty()) return null
 
-        val ordinal = streams.indexOfFirst { it.index == index }
-        if (ordinal >= 0 && streams.size == groups.size) {
-            return groups[ordinal]
-        }
-
         val target = streams.firstOrNull { it.index == index } ?: return null
-        return groups.firstOrNull { group ->
+
+        val exact = groups.filter { group ->
             val format = group.mediaTrackGroup.getFormat(0)
-            languageMatches(format.language, target.language) ||
-                (target.codec.isNotBlank() && format.codecs?.equals(target.codec, true) == true)
+            languageMatches(format.language, target.language) &&
+                codecMatches(format.codecs, target.codec)
         }
+        if (exact.size == 1) return exact.single()
+
+        val sameLanguage = groups.filter { group ->
+            languageMatches(group.mediaTrackGroup.getFormat(0).language, target.language)
+        }
+        if (sameLanguage.size == 1) return sameLanguage.single()
+
+        val byTitle = groups.filter { group ->
+            val label = group.mediaTrackGroup.getFormat(0).label
+            !label.isNullOrBlank() &&
+                target.title.isNotBlank() &&
+                label!!.contains(target.title, ignoreCase = true)
+        }
+        return byTitle.singleOrNull()
+    }
+
+    private fun codecMatches(a: String?, b: String?): Boolean {
+        if (a.isNullOrBlank() || b.isNullOrBlank()) return false
+        val first = a.lowercase().filter { it.isLetterOrDigit() }
+        val second = b.lowercase().filter { it.isLetterOrDigit() }
+        return first.isNotEmpty() &&
+            second.isNotEmpty() &&
+            (first == second || first.contains(second) || second.contains(first))
     }
 
     private fun languageMatches(a: String?, b: String?): Boolean {

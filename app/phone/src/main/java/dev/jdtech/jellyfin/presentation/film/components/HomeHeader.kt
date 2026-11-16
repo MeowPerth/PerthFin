@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -24,11 +25,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil3.compose.AsyncImage
 import dev.jdtech.jellyfin.core.R as CoreR
 import dev.jdtech.jellyfin.presentation.theme.FindroidTheme
 import dev.jdtech.jellyfin.presentation.theme.spacings
@@ -36,6 +40,7 @@ import dev.jdtech.jellyfin.presentation.theme.spacings
 @Composable
 fun HomeHeader(
     serverName: String,
+    userAvatarUrl: String? = null,
     isLoading: Boolean,
     isError: Boolean,
     onServerClick: () -> Unit,
@@ -148,15 +153,22 @@ fun HomeHeader(
                 shape = CircleShape,
                 color = MaterialTheme.colorScheme.surfaceContainerHigh,
             ) {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.Center,
-                    verticalAlignment = Alignment.CenterVertically,
+                Box(
+                    modifier = Modifier.fillMaxSize().clip(CircleShape),
+                    contentAlignment = Alignment.Center,
                 ) {
                     Icon(
                         painter = painterResource(CoreR.drawable.ic_user),
                         contentDescription = null,
                     )
+                    if (userAvatarUrl != null) {
+                        AsyncImage(
+                            model = userAvatarUrl,
+                            contentDescription = null,
+                            modifier = Modifier.fillMaxSize(),
+                            contentScale = ContentScale.Crop,
+                        )
+                    }
                 }
             }
         }

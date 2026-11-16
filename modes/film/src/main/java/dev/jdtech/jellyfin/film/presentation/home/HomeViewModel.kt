@@ -64,7 +64,29 @@ constructor(
         val server = database.getServer(serverId)
         if (server != null) {
             _state.emit(_state.value.copy(server = server))
+            loadUserAvatar(server)
         }
+    }
+
+    private suspend fun loadUserAvatar(server: dev.jdtech.jellyfin.models.Server) {
+        val userId = server.currentUserId ?: repository.getUserId()
+        val user = database.getUser(userId)
+        var imageTag = user?.primaryImageTag
+        if (imageTag.isNullOrBlank()) {
+            imageTag = runCatching { repository.getCurrentUserImageTag() }.getOrNull()
+            if (!imageTag.isNullOrBlank() && user != null && user.primaryImageTag != imageTag) {
+                database.insertUser(user.copy(primaryImageTag = imageTag))
+            }
+        }
+        val baseUrl = repository.getBaseUrl().trimEnd('/')
+        val token = repository.getAccessToken()
+        val avatarUrl =
+            if (!imageTag.isNullOrBlank() && baseUrl.isNotBlank() && token.isNotBlank()) {
+                "$baseUrl/Users/$userId/Images/Primary?tag=$imageTag&maxHeight=256&api_key=$token"
+            } else {
+                null
+            }
+        _state.emit(_state.value.copy(userAvatarUrl = avatarUrl))
     }
 
     private suspend fun loadSuggestions() {
