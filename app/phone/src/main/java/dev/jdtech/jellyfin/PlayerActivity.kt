@@ -157,6 +157,7 @@ class PlayerActivity : BasePlayerActivity() {
         val lockButton = binding.playerView.findViewById<ImageButton>(R.id.btn_lockview)
         val unlockButton = binding.playerView.findViewById<ImageButton>(R.id.btn_unlock)
         val orientationButton = binding.playerView.findViewById<ImageButton>(R.id.btn_orientation)
+        val centerControls = binding.playerView.findViewById<View>(R.id.exo_center_controls)
 
         orientationButton.setOnClickListener {
             applyPlayerOrientation(
@@ -247,6 +248,7 @@ class PlayerActivity : BasePlayerActivity() {
                         when (event) {
                             is PlayerEvents.NavigateBack -> finishPlayback()
                             is PlayerEvents.IsPlayingChanged -> {
+                                centerControls.isVisible = !event.isPlaying
                                 if (event.isPlaying) {
                                     window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
                                 } else {
