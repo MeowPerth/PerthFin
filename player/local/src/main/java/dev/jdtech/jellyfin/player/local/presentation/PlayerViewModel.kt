@@ -219,6 +219,10 @@ constructor(
 
             currentItemId = startItem.itemId
             currentItemKind = startItem.itemKind
+            selectedAudioStreamIndex =
+                audioStreamIndex ?: appPreferences.getSavedAudioStreamIndex(startItem.itemId)
+            selectedSubtitleStreamIndex =
+                subtitleStreamIndex ?: appPreferences.getSavedSubtitleStreamIndex(startItem.itemId)
             items = listOfNotNull(startItem).toMutableList()
             currentMediaItemIndex = items.indexOf(startItem)
 
