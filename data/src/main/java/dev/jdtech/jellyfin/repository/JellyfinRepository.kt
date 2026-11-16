@@ -73,7 +73,7 @@ interface JellyfinRepository {
 
     suspend fun getLatestMedia(parentId: UUID): List<FindroidItem>
 
-    suspend fun getSeasons(seriesId: UUID, offline: Boolean = false): List<FindroidSeason>
+    suspend fun getSeasons(seriesId: UUID): List<FindroidSeason>
 
     suspend fun getNextUp(seriesId: UUID? = null): List<FindroidEpisode>
 
@@ -83,7 +83,6 @@ interface JellyfinRepository {
         fields: List<ItemFields>? = null,
         startItemId: UUID? = null,
         limit: Int? = null,
-        offline: Boolean = false,
     ): List<FindroidEpisode>
 
     suspend fun getMediaSources(itemId: UUID, includePath: Boolean = false): List<FindroidSource>

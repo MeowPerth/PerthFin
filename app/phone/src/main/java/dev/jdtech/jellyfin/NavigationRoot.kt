@@ -66,7 +66,6 @@ import dev.jdtech.jellyfin.presentation.setup.permission.PermissionScreen
 import dev.jdtech.jellyfin.presentation.setup.servers.ServersScreen
 import dev.jdtech.jellyfin.presentation.setup.users.UsersScreen
 import dev.jdtech.jellyfin.presentation.setup.welcome.WelcomeScreen
-import dev.jdtech.jellyfin.presentation.utils.LocalOfflineMode
 import dev.jdtech.jellyfin.setup.presentation.permission.PermissionAction
 import dev.jdtech.jellyfin.setup.presentation.permission.PermissionViewModel
 import java.util.UUID
@@ -163,7 +162,6 @@ fun NavigationRoot(
                 navigationState = navigationState,
                 navigator = navigator,
                 entryDecorators = entryDecorators,
-                isOfflineMode = LocalOfflineMode.current,
                 searchExpanded = searchExpanded,
                 permissionViewModel = permissionViewModel,
                 permissionApplicable = permissionState.currentRequest != null,
@@ -190,16 +188,11 @@ private fun MainNavigation(
     navigationState: NavigationState,
     navigator: Navigator,
     entryDecorators: List<NavEntryDecorator<NavKey>>,
-    isOfflineMode: Boolean,
     searchExpanded: MutableState<Boolean>,
     permissionViewModel: PermissionViewModel,
     permissionApplicable: Boolean,
 ) {
-    val navigationItems =
-        when (isOfflineMode) {
-            false -> listOf(homeTab, mediaTab)
-            true -> listOf(homeTab)
-        }
+    val navigationItems = listOf(homeTab, mediaTab)
     val tabRoutes = navigationItems.map { it.route }
 
     val topLevelRoute = navigationState.topLevelRoute

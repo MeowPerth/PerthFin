@@ -84,15 +84,13 @@ constructor(private val appPreferences: AppPreferences, private val database: Se
             combine(
                     setupFlags,
                     appPreferences.observe(appPreferences.dynamicColors),
-                    appPreferences.observe(appPreferences.offlineMode),
-                ) { flags, dynamicColors, offlineMode ->
+                ) { flags, dynamicColors ->
                     MainState(
                         isLoading = false,
                         isDynamicColors = dynamicColors,
                         hasServers = flags.hasServers,
                         hasCurrentServer = flags.hasCurrentServer,
                         hasCurrentUser = flags.hasCurrentUser,
-                        isOfflineMode = offlineMode,
                     )
                 }
                 .collect { mainState -> _state.emit(mainState) }
@@ -112,5 +110,4 @@ data class MainState(
     val hasServers: Boolean = false,
     val hasCurrentServer: Boolean = false,
     val hasCurrentUser: Boolean = false,
-    val isOfflineMode: Boolean = false,
 )
