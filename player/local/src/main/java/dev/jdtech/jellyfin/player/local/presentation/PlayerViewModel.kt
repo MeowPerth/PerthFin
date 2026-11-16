@@ -14,6 +14,7 @@ import androidx.media3.common.MediaMetadata
 import androidx.media3.common.MimeTypes
 import androidx.media3.common.Player
 import androidx.media3.common.TrackSelectionOverride
+import androidx.media3.common.Tracks
 import androidx.media3.exoplayer.DefaultRenderersFactory
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.trackselection.DefaultTrackSelector
@@ -95,6 +96,9 @@ constructor(
     private var listenerAdded = false
     private var selectedAudioStreamIndex: Int? = null
     private var selectedSubtitleStreamIndex: Int? = null
+    private var pendingDirectOverrides = false
+    private var pendingAudioIndex: Int? = null
+    private var pendingSubtitleIndex: Int? = null
     private var currentMediaItemSegments: List<FindroidSegment> = emptyList()
 
     // Segments preferences
@@ -228,7 +232,7 @@ constructor(
                     ?: subtitleStreamIndex
                     ?: appPreferences.getSavedSubtitleStreamIndex(startItem.itemId)
             if (!startItem.isTranscoding) {
-                applyDirectLanguagePreferences(startItem)
+                prepareDirectOverrides(startItem)
             }
             items = listOfNotNull(startItem).toMutableList()
             currentMediaItemIndex = items.indexOf(startItem)
@@ -258,31 +262,108 @@ constructor(
     val selectedQuality: String
         get() = appPreferences.getValue(appPreferences.playerQuality)
 
-    fun saveDirectStreamSelection(type: @C.TrackType Int, language: String?) {
+    fun saveDirectStreamSelection(
+        type: @C.TrackType Int,
+        language: String?,
+        index: Int?,
+    ) {
         val itemId = currentItemId ?: return
         if (type == C.TRACK_TYPE_AUDIO) {
+            appPreferences.setSavedAudioStreamIndex(itemId, index)
             appPreferences.setSavedAudioLanguage(itemId, language)
         } else {
-            appPreferences.setSavedSubtitleLanguage(itemId, language ?: "none")
+            appPreferences.setSavedSubtitleStreamIndex(itemId, index)
+            appPreferences.setSavedSubtitleLanguage(
+                itemId,
+                if (index == null || index < 0) "none" else language,
+            )
         }
     }
 
-    private fun applyDirectLanguagePreferences(item: PlayerItem) {
-        val audioLanguage =
-            appPreferences.getSavedAudioLanguage(item.itemId)
-                ?: appPreferences.getValue(appPreferences.preferredAudioLanguage)
-        val subtitleLanguage =
-            appPreferences.getSavedSubtitleLanguage(item.itemId)
-                ?: appPreferences.getValue(appPreferences.preferredSubtitleLanguage)
-        val subtitlesDisabled = subtitleLanguage == "none"
+    private fun prepareDirectOverrides(item: PlayerItem) {
+        pendingAudioIndex = item.selectedAudioStreamIndex
+        pendingSubtitleIndex = item.selectedSubtitleStreamIndex
+        pendingDirectOverrides = true
+        applyDirectOverridesIfPossible()
+    }
 
-        player.trackSelectionParameters =
-            player.trackSelectionParameters
-                .buildUpon()
-                .setPreferredAudioLanguage(audioLanguage)
-                .setPreferredTextLanguage(if (subtitlesDisabled) null else subtitleLanguage)
-                .setTrackTypeDisabled(C.TRACK_TYPE_TEXT, subtitlesDisabled)
-                .build()
+    private fun applyDirectOverridesIfPossible(tracks: Tracks = player.currentTracks) {
+        if (!pendingDirectOverrides) return
+        val item = items.getOrNull(currentMediaItemIndex) ?: return
+
+        val params = player.trackSelectionParameters.buildUpon()
+        var applied = false
+
+        pendingAudioIndex?.let { index ->
+            if (index < 0) {
+                params.clearOverridesOfType(C.TRACK_TYPE_AUDIO)
+                params.setTrackTypeDisabled(C.TRACK_TYPE_AUDIO, true)
+                applied = true
+            } else {
+                findGroup(tracks, C.TRACK_TYPE_AUDIO, item.audioStreams, index)?.let { group ->
+                    params.clearOverridesOfType(C.TRACK_TYPE_AUDIO)
+                    params.setTrackTypeDisabled(C.TRACK_TYPE_AUDIO, false)
+                    params.setOverrideForType(TrackSelectionOverride(group.mediaTrackGroup, 0))
+                    applied = true
+                }
+            }
+        }
+
+        pendingSubtitleIndex?.let { index ->
+            if (index < 0) {
+                params.clearOverridesOfType(C.TRACK_TYPE_TEXT)
+                params.setTrackTypeDisabled(C.TRACK_TYPE_TEXT, true)
+                applied = true
+            } else {
+                findGroup(tracks, C.TRACK_TYPE_TEXT, item.subtitleStreams, index)?.let { group ->
+                    params.clearOverridesOfType(C.TRACK_TYPE_TEXT)
+                    params.setTrackTypeDisabled(C.TRACK_TYPE_TEXT, false)
+                    params.setOverrideForType(TrackSelectionOverride(group.mediaTrackGroup, 0))
+                    applied = true
+                }
+            }
+        }
+
+        if (applied) {
+            player.trackSelectionParameters = params.build()
+        }
+        pendingDirectOverrides = false
+    }
+
+    private fun findGroup(
+        tracks: Tracks,
+        type: @C.TrackType Int,
+        streams: List<PlayerStream>,
+        index: Int,
+    ): Tracks.Group? {
+        val groups = tracks.groups.filter { it.type == type && it.isSupported }
+        if (groups.isEmpty()) return null
+
+        val ordinal = streams.indexOfFirst { it.index == index }
+        if (ordinal >= 0 && streams.size == groups.size) {
+            return groups[ordinal]
+        }
+
+        val target = streams.firstOrNull { it.index == index } ?: return null
+        return groups.firstOrNull { group ->
+            val format = group.mediaTrackGroup.getFormat(0)
+            languageMatches(format.language, target.language) ||
+                (target.codec.isNotBlank() && format.codecs?.equals(target.codec, true) == true)
+        }
+    }
+
+    private fun languageMatches(a: String?, b: String?): Boolean {
+        if (a.isNullOrBlank() || b.isNullOrBlank()) return false
+        val first = a.lowercase()
+        val second = b.lowercase()
+        return first == second ||
+            (first.length >= 2 && second.length >= 2 && first.take(2) == second.take(2))
+    }
+
+    override fun onTracksChanged(tracks: Tracks) {
+        if (pendingDirectOverrides) {
+            applyDirectOverridesIfPossible(tracks)
+        }
     }
 
     val isTranscoding: Boolean

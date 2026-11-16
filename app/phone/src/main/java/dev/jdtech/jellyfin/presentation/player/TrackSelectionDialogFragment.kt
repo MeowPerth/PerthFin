@@ -112,7 +112,14 @@ class TrackSelectionDialogFragment(
                             } else {
                                 tracksGroups[which - 1].mediaTrackGroup.getFormat(0).language
                             }
-                        viewModel.saveDirectStreamSelection(type, language)
+                        val serverIndex =
+                            when {
+                                which == 0 -> -1
+                                serverStreams.size == tracksGroups.size ->
+                                    serverStreams[which - 1].index
+                                else -> null
+                            }
+                        viewModel.saveDirectStreamSelection(type, language, serverIndex)
                         viewModel.switchToTrack(type, which - 1)
                         dialog.dismiss()
                     }
