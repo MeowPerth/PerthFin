@@ -111,13 +111,16 @@ class AppPreferences @Inject constructor(val sharedPreferences: SharedPreference
         }
 
     fun setSavedAudioStreamIndex(itemId: java.util.UUID, index: Int?) {
-        sharedPreferences.edit().apply {
-            if (index == null) {
-                remove("audio_stream_$itemId")
-            } else {
-                putInt("audio_stream_$itemId", index)
+        sharedPreferences
+            .edit()
+            .apply {
+                if (index == null) {
+                    remove("audio_stream_$itemId")
+                } else {
+                    putInt("audio_stream_$itemId", index)
+                }
             }
-        }.apply()
+            .apply()
     }
 
     fun getSavedSubtitleStreamIndex(itemId: java.util.UUID): Int? =
@@ -126,13 +129,16 @@ class AppPreferences @Inject constructor(val sharedPreferences: SharedPreference
         }
 
     fun setSavedSubtitleStreamIndex(itemId: java.util.UUID, index: Int?) {
-        sharedPreferences.edit().apply {
-            if (index == null) {
-                remove("subtitle_stream_$itemId")
-            } else {
-                putInt("subtitle_stream_$itemId", index)
+        sharedPreferences
+            .edit()
+            .apply {
+                if (index == null) {
+                    remove("subtitle_stream_$itemId")
+                } else {
+                    putInt("subtitle_stream_$itemId", index)
+                }
             }
-        }.apply()
+            .apply()
     }
 
     inline fun <reified T> getValue(preference: Preference<T>): T {

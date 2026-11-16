@@ -123,6 +123,5 @@ interface JellyfinRepository {
 
     suspend fun getUserConfiguration(): UserConfiguration?
 
-
     fun getUserId(): UUID
 }

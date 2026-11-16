@@ -1,9 +1,8 @@
 name: Publish
 
 on:
-  push:
-    tags:
-      - v*
+  # Releases are manual during development. Do not trigger on tags.
+  workflow_dispatch:
 
 jobs:
   publish:

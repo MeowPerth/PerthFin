@@ -76,36 +76,36 @@ private val ISO3_TO_ISO1 =
 private val DEFAULT_MARKERS =
     setOf(
         "default",
-        "默认",
-        "默認",
-        "预设",
-        "預設",
-        "défaut",
+        "??",
+        "??",
+        "??",
+        "??",
+        "d?faut",
         "standard",
         "predeterminado",
         "predeterminada",
         "predefinido",
-        "padrão",
+        "padr?o",
         "vorgabe",
-        "по умолчанию",
-        "стандартный",
-        "domyślny",
-        "predvolené",
+        "?? ?????????",
+        "???????????",
+        "domy?lny",
+        "predvolen?",
         "privzeto",
-        "varsayılan",
-        "既定",
-        "デフォルト",
-        "기본",
-        "افتراضي",
-        "ברירת מחדל",
-        "mặc định",
+        "varsay?lan",
+        "??",
+        "?????",
+        "??",
+        "???????",
+        "????? ????",
+        "m?c ??nh",
         "predeterminat",
-        "стандарден",
-        "подразбиране",
+        "??????????",
+        "????????????",
         "oletus",
         "forvalt",
         "standart",
-        "за замовчуванням",
+        "?? ?????????????",
     )
 
 fun buildStreamLabel(
@@ -119,28 +119,20 @@ fun buildStreamLabel(
     val languageTag = languageTag(language)
     val codecLower = codec.trim().lowercase()
 
-    val segments =
-        title
-            ?.split(" - ")
-            ?.map { it.trim() }
-            ?.filter { it.isNotEmpty() }
-            .orEmpty()
+    val segments = title?.split(" - ")?.map { it.trim() }?.filter { it.isNotEmpty() }.orEmpty()
 
-    val remaining =
-        segments.filterNot { segment ->
-            val lower = segment.lowercase()
-            lower in DEFAULT_MARKERS ||
-                lower == codecLower ||
-                lower == language.lowercase() ||
-                lower == languageTag?.lowercase() ||
-                (englishLanguage != null && lower == englishLanguage.lowercase()) ||
-                (localizedLanguage != null && lower == localizedLanguage.lowercase())
-        }
+    val remaining = segments.filterNot { segment ->
+        val lower = segment.lowercase()
+        lower in DEFAULT_MARKERS ||
+            lower == codecLower ||
+            lower == language.lowercase() ||
+            lower == languageTag?.lowercase() ||
+            (englishLanguage != null && lower == englishLanguage.lowercase()) ||
+            (localizedLanguage != null && lower == localizedLanguage.lowercase())
+    }
 
     val languageLabel =
-        localizedLanguage
-            ?: remaining.firstOrNull()
-            ?: language.uppercase().ifBlank { "Track" }
+        localizedLanguage ?: remaining.firstOrNull() ?: language.uppercase().ifBlank { "Track" }
     val rest = if (localizedLanguage != null) remaining else remaining.drop(1)
 
     return if (isSubtitle) {

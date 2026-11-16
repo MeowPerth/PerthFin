@@ -30,6 +30,6 @@ object RepositoryModule {
 
     @Provides
     fun provideJellyfinRepository(
-        jellyfinRepositoryImpl: JellyfinRepositoryImpl,
+        jellyfinRepositoryImpl: JellyfinRepositoryImpl
     ): JellyfinRepository = jellyfinRepositoryImpl
 }

@@ -38,11 +38,11 @@ import org.jellyfin.sdk.model.api.DeviceOptionsDto
 import org.jellyfin.sdk.model.api.DeviceProfile
 import org.jellyfin.sdk.model.api.DlnaProfileType
 import org.jellyfin.sdk.model.api.EncodingContext
-import org.jellyfin.sdk.model.api.MediaStreamProtocol
 import org.jellyfin.sdk.model.api.GeneralCommandType
 import org.jellyfin.sdk.model.api.ItemFields
 import org.jellyfin.sdk.model.api.ItemFilter
 import org.jellyfin.sdk.model.api.ItemSortBy
+import org.jellyfin.sdk.model.api.MediaStreamProtocol
 import org.jellyfin.sdk.model.api.MediaType
 import org.jellyfin.sdk.model.api.PlayMethod
 import org.jellyfin.sdk.model.api.PlaybackInfoDto
@@ -380,14 +380,19 @@ class JellyfinRepositoryImpl(
                         source.copy(
                             transcodingUrl =
                                 source.transcodingUrl
-                                    ?.withQueryParam("AudioStreamIndex", audioStreamIndex?.toString())
+                                    ?.withQueryParam(
+                                        "AudioStreamIndex",
+                                        audioStreamIndex?.toString(),
+                                    )
                                     ?.withQueryParam(
                                         "SubtitleStreamIndex",
                                         subtitleStreamIndex?.toString(),
                                     )
                                     ?.withQueryParam(
                                         "SubtitleMethod",
-                                        if (subtitleStreamIndex != null && subtitleStreamIndex >= 0) {
+                                        if (
+                                            subtitleStreamIndex != null && subtitleStreamIndex >= 0
+                                        ) {
                                             "Encode"
                                         } else {
                                             null
