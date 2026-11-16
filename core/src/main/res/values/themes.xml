@@ -38,9 +38,9 @@
 
         <!-- Shapes -->
         <item name="shapeAppearanceCornerExtraSmall">
-            @style/ShapeAppearance.Findroid.Corner.ExtraSmall
+            @style/ShapeAppearance.PerthFin.Corner.ExtraSmall
         </item>
-        <item name="shapeAppearanceCornerSmall">@style/ShapeAppearance.Findroid.Corner.Small</item>
+        <item name="shapeAppearanceCornerSmall">@style/ShapeAppearance.PerthFin.Corner.Small</item>
 
         <!-- Toolbar -->
         <item name="toolbarStyle">@style/Widget.Material3.Toolbar.Surface</item>
