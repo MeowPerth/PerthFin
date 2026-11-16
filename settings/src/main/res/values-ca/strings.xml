@@ -30,4 +30,7 @@
     <string name="download_mobile_data">Descarrega amb dades mòbils</string>
     <string name="player_brightness_remember">Recorda el nivell de brillantor</string>
     <string name="none">Cap</string>
+    <string name="pref_player_quality">Qualitat de vídeo</string>
+    <string name="pref_player_quality_summary">Taxa de bits per a la propera reproducció. S\'utilitza transcodificació quan se selecciona un límit.</string>
+    <string name="quality_original">Original (reproducció directa)</string>
 </resources>

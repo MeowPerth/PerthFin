@@ -17,4 +17,5 @@
     <string name="player_trickplay">Tua mượt mà</string>
     <string name="player_controls_progress">Thanh tiến trình</string>
     <string name="none">Trống</string>
+    <string name="select_quality">Chất lượng video</string>
 </resources>

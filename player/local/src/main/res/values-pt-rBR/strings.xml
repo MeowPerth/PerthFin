@@ -23,4 +23,5 @@
     <string name="player_controls_skip_preview">Pular prévia</string>
     <string name="player_controls_skip_commercial">Pular anúncio</string>
     <string name="player_controls_skip_unknown">Pular</string>
+    <string name="select_quality">Qualidade de vídeo</string>
 </resources>

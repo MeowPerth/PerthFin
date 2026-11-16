@@ -100,4 +100,7 @@
     <string name="media_segments_type_outro">خاتمة</string>
     <string name="media_segments_type_intro">مقدمة</string>
     <string name="none">لا شيئ</string>
+    <string name="pref_player_quality">جودة الفيديو</string>
+    <string name="pref_player_quality_summary">معدل البت المستخدم في التشغيل التالي. يتم استخدام الترميز عند تحديد حد أقصى.</string>
+    <string name="quality_original">الأصلية (تشغيل مباشر)</string>
 </resources>

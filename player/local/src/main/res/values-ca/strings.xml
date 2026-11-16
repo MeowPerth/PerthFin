@@ -6,4 +6,5 @@
     <string name="select_playback_speed">Selecciona la velocitat de reproducció</string>
     <string name="select_a_version">Selecciona una versió</string>
     <string name="external">Extern</string>
+    <string name="select_quality">Qualitat de vídeo</string>
 </resources>

@@ -69,4 +69,7 @@
     <string name="extra_info">Mostrar info extra</string>
     <string name="app_language">Idioma de la aplicación</string>
     <string name="users">Usuarios</string>
+    <string name="pref_player_quality">Calidad de video</string>
+    <string name="pref_player_quality_summary">Tasa de bits para la próxima reproducción. Se usa transcodificación cuando se selecciona un límite.</string>
+    <string name="quality_original">Original (reproducción directa)</string>
 </resources>

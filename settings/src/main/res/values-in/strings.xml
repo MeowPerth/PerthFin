@@ -100,4 +100,7 @@
     <string name="media_segments_type_recap">Ringkasan</string>
     <string name="media_segments_type_outro">Penutup</string>
     <string name="media_segments_type_intro">Pembuka</string>
+    <string name="pref_player_quality">Kualitas video</string>
+    <string name="pref_player_quality_summary">Bitrate untuk pemutaran berikutnya. Transcoding digunakan saat batas dipilih.</string>
+    <string name="quality_original">Asli (pemutaran langsung)</string>
 </resources>

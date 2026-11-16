@@ -23,4 +23,5 @@
     <string name="player_controls_skip_preview">Pomiń podgląd</string>
     <string name="player_controls_skip_commercial">Pomiń reklamę</string>
     <string name="player_controls_skip_unknown">Pomiń</string>
+    <string name="select_quality">Jakość wideo</string>
 </resources>

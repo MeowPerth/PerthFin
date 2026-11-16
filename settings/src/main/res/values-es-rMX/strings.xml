@@ -70,4 +70,7 @@
     <string name="player_gestures_chapter_skip_summary">Toque prolongado en el lado izquierdo/derecho para saltar capítulos (sobreescribe el gesto de velocidad x2)</string>
     <string name="users">Usuarios</string>
     <string name="none">Ninguno</string>
+    <string name="pref_player_quality">Calidad de video</string>
+    <string name="pref_player_quality_summary">Tasa de bits para la próxima reproducción. Se usa transcodificación cuando se selecciona un límite.</string>
+    <string name="quality_original">Original (reproducción directa)</string>
 </resources>

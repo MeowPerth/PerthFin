@@ -23,4 +23,5 @@
     <string name="player_controls_skip_preview">예고편 건너뛰기</string>
     <string name="player_controls_skip_commercial">광고 건너뛰기</string>
     <string name="player_controls_skip_unknown">건너뛰기</string>
+    <string name="select_quality">영상 화질</string>
 </resources>

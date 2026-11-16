@@ -23,4 +23,5 @@
     <string name="player_controls_skip_preview">Preview overslaan</string>
     <string name="player_controls_skip_commercial">Reclame overslaan</string>
     <string name="player_controls_skip_unknown">Overslaan</string>
+    <string name="select_quality">Videokwaliteit</string>
 </resources>

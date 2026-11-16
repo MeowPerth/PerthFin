@@ -23,4 +23,5 @@
     <string name="player_controls_skip_preview">تخطي المعاينة</string>
     <string name="player_controls_skip_commercial">تخطي الإعلانات</string>
     <string name="player_controls_skip_unknown">تخطي</string>
+    <string name="select_quality">جودة الفيديو</string>
 </resources>

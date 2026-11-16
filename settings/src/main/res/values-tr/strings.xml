@@ -100,4 +100,7 @@
     <string name="media_segments_type_outro">Kapanış</string>
     <string name="media_segments_type_intro">Giriş</string>
     <string name="none">Hiçbiri</string>
+    <string name="pref_player_quality">Video kalitesi</string>
+    <string name="pref_player_quality_summary">Sonraki oynatma için bit hızı. Bir sınır seçildiğinde kod dönüştürme kullanılır.</string>
+    <string name="quality_original">Orijinal (doğrudan oynatma)</string>
 </resources>

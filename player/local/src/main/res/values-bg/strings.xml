@@ -23,4 +23,5 @@
     <string name="player_controls_skip_preview">Пропуснете преглед</string>
     <string name="player_controls_skip_commercial">Пропуснете рекламата</string>
     <string name="player_controls_skip_unknown">Пропускане</string>
+    <string name="select_quality">Качество на видеото</string>
 </resources>

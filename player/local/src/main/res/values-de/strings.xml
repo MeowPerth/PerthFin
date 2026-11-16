@@ -23,4 +23,5 @@
     <string name="player_controls_skip_preview">Vorschau überspringen</string>
     <string name="player_controls_skip_commercial">Werbung überspringen</string>
     <string name="player_controls_skip_unknown">Überspringen</string>
+    <string name="select_quality">Videoqualität</string>
 </resources>

@@ -16,4 +16,5 @@
     <string name="player_controls_progress">סרגל התקדמות</string>
     <string name="player_trickplay">Trickplay</string>
     <string name="player_controls_picture_in_picture">הפעל תמונה-בתוך-תמונה</string>
+    <string name="select_quality">איכות וידאו</string>
 </resources>
