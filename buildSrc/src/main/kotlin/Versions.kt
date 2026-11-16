@@ -1,8 +1,8 @@
 import org.gradle.jvm.toolchain.JavaLanguageVersion
 
 object Versions {
-    const val APP_CODE = 28
-    const val APP_NAME = "1.0.27"
+    const val APP_CODE = 1
+    const val APP_NAME = "1.0.0"
 
     const val COMPILE_SDK = 37
     const val TARGET_SDK = 37
