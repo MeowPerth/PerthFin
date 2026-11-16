@@ -1,7 +1,7 @@
 package dev.jdtech.jellyfin.presentation.settings
 
 import android.widget.Toast
-import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,7 +19,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.union
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledTonalIconButton
 import androidx.compose.material3.HorizontalDivider
@@ -42,7 +41,6 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
-import androidx.compose.ui.unit.dp
 import com.mikepenz.aboutlibraries.ui.compose.android.produceLibraries
 import com.mikepenz.aboutlibraries.ui.compose.m3.LibrariesContainer
 import dev.jdtech.jellyfin.BuildConfig
@@ -109,10 +107,9 @@ fun AboutScreen(navigateBack: () -> Unit) {
                             horizontalAlignment = Alignment.CenterHorizontally,
                         ) {
                             Spacer(Modifier.height(MaterialTheme.spacings.small))
-                            Image(
-                                painter = painterResource(CoreR.drawable.ic_banner),
-                                contentDescription = null,
-                                modifier = Modifier.width(240.dp),
+                            Text(
+                                text = stringResource(CoreR.string.app_name),
+                                style = MaterialTheme.typography.headlineMedium,
                             )
                             Spacer(Modifier.height(MaterialTheme.spacings.medium))
                             Text(
@@ -135,7 +132,7 @@ fun AboutScreen(navigateBack: () -> Unit) {
                                     onClick = {
                                         try {
                                             uriHandler.openUri(
-                                                "https://github.com/jarnedemeulemeester/findroid"
+                                                "https://github.com/MeowPerth/findroid"
                                             )
                                         } catch (e: IllegalArgumentException) {
                                             Toast.makeText(
@@ -149,31 +146,24 @@ fun AboutScreen(navigateBack: () -> Unit) {
                                 ) {
                                     Icon(
                                         painter = painterResource(CoreR.drawable.ic_github),
-                                        contentDescription = null,
-                                    )
-                                }
-                                FilledTonalIconButton(
-                                    onClick = {
-                                        try {
-                                            uriHandler.openUri(
-                                                "https://ko-fi.com/jarnedemeulemeester"
-                                            )
-                                        } catch (e: IllegalArgumentException) {
-                                            Toast.makeText(
-                                                    context,
-                                                    e.localizedMessage,
-                                                    Toast.LENGTH_SHORT,
-                                                )
-                                                .show()
-                                        }
-                                    }
-                                ) {
-                                    Icon(
-                                        painter = painterResource(CoreR.drawable.ic_coffee),
-                                        contentDescription = null,
+                                        contentDescription = "Source code",
                                     )
                                 }
                             }
+                            Spacer(Modifier.height(MaterialTheme.spacings.medium))
+                            Text(
+                                text =
+                                    "Unofficial fork of Findroid by Jarne Demeulemeester. Licensed under GPLv3.",
+                                style = MaterialTheme.typography.bodySmall,
+                                modifier =
+                                    Modifier.clickable {
+                                        try {
+                                            uriHandler.openUri(
+                                                "https://github.com/jarnedemeulemeester/findroid"
+                                            )
+                                        } catch (_: IllegalArgumentException) {}
+                                    },
+                            )
                             Spacer(Modifier.height(MaterialTheme.spacings.small))
                         }
                     }

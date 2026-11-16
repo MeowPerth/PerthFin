@@ -1,1 +1,1 @@
-Third-party native Jellyfin app
+An unofficial native Jellyfin client for Android

@@ -1,8 +1,9 @@
-Findroid is a third-party Android application for Jellyfin that provides a native user interface to browse and play movies and series.
+PerthFin is an unofficial, native Android client for Jellyfin, based on the open-source Findroid project.
 
-To use this app you must have a Jellyfin server.
+Browse your movies and TV shows and play them directly from your Jellyfin server, with a fast native interface, offline downloads, picture-in-picture, chapters, trickplay previews and media segment skipping.
 
-You can also download movies and TV shows for offline playback while on the road.
-And with the built-in mpv player you are sure that all media formats will play correctly including styled SSA/ASS subtitles.
+PerthFin is not affiliated with or endorsed by the Jellyfin project or the Findroid author.
 
-Thanks for using Findroid!
+You need your own Jellyfin server (version 12 or newer) to use this app.
+
+Licensed under GPLv3. Source code: https://github.com/MeowPerth/findroid

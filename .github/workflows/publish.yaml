@@ -55,4 +55,4 @@ jobs:
         with:
           draft: true
           fail_on_unmatched_files: true
-          files: ./app/phone/build/outputs/apk/libre/release/findroid-v*-libre-*.apk
+          files: ./app/phone/build/outputs/apk/libre/release/perthfin-v*-libre-*.apk
