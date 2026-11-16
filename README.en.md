@@ -29,13 +29,19 @@ descriptively only.
 
 ## Screenshots
 
+### Phone UI (portrait)
+
 | Home | Library (3 per row) |
 |:---:|:---:|
 | ![Home](images/screenshots/home.jpg) | ![Library](images/screenshots/library.jpg) |
-| **Items per row** | **Quality / bitrate** |
-| ![Items per row](images/screenshots/columns.jpg) | ![Quality selection](images/screenshots/quality.jpg) |
-| **Portrait playback** | **Landscape playback** |
-| ![Portrait playback](images/screenshots/player-portrait.jpg) | ![Landscape playback](images/screenshots/player.jpg) |
+| **Items per row** | **Portrait playback** |
+| ![Items per row](images/screenshots/columns.jpg) | ![Portrait playback](images/screenshots/player-portrait.jpg) |
+
+### Landscape and quality
+
+| Quality / bitrate | Landscape playback |
+|:---:|:---:|
+| ![Quality selection](images/screenshots/quality.jpg) | ![Landscape playback](images/screenshots/player.jpg) |
 
 ## Features
 
