@@ -232,13 +232,17 @@ internal constructor(
                 "1.5" -> 1_500_000
                 else -> null
             }
+        val effectiveAudioStreamIndex =
+            audioStreamIndex ?: appPreferences.getSavedAudioStreamIndex(id)
+        val effectiveSubtitleStreamIndex =
+            subtitleStreamIndex ?: appPreferences.getSavedSubtitleStreamIndex(id)
         val mediaSources =
             repository.getMediaSources(
                 id,
                 true,
                 maxBitrate,
-                audioStreamIndex,
-                subtitleStreamIndex,
+                effectiveAudioStreamIndex,
+                effectiveSubtitleStreamIndex,
             )
         val mediaSource =
             if (mediaSourceIndex == null) {

@@ -264,12 +264,14 @@ constructor(
 
     fun selectAudioStream(index: Int) {
         selectedAudioStreamIndex = index
+        currentItemId?.let { appPreferences.setSavedAudioStreamIndex(it, index) }
         restartCurrentItem()
     }
 
     fun selectSubtitleStream(index: Int?) {
         // -1 explicitly disables subtitles in Jellyfin's PlaybackInfo request
         selectedSubtitleStreamIndex = index ?: -1
+        currentItemId?.let { appPreferences.setSavedSubtitleStreamIndex(it, index ?: -1) }
         restartCurrentItem()
     }
 

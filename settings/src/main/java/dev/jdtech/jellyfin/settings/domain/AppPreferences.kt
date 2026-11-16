@@ -105,6 +105,36 @@ class AppPreferences @Inject constructor(val sharedPreferences: SharedPreference
     // Migrations
     val mpvMigrated = Preference("mpv_migrated", false)
 
+    fun getSavedAudioStreamIndex(itemId: java.util.UUID): Int? =
+        sharedPreferences.getInt("audio_stream_$itemId", Int.MIN_VALUE).takeIf {
+            it != Int.MIN_VALUE
+        }
+
+    fun setSavedAudioStreamIndex(itemId: java.util.UUID, index: Int?) {
+        sharedPreferences.edit().apply {
+            if (index == null) {
+                remove("audio_stream_$itemId")
+            } else {
+                putInt("audio_stream_$itemId", index)
+            }
+        }.apply()
+    }
+
+    fun getSavedSubtitleStreamIndex(itemId: java.util.UUID): Int? =
+        sharedPreferences.getInt("subtitle_stream_$itemId", Int.MIN_VALUE).takeIf {
+            it != Int.MIN_VALUE
+        }
+
+    fun setSavedSubtitleStreamIndex(itemId: java.util.UUID, index: Int?) {
+        sharedPreferences.edit().apply {
+            if (index == null) {
+                remove("subtitle_stream_$itemId")
+            } else {
+                putInt("subtitle_stream_$itemId", index)
+            }
+        }.apply()
+    }
+
     inline fun <reified T> getValue(preference: Preference<T>): T {
         return try {
             @Suppress("UNCHECKED_CAST")
