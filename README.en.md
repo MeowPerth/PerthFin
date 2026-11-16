@@ -27,6 +27,8 @@ descriptively only.
 - License: GPLv3
 - Base: [Findroid](https://github.com/jarnedemeulemeester/findroid) 1.2.0 (commit [`3a06420`](https://github.com/jarnedemeulemeester/findroid/commit/3a06420))
 
+> The repository contributors list includes authors from the [Findroid](https://github.com/jarnedemeulemeester/findroid) upstream history. PerthFin changes are maintained by MeowPerth.
+
 ## Screenshots
 
 ### Phone UI (portrait)

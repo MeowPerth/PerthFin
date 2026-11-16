@@ -25,6 +25,8 @@ PerthFin 是一个独立的原生 Android [Jellyfin](https://jellyfin.org) 客�
 - 许可证：GPLv3
 - 上游基线：[Findroid](https://github.com/jarnedemeulemeester/findroid) 1.2.0（commit [`3a06420`](https://github.com/jarnedemeulemeester/findroid/commit/3a06420)）
 
+> 仓库的 Contributors 统计包含 [Findroid](https://github.com/jarnedemeulemeester/findroid) 上游历史作者；PerthFin 的修改由 MeowPerth 维护。
+
 ## 截图
 
 ### 手机界面（竖屏）
