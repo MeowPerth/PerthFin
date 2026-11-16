@@ -89,6 +89,9 @@ constructor(
     var playWhenReady = true
     private var currentMediaItemIndex = savedStateHandle["mediaItemIndex"] ?: 0
     private var playbackPosition: Long = savedStateHandle["position"] ?: 0
+    private var currentItemId: UUID? = null
+    private var currentItemKind: String? = null
+    private var listenerAdded = false
     private var currentMediaItemSegments: List<FindroidSegment> = emptyList()
 
     // Segments preferences
@@ -176,7 +179,12 @@ constructor(
     }
 
     fun initializePlayer(itemId: UUID, itemKind: String, startFromBeginning: Boolean) {
-        player.addListener(this)
+        currentItemId = itemId
+        currentItemKind = itemKind
+        if (!listenerAdded) {
+            player.addListener(this)
+            listenerAdded = true
+        }
 
         viewModelScope.launch {
             val startItem =
@@ -221,6 +229,19 @@ constructor(
             player.prepare()
             player.play()
         }
+    }
+
+    val selectedQuality: String
+        get() = appPreferences.getValue(appPreferences.playerQuality)
+
+    fun selectQuality(quality: String) {
+        appPreferences.setValue(appPreferences.playerQuality, quality)
+        val itemId = currentItemId ?: return
+        val itemKind = currentItemKind ?: return
+        playbackPosition = player.currentPosition.coerceAtLeast(0L)
+        player.stop()
+        player.clearMediaItems()
+        initializePlayer(itemId, itemKind, false)
     }
 
     private fun PlayerItem.toMediaItem(): MediaItem {

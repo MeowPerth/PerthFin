@@ -37,6 +37,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import dev.jdtech.jellyfin.databinding.ActivityPlayerBinding
 import dev.jdtech.jellyfin.player.local.presentation.PlayerEvents
 import dev.jdtech.jellyfin.player.local.presentation.PlayerViewModel
+import dev.jdtech.jellyfin.presentation.player.QualitySelectionDialogFragment
 import dev.jdtech.jellyfin.presentation.player.SpeedSelectionDialogFragment
 import dev.jdtech.jellyfin.presentation.player.TrackSelectionDialogFragment
 import dev.jdtech.jellyfin.settings.domain.AppPreferences
@@ -134,6 +135,7 @@ class PlayerActivity : BasePlayerActivity() {
         val audioButton = binding.playerView.findViewById<ImageButton>(R.id.btn_audio_track)
         val subtitleButton = binding.playerView.findViewById<ImageButton>(R.id.btn_subtitle)
         val speedButton = binding.playerView.findViewById<ImageButton>(R.id.btn_speed)
+        val qualityButton = binding.playerView.findViewById<ImageButton>(R.id.btn_quality)
         skipSegmentButton = binding.playerView.findViewById(R.id.btn_skip_segment)
         val pipButton = binding.playerView.findViewById<ImageButton>(R.id.btn_pip)
         val lockButton = binding.playerView.findViewById<ImageButton>(R.id.btn_lockview)
@@ -207,6 +209,8 @@ class PlayerActivity : BasePlayerActivity() {
                                 subtitleButton.imageAlpha = 255
                                 speedButton.isEnabled = true
                                 speedButton.imageAlpha = 255
+                                qualityButton.isEnabled = true
+                                qualityButton.imageAlpha = 255
                                 pipButton.isEnabled = true
                                 pipButton.imageAlpha = 255
                             }
@@ -270,6 +274,9 @@ class PlayerActivity : BasePlayerActivity() {
         speedButton.isEnabled = false
         speedButton.imageAlpha = 75
 
+        qualityButton.isEnabled = false
+        qualityButton.imageAlpha = 75
+
         if (isPipSupported) {
             pipButton.isEnabled = false
             pipButton.imageAlpha = 75
@@ -309,6 +316,11 @@ class PlayerActivity : BasePlayerActivity() {
         speedButton.setOnClickListener {
             SpeedSelectionDialogFragment(viewModel)
                 .show(supportFragmentManager, "speedselectiondialog")
+        }
+
+        qualityButton.setOnClickListener {
+            QualitySelectionDialogFragment(viewModel)
+                .show(supportFragmentManager, "qualityselectiondialog")
         }
 
         pipButton.setOnClickListener { pictureInPicture() }
