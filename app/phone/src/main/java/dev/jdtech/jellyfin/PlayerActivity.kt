@@ -31,6 +31,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.media3.common.C
+import androidx.media3.common.Player
 import androidx.media3.ui.DefaultTimeBar
 import androidx.media3.ui.PlayerControlView
 import androidx.media3.ui.PlayerView
@@ -158,6 +159,14 @@ class PlayerActivity : BasePlayerActivity() {
         val unlockButton = binding.playerView.findViewById<ImageButton>(R.id.btn_unlock)
         val orientationButton = binding.playerView.findViewById<ImageButton>(R.id.btn_orientation)
         val centerControls = binding.playerView.findViewById<View>(R.id.exo_center_controls)
+        centerControls.isVisible = !viewModel.player.isPlaying
+        val centerControlsListener =
+            object : Player.Listener {
+                override fun onIsPlayingChanged(isPlaying: Boolean) {
+                    centerControls.isVisible = !isPlaying
+                }
+            }
+        viewModel.player.addListener(centerControlsListener)
 
         orientationButton.setOnClickListener {
             applyPlayerOrientation(
@@ -248,7 +257,6 @@ class PlayerActivity : BasePlayerActivity() {
                         when (event) {
                             is PlayerEvents.NavigateBack -> finishPlayback()
                             is PlayerEvents.IsPlayingChanged -> {
-                                centerControls.isVisible = !event.isPlaying
                                 if (event.isPlaying) {
                                     window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
                                 } else {
@@ -545,6 +553,29 @@ class PlayerActivity : BasePlayerActivity() {
         val spaceWidth = ((if (portrait) 4 else 16) * density).toInt()
 
         applyControlSpacing(extraButtons, padding, spaceWidth)
+
+        val centerControls = binding.playerView.findViewById<LinearLayout>(R.id.exo_center_controls)
+        applyCenterControlSpacing(centerControls, portrait)
+    }
+
+    private fun applyCenterControlSpacing(group: LinearLayout, portrait: Boolean) {
+        val density = resources.displayMetrics.density
+        val padding = ((if (portrait) 8 else 16) * density).toInt()
+        val margin = ((if (portrait) 8 else 32) * density).toInt()
+
+        for (index in 0 until group.childCount) {
+            val child = group.getChildAt(index)
+            if (child !is ImageButton) continue
+            child.setPadding(padding, padding, padding, padding)
+            val params = child.layoutParams as? LinearLayout.LayoutParams ?: continue
+            when (child.id) {
+                R.id.exo_prev,
+                R.id.exo_rew -> params.marginEnd = margin
+                R.id.exo_ffwd,
+                R.id.exo_next -> params.marginStart = margin
+            }
+            child.layoutParams = params
+        }
     }
 
     private fun applyControlSpacing(group: LinearLayout, padding: Int, spaceWidth: Int) {

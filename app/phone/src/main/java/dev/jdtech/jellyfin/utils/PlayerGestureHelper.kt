@@ -525,18 +525,20 @@ class PlayerGestureHelper(
                     WindowInsets.Type.systemGestures()
                 )
 
+            val viewWidth = playerView.measuredWidth
+            val viewHeight = playerView.measuredHeight
             if (
                 (firstEvent.x < insets.left) ||
-                    (firstEvent.x > (screenWidth - insets.right)) ||
+                    (firstEvent.x > (viewWidth - insets.right)) ||
                     (firstEvent.y < insets.top) ||
-                    (firstEvent.y > (screenHeight - insets.bottom))
+                    (firstEvent.y > (viewHeight - insets.bottom))
             ) {
                 return true
             }
         } else if (
             firstEvent.y < playerView.resources.dip(Constants.GESTURE_EXCLUSION_AREA_VERTICAL) ||
                 firstEvent.y >
-                    screenHeight -
+                    playerView.measuredHeight -
                         playerView.resources.dip(Constants.GESTURE_EXCLUSION_AREA_VERTICAL) ||
                 firstEvent.x <
                     playerView.resources.dip(Constants.GESTURE_EXCLUSION_AREA_HORIZONTAL) ||
