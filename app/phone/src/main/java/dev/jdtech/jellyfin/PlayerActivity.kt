@@ -549,10 +549,11 @@ class PlayerActivity : BasePlayerActivity() {
         title.isVisible = !portrait
 
         val density = resources.displayMetrics.density
-        val padding = ((if (portrait) 8 else 16) * density).toInt()
+        val horizontalPadding = ((if (portrait) 8 else 16) * density).toInt()
+        val verticalPadding = (8 * density).toInt()
         val spaceWidth = ((if (portrait) 4 else 16) * density).toInt()
 
-        applyControlSpacing(extraButtons, padding, spaceWidth)
+        applyControlSpacing(extraButtons, horizontalPadding, verticalPadding, spaceWidth)
 
         val centerControls = binding.playerView.findViewById<LinearLayout>(R.id.exo_center_controls)
         applyCenterControlSpacing(centerControls, portrait)
@@ -578,12 +579,24 @@ class PlayerActivity : BasePlayerActivity() {
         }
     }
 
-    private fun applyControlSpacing(group: LinearLayout, padding: Int, spaceWidth: Int) {
+    private fun applyControlSpacing(
+        group: LinearLayout,
+        horizontalPadding: Int,
+        verticalPadding: Int,
+        spaceWidth: Int,
+    ) {
         for (index in 0 until group.childCount) {
             when (val child = group.getChildAt(index)) {
-                is ImageButton -> child.setPadding(padding, padding, padding, padding)
+                is ImageButton ->
+                    child.setPadding(
+                        horizontalPadding,
+                        verticalPadding,
+                        horizontalPadding,
+                        verticalPadding,
+                    )
                 is Space -> child.layoutParams = child.layoutParams.apply { width = spaceWidth }
-                is LinearLayout -> applyControlSpacing(child, padding, spaceWidth)
+                is LinearLayout ->
+                    applyControlSpacing(child, horizontalPadding, verticalPadding, spaceWidth)
             }
         }
     }
