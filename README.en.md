@@ -29,11 +29,13 @@ descriptively only.
 
 ## Screenshots
 
-| Home | Library |
+| Home | Library (3 per row) |
 |:---:|:---:|
 | ![Home](images/screenshots/home.jpg) | ![Library](images/screenshots/library.jpg) |
-| **Player (landscape)** | **Player (portrait)** |
-| ![Landscape player](images/screenshots/player.jpg) | ![Portrait player](images/screenshots/player-portrait.jpg) |
+| **Items per row** | **Quality / bitrate** |
+| ![Items per row](images/screenshots/columns.jpg) | ![Quality selection](images/screenshots/quality.jpg) |
+| **Portrait playback** | **Landscape playback** |
+| ![Portrait playback](images/screenshots/player-portrait.jpg) | ![Landscape playback](images/screenshots/player.jpg) |
 
 ## Features
 

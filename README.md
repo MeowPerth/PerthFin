@@ -27,11 +27,13 @@ PerthFin 是一个独立的原生 Android [Jellyfin](https://jellyfin.org) 客�
 
 ## 截图
 
-| 首页 | 媒体库 |
+| 首页 | 媒体库（每行 3 个） |
 |:---:|:---:|
 | ![首页](images/screenshots/home.jpg) | ![媒体库](images/screenshots/library.jpg) |
-| **播放（横屏）** | **播放（竖屏）** |
-| ![横屏播放](images/screenshots/player.jpg) | ![竖屏播放](images/screenshots/player-portrait.jpg) |
+| **每行数量设置** | **画质 / 码率调整** |
+| ![每行数量设置](images/screenshots/columns.jpg) | ![画质调整](images/screenshots/quality.jpg) |
+| **竖屏播放** | **横屏播放** |
+| ![竖屏播放](images/screenshots/player-portrait.jpg) | ![横屏播放](images/screenshots/player.jpg) |
 
 ## 功能
 
