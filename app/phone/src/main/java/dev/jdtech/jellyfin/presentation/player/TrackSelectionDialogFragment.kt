@@ -7,7 +7,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.DialogFragment
 import androidx.media3.common.C
-import androidx.media3.common.Format
+import androidx.media3.common.Tracks
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dev.jdtech.jellyfin.player.core.domain.models.PlayerStream
 import dev.jdtech.jellyfin.player.local.R
@@ -86,44 +86,80 @@ class TrackSelectionDialogFragment(
                         } else {
                             viewModel.subtitleStreams
                         }
-                    // Labels come from the actual player groups so what is shown always
-                    // matches what will be selected. Enrich with the server title only when
-                    // the track can be matched uniquely.
+                    // Keep the server stream order (same as the transcode dialog), but map
+                    // every entry to the actual player group before selecting it.
+                    val matchedGroups = mutableMapOf<Int, Int>()
+                    val usedGroups = mutableSetOf<Int>()
+
+                    serverStreams.forEach { stream ->
+                        val groupIndex =
+                            tracksGroups.indices.firstOrNull { index ->
+                                index !in usedGroups &&
+                                    groupMatchesStream(tracksGroups[index], stream)
+                            }
+                        if (groupIndex != null) {
+                            matchedGroups[stream.index] = groupIndex
+                            usedGroups.add(groupIndex)
+                        }
+                    }
+
+                    // Second pass: if codec names differ, fall back to a unique language match.
+                    serverStreams.forEach { stream ->
+                        if (stream.index in matchedGroups) return@forEach
+                        val candidates =
+                            tracksGroups.indices.filter { index ->
+                                index !in usedGroups &&
+                                    languageMatches(
+                                        tracksGroups[index].mediaTrackGroup.getFormat(0).language,
+                                        stream.language,
+                                    )
+                            }
+                        if (candidates.size == 1) {
+                            matchedGroups[stream.index] = candidates.single()
+                            usedGroups.add(candidates.single())
+                        }
+                    }
+
+                    val entries = serverStreams.mapNotNull { stream ->
+                        matchedGroups[stream.index]?.let { groupIndex -> stream to groupIndex }
+                    }
+                    val fallbackEntries: List<Pair<PlayerStream?, Int>> =
+                        if (entries.isEmpty()) {
+                            tracksGroups.indices.map { null to it }
+                        } else {
+                            entries
+                        }
+
                     val names =
-                        tracksGroups
-                            .map { group ->
-                                val format = group.mediaTrackGroup.getFormat(0)
-                                val matched = serverStreamFor(format, serverStreams)
+                        fallbackEntries
+                            .map { (stream, groupIndex) ->
+                                val format = tracksGroups[groupIndex].mediaTrackGroup.getFormat(0)
                                 buildStreamLabel(
-                                    title = matched?.title ?: format.label,
-                                    language = format.language.orEmpty(),
-                                    codec = format.codecs.orEmpty(),
+                                    title = stream?.title ?: format.label,
+                                    language = stream?.language ?: format.language.orEmpty(),
+                                    codec = stream?.codec ?: format.codecs.orEmpty(),
                                     isSubtitle = type == C.TRACK_TYPE_TEXT,
                                 )
                             }
                             .toTypedArray()
+
                     builder.setSingleChoiceItems(
                         arrayOf(getString(R.string.none)) + names,
-                        tracksGroups.indexOfFirst { it.isSelected } + 1,
+                        fallbackEntries.indexOfFirst { tracksGroups[it.second].isSelected } + 1,
                     ) { dialog, which ->
-                        val format =
-                            if (which == 0) {
-                                null
-                            } else {
-                                tracksGroups[which - 1].mediaTrackGroup.getFormat(0)
-                            }
-                        val serverIndex =
-                            when {
-                                which == 0 -> -1
-                                format == null -> null
-                                else -> serverStreamFor(format, serverStreams)?.index
-                            }
-                        viewModel.saveDirectStreamSelection(
-                            type,
-                            format?.language,
-                            serverIndex,
-                        )
-                        viewModel.switchToTrack(type, which - 1)
+                        if (which == 0) {
+                            viewModel.saveDirectStreamSelection(type, null, -1)
+                            viewModel.switchToTrack(type, -1)
+                        } else {
+                            val (stream, groupIndex) = fallbackEntries[which - 1]
+                            val format = tracksGroups[groupIndex].mediaTrackGroup.getFormat(0)
+                            viewModel.saveDirectStreamSelection(
+                                type,
+                                stream?.language ?: format.language,
+                                stream?.index,
+                            )
+                            viewModel.switchToTrack(type, groupIndex)
+                        }
                         dialog.dismiss()
                     }
                 }
@@ -133,25 +169,22 @@ class TrackSelectionDialogFragment(
         } ?: throw IllegalStateException("Activity cannot be null")
     }
 
-    private fun serverStreamFor(format: Format, streams: List<PlayerStream>): PlayerStream? {
-        val exact = streams.filter { stream ->
-            languageMatches(format.language, stream.language) &&
-                codecMatches(format.codecs, stream.codec)
-        }
-        if (exact.size == 1) return exact.single()
+    private fun groupMatchesStream(group: Tracks.Group, stream: PlayerStream): Boolean {
+        val format = group.mediaTrackGroup.getFormat(0)
+        val language = languageMatches(format.language, stream.language)
+        val codec = codecMatches(format.codecs, stream.codec)
+        if (language && codec) return true
 
-        val sameLanguage = streams.filter { stream ->
-            languageMatches(format.language, stream.language)
+        val label = format.label
+        if (!label.isNullOrBlank() && stream.title.isNotBlank()) {
+            if (
+                label.contains(stream.title, ignoreCase = true) ||
+                    stream.title.contains(label, ignoreCase = true)
+            ) {
+                return true
+            }
         }
-        if (sameLanguage.size == 1) return sameLanguage.single()
-
-        // Fall back to the title when language/codec cannot distinguish the tracks.
-        val byTitle = streams.filter { stream ->
-            !format.label.isNullOrBlank() &&
-                stream.title.isNotBlank() &&
-                format.label!!.contains(stream.title, ignoreCase = true)
-        }
-        return byTitle.singleOrNull()
+        return false
     }
 
     private fun languageMatches(a: String?, b: String?): Boolean {

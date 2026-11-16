@@ -5,6 +5,7 @@ import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.CardDefaults
@@ -17,10 +18,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil3.compose.AsyncImage
 import dev.jdtech.jellyfin.core.R as CoreR
 import dev.jdtech.jellyfin.presentation.theme.FindroidTheme
 import dev.jdtech.jellyfin.presentation.theme.spacings
@@ -29,6 +32,7 @@ import dev.jdtech.jellyfin.presentation.theme.spacings
 @Composable
 fun UserItem(
     name: String,
+    avatarUrl: String? = null,
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {},
     onLongClick: () -> Unit = {},
@@ -54,12 +58,22 @@ fun UserItem(
             shape = MaterialTheme.shapes.small,
             modifier = Modifier.size(48.dp),
         ) {
-            Box {
+            Box(
+                modifier = Modifier.fillMaxSize().clip(MaterialTheme.shapes.small),
+                contentAlignment = Alignment.Center,
+            ) {
                 Icon(
                     painter = painterResource(CoreR.drawable.ic_user),
                     contentDescription = null,
-                    modifier = Modifier.align(Alignment.Center),
                 )
+                if (avatarUrl != null) {
+                    AsyncImage(
+                        model = avatarUrl,
+                        contentDescription = null,
+                        modifier = Modifier.fillMaxSize(),
+                        contentScale = ContentScale.Crop,
+                    )
+                }
             }
         }
         Text(text = name, style = MaterialTheme.typography.bodyLarge)

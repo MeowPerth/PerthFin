@@ -26,7 +26,14 @@ class UsersViewModel @Inject constructor(private val repository: SetupRepository
             val users = repository.getUsers(server.id)
             val userIds = users.map { it.id }
 
-            _state.emit(UsersState(users = users, serverName = server.name))
+            _state.emit(
+                UsersState(
+                    users = users,
+                    serverName = server.name,
+                    serverAddress = repository.getCurrentServerAddress(),
+                    accessToken = repository.getCurrentUser()?.accessToken,
+                )
+            )
 
             try {
                 val publicUsers = repository.getPublicUsers(server.id)

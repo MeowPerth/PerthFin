@@ -46,6 +46,11 @@ class SetupRepositoryImpl(
         }
     }
 
+    override suspend fun getCurrentServerAddress(): String? {
+        val server = getCurrentServer() ?: return null
+        return server.currentServerAddressId?.let { database.getAddress(it)?.address }
+    }
+
     override suspend fun deleteServer(serverId: String) {
         database.deleteServer(serverId)
     }
@@ -258,7 +263,12 @@ class SetupRepositoryImpl(
     override suspend fun getPublicUsers(serverId: String): List<User> =
         withContext(Dispatchers.IO) {
             jellyfinApi.userApi.getPublicUsers().content.mapNotNull {
-                User(id = it.id, name = it.name ?: return@mapNotNull null, serverId = serverId)
+                User(
+                    id = it.id,
+                    name = it.name ?: return@mapNotNull null,
+                    serverId = serverId,
+                    primaryImageTag = it.primaryImageTag,
+                )
             }
         }
 

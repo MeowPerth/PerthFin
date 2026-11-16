@@ -6,4 +6,6 @@ data class UsersState(
     val users: List<User> = emptyList(),
     val publicUsers: List<User> = emptyList(),
     val serverName: String? = null,
+    val serverAddress: String? = null,
+    val accessToken: String? = null,
 )

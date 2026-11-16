@@ -129,6 +129,7 @@ private fun UsersScreenLayout(
                     items(state.users) { user ->
                         UserItem(
                             name = user.name,
+                            avatarUrl = userAvatarUrl(user, state.serverAddress, state.accessToken),
                             modifier = Modifier.fillMaxWidth(),
                             onClick = { onAction(UsersAction.OnUserClick(userId = user.id)) },
                             onLongClick = {
@@ -140,6 +141,7 @@ private fun UsersScreenLayout(
                     items(state.publicUsers) { user ->
                         UserItem(
                             name = user.name,
+                            avatarUrl = userAvatarUrl(user, state.serverAddress, state.accessToken),
                             modifier = Modifier.fillMaxWidth().alpha(0.7f),
                             onClick = {
                                 onAction(UsersAction.OnPublicUserClick(username = user.name))
@@ -221,4 +223,12 @@ private fun UsersScreenLayoutPreview() {
             onAction = {},
         )
     }
+
+}
+
+private fun userAvatarUrl(user: User, baseUrl: String?, accessToken: String?): String? {
+    if (baseUrl.isNullOrBlank() || accessToken.isNullOrBlank()) return null
+    val tag = user.primaryImageTag ?: return null
+    return "${baseUrl.trimEnd('/')}/Users/${user.id}/Images/Primary" +
+        "?tag=$tag&maxHeight=128&api_key=$accessToken"
 }
