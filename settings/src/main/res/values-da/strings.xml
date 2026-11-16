@@ -48,5 +48,5 @@
     <string name="player_start_maximized_summary">Åben video i maksimeret tilstand som standard</string>
     <string name="pref_player_quality">Videokvalitet</string>
     <string name="pref_player_quality_summary">Bitrate for næste afspilning. Transkodning bruges, når en grænse er valgt.</string>
-    <string name="quality_original">Original (direkte afspilning)</string>
+    <string name="quality_original">Original</string>
 </resources>

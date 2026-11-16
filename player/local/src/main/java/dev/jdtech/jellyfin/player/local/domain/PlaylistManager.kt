@@ -225,6 +225,7 @@ internal constructor(
 
         val maxBitrate =
             when (appPreferences.getValue(appPreferences.playerQuality)) {
+                "30" -> 30_000_000
                 "20" -> 20_000_000
                 "10" -> 10_000_000
                 "4" -> 4_000_000
@@ -245,6 +246,9 @@ internal constructor(
             } else {
                 mediaSources[mediaSourceIndex]
             }
+        Timber.d(
+            "Playback source: ${mediaSource.transcodingUrl}, audio=$audioStreamIndex, subtitle=$subtitleStreamIndex"
+        )
         val externalSubtitles =
             mediaSource.mediaStreams
                 .filter { mediaStream ->

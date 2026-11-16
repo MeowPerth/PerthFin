@@ -102,5 +102,5 @@
     <string name="none">Няма</string>
     <string name="pref_player_quality">Качество на видеото</string>
     <string name="pref_player_quality_summary">Битрейт за следващото възпроизвеждане. При избор на ограничение се използва транскодиране.</string>
-    <string name="quality_original">Оригинал (директно възпроизвеждане)</string>
+    <string name="quality_original">Оригинал</string>
 </resources>

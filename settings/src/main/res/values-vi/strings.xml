@@ -59,5 +59,5 @@
     <string name="app_language">Ngôn ngữ của ứng dụng</string>
     <string name="pref_player_quality">Chất lượng video</string>
     <string name="pref_player_quality_summary">Bitrate cho lần phát tiếp theo. Chuyển mã được dùng khi chọn giới hạn.</string>
-    <string name="quality_original">Gốc (phát trực tiếp)</string>
+    <string name="quality_original">Gốc</string>
 </resources>

@@ -17,7 +17,7 @@ server-side transcoding with a quality preset is available. DLNA is planned.
 
 - Completely native Android interface (Kotlin, Jetpack Compose)
 - Browse and play movies, series, seasons and episodes
-- Direct play by default; server-side transcoding with 20/10/4/1.5 Mbps presets
+- Direct play by default; server-side transcoding with 30/20/10/4/1.5 Mbps presets
 - In-player quality switch (restarts the stream at the current position)
 - ExoPlayer and mpv playback backends
 - Picture-in-picture, chapters, trickplay, media segment skipping

@@ -38,7 +38,8 @@
     <string name="download_roaming">Download when roaming</string>
     <string name="pref_player_quality">Video quality</string>
     <string name="pref_player_quality_summary">Bitrate used for the next playback. Transcoding is used when a limit is selected.</string>
-    <string name="quality_original">Original (direct play)</string>
+    <string name="quality_original">Original</string>
+    <string name="quality_30">30 Mbps</string>
     <string name="quality_20">20 Mbps</string>
     <string name="quality_10">10 Mbps</string>
     <string name="quality_4">4 Mbps</string>

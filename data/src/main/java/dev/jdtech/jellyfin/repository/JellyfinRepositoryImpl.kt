@@ -370,7 +370,31 @@ class JellyfinRepositoryImpl(
                     )
                     .content
                     .mediaSources
-                    .map { it.toFindroidSource(this@JellyfinRepositoryImpl, itemId, includePath) }
+                    .map { mediaSource ->
+                        val source =
+                            mediaSource.toFindroidSource(
+                                this@JellyfinRepositoryImpl,
+                                itemId,
+                                includePath,
+                            )
+                        source.copy(
+                            transcodingUrl =
+                                source.transcodingUrl
+                                    ?.withQueryParam("AudioStreamIndex", audioStreamIndex?.toString())
+                                    ?.withQueryParam(
+                                        "SubtitleStreamIndex",
+                                        subtitleStreamIndex?.toString(),
+                                    )
+                                    ?.withQueryParam(
+                                        "SubtitleMethod",
+                                        if (subtitleStreamIndex != null && subtitleStreamIndex >= 0) {
+                                            "Encode"
+                                        } else {
+                                            null
+                                        },
+                                    )
+                        )
+                    }
             )
             sources.addAll(database.getSources(itemId).map { it.toFindroidSource(database) })
             sources
@@ -594,5 +618,15 @@ class JellyfinRepositoryImpl(
 
     override fun getUserId(): UUID {
         return jellyfinApi.userId!!
+    }
+}
+
+private fun String.withQueryParam(key: String, value: String?): String {
+    if (value == null) return this
+    val regex = Regex("([?&])${Regex.escape(key)}=[^&]*", RegexOption.IGNORE_CASE)
+    return if (regex.containsMatchIn(this)) {
+        regex.replace(this, "$1$key=$value")
+    } else {
+        this + (if ('?' in this) "&" else "?") + "$key=$value"
     }
 }

@@ -102,5 +102,5 @@
     <string name="trickplay">Попередній перегляд</string>
     <string name="pref_player_quality">Якість відео</string>
     <string name="pref_player_quality_summary">Бітрейт для наступного відтворення. Під час вибору обмеження використовується транскодування.</string>
-    <string name="quality_original">Оригінал (пряме відтворення)</string>
+    <string name="quality_original">Оригінал</string>
 </resources>

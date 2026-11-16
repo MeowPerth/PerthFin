@@ -71,5 +71,5 @@
     <string name="users">Usuarios</string>
     <string name="pref_player_quality">Calidad de video</string>
     <string name="pref_player_quality_summary">Tasa de bits para la próxima reproducción. Se usa transcodificación cuando se selecciona un límite.</string>
-    <string name="quality_original">Original (reproducción directa)</string>
+    <string name="quality_original">Original</string>
 </resources>

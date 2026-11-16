@@ -102,5 +102,5 @@
     <string name="media_segments_type_intro">Pembuka</string>
     <string name="pref_player_quality">Kualitas video</string>
     <string name="pref_player_quality_summary">Bitrate untuk pemutaran berikutnya. Transcoding digunakan saat batas dipilih.</string>
-    <string name="quality_original">Asli (pemutaran langsung)</string>
+    <string name="quality_original">Asli</string>
 </resources>

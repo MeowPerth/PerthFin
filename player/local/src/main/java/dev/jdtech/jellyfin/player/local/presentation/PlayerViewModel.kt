@@ -250,6 +250,12 @@ constructor(
     val isTranscoding: Boolean
         get() = items.getOrNull(currentMediaItemIndex)?.isTranscoding == true
 
+    val selectedAudioIndex: Int?
+        get() = selectedAudioStreamIndex
+
+    val selectedSubtitleIndex: Int?
+        get() = selectedSubtitleStreamIndex
+
     val audioStreams: List<PlayerStream>
         get() = items.getOrNull(currentMediaItemIndex)?.audioStreams ?: emptyList()
 

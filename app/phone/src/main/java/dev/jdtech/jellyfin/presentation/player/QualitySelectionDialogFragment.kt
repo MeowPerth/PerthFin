@@ -8,16 +8,17 @@ import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dev.jdtech.jellyfin.player.local.R
-import dev.jdtech.jellyfin.settings.R as SettingsR
 import dev.jdtech.jellyfin.player.local.presentation.PlayerViewModel
+import dev.jdtech.jellyfin.settings.R as SettingsR
 import java.lang.IllegalStateException
 
 class QualitySelectionDialogFragment(private val viewModel: PlayerViewModel) : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val values = listOf("original", "20", "10", "4", "1.5")
+        val values = listOf("original", "30", "20", "10", "4", "1.5")
         val labels =
             listOf(
                 getString(SettingsR.string.quality_original),
+                getString(SettingsR.string.quality_30),
                 getString(SettingsR.string.quality_20),
                 getString(SettingsR.string.quality_10),
                 getString(SettingsR.string.quality_4),

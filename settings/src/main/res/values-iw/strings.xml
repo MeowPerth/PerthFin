@@ -58,5 +58,5 @@
     <string name="picture_in_picture_gesture_summary">השתמש בכפתור הבית או במחווה כדי להכנס למצב תמונה-בתוך-תמונה כאשר הוידאו פועל</string>
     <string name="pref_player_quality">איכות וידאו</string>
     <string name="pref_player_quality_summary">קצב סיביות עבור ההפעלה הבאה. כשנבחר גבול, נעשה שימוש בתמלול.</string>
-    <string name="quality_original">מקורי (ניגון ישיר)</string>
+    <string name="quality_original">מקורי</string>
 </resources>

@@ -102,5 +102,5 @@
     <string name="none">Żadne</string>
     <string name="pref_player_quality">Jakość wideo</string>
     <string name="pref_player_quality_summary">Przepływność dla następnego odtwarzania. Po wybraniu limitu używane jest transkodowanie.</string>
-    <string name="quality_original">Oryginał (odtwarzanie bezpośrednie)</string>
+    <string name="quality_original">Oryginał</string>
 </resources>

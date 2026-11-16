@@ -102,5 +102,5 @@
     <string name="media_segments_auto_skip_pip">bara i pip läge</string>
     <string name="pref_player_quality">Videokvalitet</string>
     <string name="pref_player_quality_summary">Bitrate för nästa uppspelning. Transkodning används när en gräns har valts.</string>
-    <string name="quality_original">Original (direktuppspelning)</string>
+    <string name="quality_original">Original</string>
 </resources>
