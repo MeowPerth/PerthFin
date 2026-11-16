@@ -340,43 +340,19 @@ constructor(
         if (groups.isEmpty()) return null
 
         val target = streams.firstOrNull { it.index == index } ?: return null
-
-        val exact = groups.filter { group ->
-            val format = group.mediaTrackGroup.getFormat(0)
-            languageMatches(format.language, target.language) &&
-                codecMatches(format.codecs, target.codec)
+        val key = languageKey(target.language)
+        val sameLanguageStreams = streams.filter { languageKey(it.language) == key }
+        val occurrence = sameLanguageStreams.indexOfFirst { it.index == target.index }
+        if (occurrence < 0) return null
+        val sameLanguageGroups = groups.filter { group ->
+            languageKey(group.mediaTrackGroup.getFormat(0).language) == key
         }
-        if (exact.size == 1) return exact.single()
-
-        val sameLanguage = groups.filter { group ->
-            languageMatches(group.mediaTrackGroup.getFormat(0).language, target.language)
-        }
-        if (sameLanguage.size == 1) return sameLanguage.single()
-
-        val byTitle = groups.filter { group ->
-            val label = group.mediaTrackGroup.getFormat(0).label
-            !label.isNullOrBlank() &&
-                target.title.isNotBlank() &&
-                label!!.contains(target.title, ignoreCase = true)
-        }
-        return byTitle.singleOrNull()
+        return sameLanguageGroups.getOrNull(occurrence)
     }
 
-    private fun codecMatches(a: String?, b: String?): Boolean {
-        if (a.isNullOrBlank() || b.isNullOrBlank()) return false
-        val first = a.lowercase().filter { it.isLetterOrDigit() }
-        val second = b.lowercase().filter { it.isLetterOrDigit() }
-        return first.isNotEmpty() &&
-            second.isNotEmpty() &&
-            (first == second || first.contains(second) || second.contains(first))
-    }
-
-    private fun languageMatches(a: String?, b: String?): Boolean {
-        if (a.isNullOrBlank() || b.isNullOrBlank()) return false
-        val first = a.lowercase()
-        val second = b.lowercase()
-        return first == second ||
-            (first.length >= 2 && second.length >= 2 && first.take(2) == second.take(2))
+    private fun languageKey(language: String?): String {
+        val value = language?.trim()?.lowercase().orEmpty()
+        return if (value.length >= 2) value.take(2) else value
     }
 
     override fun onTracksChanged(tracks: Tracks) {
@@ -713,17 +689,17 @@ constructor(
                     .setTrackTypeDisabled(trackType, true)
                     .build()
         } else {
+            val group =
+                player.currentTracks.groups.filter { it.type == trackType && it.isSupported }[index]
+            val format = group.mediaTrackGroup.getFormat(0)
+            Timber.d(
+                "switchToTrack type=$trackType index=$index label=${format.label} language=${format.language} codecs=${format.codecs}"
+            )
             player.trackSelectionParameters =
                 player.trackSelectionParameters
                     .buildUpon()
-                    .setOverrideForType(
-                        TrackSelectionOverride(
-                            player.currentTracks.groups
-                                .filter { it.type == trackType && it.isSupported }[index]
-                                .mediaTrackGroup,
-                            0,
-                        )
-                    )
+                    .clearOverridesOfType(trackType)
+                    .setOverrideForType(TrackSelectionOverride(group.mediaTrackGroup, 0))
                     .setTrackTypeDisabled(trackType, false)
                     .build()
         }

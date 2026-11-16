@@ -223,7 +223,6 @@ private fun UsersScreenLayoutPreview() {
             onAction = {},
         )
     }
-
 }
 
 private fun userAvatarUrl(user: User, baseUrl: String?, accessToken: String?): String? {
