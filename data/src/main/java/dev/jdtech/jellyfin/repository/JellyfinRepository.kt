@@ -89,6 +89,8 @@ interface JellyfinRepository {
         itemId: UUID,
         includePath: Boolean = false,
         maxBitrate: Int? = null,
+        audioStreamIndex: Int? = null,
+        subtitleStreamIndex: Int? = null,
     ): List<FindroidSource>
 
     suspend fun getStreamUrl(itemId: UUID, mediaSourceId: String): String

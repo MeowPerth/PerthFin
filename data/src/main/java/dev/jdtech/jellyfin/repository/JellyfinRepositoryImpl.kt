@@ -298,6 +298,8 @@ class JellyfinRepositoryImpl(
         itemId: UUID,
         includePath: Boolean,
         maxBitrate: Int?,
+        audioStreamIndex: Int?,
+        subtitleStreamIndex: Int?,
     ): List<FindroidSource> =
         withContext(Dispatchers.IO) {
             val subtitleProfiles =
@@ -334,10 +336,18 @@ class JellyfinRepositoryImpl(
                                     audioCodec = "aac",
                                     protocol = MediaStreamProtocol.HLS,
                                     context = EncodingContext.STREAMING,
+                                    enableSubtitlesInManifest = true,
                                     conditions = emptyList(),
                                 )
                             ),
-                        subtitleProfiles = subtitleProfiles,
+                        subtitleProfiles =
+                            listOf(
+                                SubtitleProfile("srt", SubtitleDeliveryMethod.HLS),
+                                SubtitleProfile("vtt", SubtitleDeliveryMethod.HLS),
+                                SubtitleProfile("ass", SubtitleDeliveryMethod.HLS),
+                                SubtitleProfile("subrip", SubtitleDeliveryMethod.HLS),
+                                SubtitleProfile("pgssub", SubtitleDeliveryMethod.HLS),
+                            ),
                     )
                 }
             val sources = mutableListOf<FindroidSource>()
@@ -349,6 +359,8 @@ class JellyfinRepositoryImpl(
                             userId = jellyfinApi.userId!!,
                             deviceProfile = deviceProfile,
                             maxStreamingBitrate = maxBitrate ?: 1_000_000_000,
+                            audioStreamIndex = audioStreamIndex,
+                            subtitleStreamIndex = subtitleStreamIndex,
                             enableDirectPlay = maxBitrate == null,
                             enableDirectStream = maxBitrate == null,
                             enableTranscoding = true,

@@ -23,4 +23,10 @@
     <string name="player_controls_skip_preview">法解 Jellyfin</string>
     <string name="player_controls_skip_commercial">跳過廣告</string>
     <string name="player_controls_skip_unknown">跳過</string>
+    <string name="select_quality">選擇畫質</string>
+    <string name="quality_original">原畫（直連）</string>
+    <string name="quality_20">20 Mbps</string>
+    <string name="quality_10">10 Mbps</string>
+    <string name="quality_4">4 Mbps</string>
+    <string name="quality_1_5">1.5 Mbps</string>
 </resources>

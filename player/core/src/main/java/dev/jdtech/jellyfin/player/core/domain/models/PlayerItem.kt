@@ -18,4 +18,7 @@ data class PlayerItem(
     val chapters: List<PlayerChapter> = emptyList(),
     val trickplayInfo: TrickplayInfo? = null,
     val isTranscoding: Boolean = false,
+    val itemKind: String = "",
+    val audioStreams: List<PlayerStream> = emptyList(),
+    val subtitleStreams: List<PlayerStream> = emptyList(),
 ) : Parcelable

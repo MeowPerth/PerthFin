@@ -22,6 +22,7 @@ import dev.jdtech.jellyfin.models.FindroidSegment
 import dev.jdtech.jellyfin.models.FindroidSegmentType
 import dev.jdtech.jellyfin.player.core.domain.models.PlayerChapter
 import dev.jdtech.jellyfin.player.core.domain.models.PlayerItem
+import dev.jdtech.jellyfin.player.core.domain.models.PlayerStream
 import dev.jdtech.jellyfin.player.core.domain.models.Trickplay
 import dev.jdtech.jellyfin.player.local.R
 import dev.jdtech.jellyfin.player.local.domain.PlaylistManager
@@ -92,6 +93,8 @@ constructor(
     private var currentItemId: UUID? = null
     private var currentItemKind: String? = null
     private var listenerAdded = false
+    private var selectedAudioStreamIndex: Int? = null
+    private var selectedSubtitleStreamIndex: Int? = null
     private var currentMediaItemSegments: List<FindroidSegment> = emptyList()
 
     // Segments preferences
@@ -178,7 +181,13 @@ constructor(
             }
     }
 
-    fun initializePlayer(itemId: UUID, itemKind: String, startFromBeginning: Boolean) {
+    fun initializePlayer(
+        itemId: UUID,
+        itemKind: String,
+        startFromBeginning: Boolean,
+        audioStreamIndex: Int? = null,
+        subtitleStreamIndex: Int? = null,
+    ) {
         currentItemId = itemId
         currentItemKind = itemKind
         if (!listenerAdded) {
@@ -194,6 +203,8 @@ constructor(
                         itemKind = BaseItemKind.fromName(itemKind),
                         mediaSourceIndex = null,
                         startFromBeginning = startFromBeginning,
+                        audioStreamIndex = audioStreamIndex,
+                        subtitleStreamIndex = subtitleStreamIndex,
                     )
                 } catch (e: Exception) {
                     Timber.e(e)
@@ -206,6 +217,8 @@ constructor(
                 return@launch
             }
 
+            currentItemId = startItem.itemId
+            currentItemKind = startItem.itemKind
             items = listOfNotNull(startItem).toMutableList()
             currentMediaItemIndex = items.indexOf(startItem)
 
@@ -234,6 +247,41 @@ constructor(
     val selectedQuality: String
         get() = appPreferences.getValue(appPreferences.playerQuality)
 
+    val isTranscoding: Boolean
+        get() = items.getOrNull(currentMediaItemIndex)?.isTranscoding == true
+
+    val audioStreams: List<PlayerStream>
+        get() = items.getOrNull(currentMediaItemIndex)?.audioStreams ?: emptyList()
+
+    val subtitleStreams: List<PlayerStream>
+        get() = items.getOrNull(currentMediaItemIndex)?.subtitleStreams ?: emptyList()
+
+    fun selectAudioStream(index: Int) {
+        selectedAudioStreamIndex = index
+        restartCurrentItem()
+    }
+
+    fun selectSubtitleStream(index: Int?) {
+        // -1 explicitly disables subtitles in Jellyfin's PlaybackInfo request
+        selectedSubtitleStreamIndex = index ?: -1
+        restartCurrentItem()
+    }
+
+    private fun restartCurrentItem() {
+        val itemId = currentItemId ?: return
+        val itemKind = currentItemKind ?: return
+        playbackPosition = player.currentPosition.coerceAtLeast(0L)
+        player.stop()
+        player.clearMediaItems()
+        initializePlayer(
+            itemId = itemId,
+            itemKind = itemKind,
+            startFromBeginning = false,
+            audioStreamIndex = selectedAudioStreamIndex,
+            subtitleStreamIndex = selectedSubtitleStreamIndex,
+        )
+    }
+
     fun selectQuality(quality: String) {
         appPreferences.setValue(appPreferences.playerQuality, quality)
         val itemId = currentItemId ?: return
@@ -241,7 +289,13 @@ constructor(
         playbackPosition = player.currentPosition.coerceAtLeast(0L)
         player.stop()
         player.clearMediaItems()
-        initializePlayer(itemId, itemKind, false)
+        initializePlayer(
+            itemId = itemId,
+            itemKind = itemKind,
+            startFromBeginning = false,
+            audioStreamIndex = selectedAudioStreamIndex,
+            subtitleStreamIndex = selectedSubtitleStreamIndex,
+        )
     }
 
     private fun PlayerItem.toMediaItem(): MediaItem {

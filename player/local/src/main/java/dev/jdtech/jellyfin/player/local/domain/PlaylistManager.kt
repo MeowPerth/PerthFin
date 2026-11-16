@@ -11,6 +11,7 @@ import dev.jdtech.jellyfin.models.FindroidSources
 import dev.jdtech.jellyfin.player.core.domain.models.ExternalSubtitle
 import dev.jdtech.jellyfin.player.core.domain.models.PlayerChapter
 import dev.jdtech.jellyfin.player.core.domain.models.PlayerItem
+import dev.jdtech.jellyfin.player.core.domain.models.PlayerStream
 import dev.jdtech.jellyfin.player.core.domain.models.TrickplayInfo
 import dev.jdtech.jellyfin.repository.JellyfinRepository
 import dev.jdtech.jellyfin.settings.domain.AppPreferences
@@ -37,6 +38,8 @@ internal constructor(
         itemKind: BaseItemKind,
         mediaSourceIndex: Int? = null,
         startFromBeginning: Boolean = false,
+        audioStreamIndex: Int? = null,
+        subtitleStreamIndex: Int? = null,
     ): PlayerItem? {
         Timber.d("Retrieving initial player item")
 
@@ -128,7 +131,13 @@ internal constructor(
 
         val playbackPosition =
             if (!startFromBeginning) initialItem.playbackPositionTicks.div(10000) else 0
-        val playerItem = initialItem.toPlayerItem(mediaSourceIndex, playbackPosition)
+        val playerItem =
+            initialItem.toPlayerItem(
+                mediaSourceIndex,
+                playbackPosition,
+                audioStreamIndex,
+                subtitleStreamIndex,
+            )
         playerItems.add(playerItem)
 
         return playerItem
@@ -209,6 +218,8 @@ internal constructor(
     private suspend fun FindroidItem.toPlayerItem(
         mediaSourceIndex: Int?,
         playbackPosition: Long,
+        audioStreamIndex: Int? = null,
+        subtitleStreamIndex: Int? = null,
     ): PlayerItem {
         Timber.d("Converting FindroidItem ${this.id} to PlayerItem")
 
@@ -220,7 +231,14 @@ internal constructor(
                 "1.5" -> 1_500_000
                 else -> null
             }
-        val mediaSources = repository.getMediaSources(id, true, maxBitrate)
+        val mediaSources =
+            repository.getMediaSources(
+                id,
+                true,
+                maxBitrate,
+                audioStreamIndex,
+                subtitleStreamIndex,
+            )
         val mediaSource =
             if (mediaSourceIndex == null) {
                 mediaSources.firstOrNull { it.type == FindroidSourceType.LOCAL } ?: mediaSources[0]
@@ -264,6 +282,38 @@ internal constructor(
                 }
                 else -> null
             }
+        val audioStreams =
+            mediaSource.mediaStreams
+                .filter { it.type == MediaStreamType.AUDIO }
+                .mapNotNull { stream ->
+                    stream.index?.let { index ->
+                        PlayerStream(
+                            index = index,
+                            title = stream.title.ifBlank { stream.displayTitle ?: stream.language },
+                            language = stream.language,
+                            codec = stream.codec,
+                        )
+                    }
+                }
+        val subtitleStreams =
+            mediaSource.mediaStreams
+                .filter { it.type == MediaStreamType.SUBTITLE }
+                .mapNotNull { stream ->
+                    stream.index?.let { index ->
+                        PlayerStream(
+                            index = index,
+                            title = stream.title.ifBlank { stream.displayTitle ?: stream.language },
+                            language = stream.language,
+                            codec = stream.codec,
+                        )
+                    }
+                }
+        val itemKind =
+            when (this) {
+                is FindroidMovie -> "Movie"
+                is FindroidEpisode -> "Episode"
+                else -> ""
+            }
         return PlayerItem(
             name = name,
             itemId = id,
@@ -277,6 +327,9 @@ internal constructor(
             chapters = chapters.toPlayerChapters(),
             trickplayInfo = trickplayInfo,
             isTranscoding = mediaSource.transcodingUrl != null,
+            itemKind = itemKind,
+            audioStreams = audioStreams,
+            subtitleStreams = subtitleStreams,
         )
     }
 

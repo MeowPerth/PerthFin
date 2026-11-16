@@ -100,4 +100,11 @@
     <string name="media_segments_type_outro">片尾</string>
     <string name="media_segments_type_intro">片头</string>
     <string name="pref_player_media_segments_skip_button_duration">显示跳过按钮</string>
+    <string name="pref_player_quality">视频画质</string>
+    <string name="pref_player_quality_summary">下次播放使用的码率；选择限制码率时会使用服务端转码</string>
+    <string name="quality_original">原画（直连）</string>
+    <string name="quality_20">20 Mbps</string>
+    <string name="quality_10">10 Mbps</string>
+    <string name="quality_4">4 Mbps</string>
+    <string name="quality_1_5">1.5 Mbps</string>
 </resources>
