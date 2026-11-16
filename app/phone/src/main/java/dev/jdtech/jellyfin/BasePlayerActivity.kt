@@ -73,14 +73,24 @@ abstract class BasePlayerActivity : AppCompatActivity() {
     }
 
     protected fun configureInsets(playerControls: View) {
-        playerControls.setOnApplyWindowInsetsListener { _, windowInsets ->
+        playerControls.setOnApplyWindowInsetsListener { view, windowInsets ->
             val cutout = windowInsets.displayCutout
-            playerControls.updatePadding(
-                left = cutout?.safeInsetLeft ?: 0,
-                top = cutout?.safeInsetTop ?: 0,
-                right = cutout?.safeInsetRight ?: 0,
-                bottom = cutout?.safeInsetBottom ?: 0,
-            )
+            val left = cutout?.safeInsetLeft ?: 0
+            val top = cutout?.safeInsetTop ?: 0
+            val right = cutout?.safeInsetRight ?: 0
+            val bottom = cutout?.safeInsetBottom ?: 0
+
+            val topControls = view.findViewById<View>(R.id.top_controls)
+            val bottomControls = view.findViewById<View>(R.id.bottom_controls)
+            if (topControls != null || bottomControls != null) {
+                // Keep the center controls centered on the full screen; only the
+                // top and bottom bars need to avoid the display cutout.
+                view.updatePadding(0, 0, 0, 0)
+                topControls?.updatePadding(left = left, top = top, right = right)
+                bottomControls?.updatePadding(left = left, right = right, bottom = bottom)
+            } else {
+                view.updatePadding(left = left, top = top, right = right, bottom = bottom)
+            }
             return@setOnApplyWindowInsetsListener windowInsets
         }
     }
