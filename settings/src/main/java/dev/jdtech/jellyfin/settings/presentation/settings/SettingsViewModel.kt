@@ -266,6 +266,15 @@ class SettingsViewModel @Inject constructor(private val appPreferences: AppPrefe
                                                     options = R.array.player_quality,
                                                     optionValues = R.array.player_quality_values,
                                                 ),
+                                                PreferenceSwitch(
+                                                    nameStringResource =
+                                                        R.string.player_default_landscape,
+                                                    descriptionStringRes =
+                                                        R.string.player_default_landscape_summary,
+                                                    supportedDeviceTypes = listOf(DeviceType.PHONE),
+                                                    backendPreference =
+                                                        appPreferences.playerDefaultLandscape,
+                                                ),
                                                 PreferenceSelect(
                                                     nameStringResource =
                                                         R.string.pref_player_backend,
@@ -461,15 +470,6 @@ class SettingsViewModel @Inject constructor(private val appPreferences: AppPrefe
                                                     supportedDeviceTypes = listOf(DeviceType.PHONE),
                                                     backendPreference =
                                                         appPreferences.playerGesturesStartMaximized,
-                                                ),
-                                                PreferenceSwitch(
-                                                    nameStringResource =
-                                                        R.string.player_default_landscape,
-                                                    descriptionStringRes =
-                                                        R.string.player_default_landscape_summary,
-                                                    supportedDeviceTypes = listOf(DeviceType.PHONE),
-                                                    backendPreference =
-                                                        appPreferences.playerDefaultLandscape,
                                                 ),
                                             ),
                                     ),
