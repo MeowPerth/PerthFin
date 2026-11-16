@@ -6,4 +6,4 @@ PerthFin is not affiliated with or endorsed by the Jellyfin project or the Findr
 
 You need your own Jellyfin server (version 12 or newer) to use this app.
 
-Licensed under GPLv3. Source code: https://github.com/MeowPerth/findroid
+Licensed under GPLv3. Source code: https://github.com/MeowPerth/PerthFin
