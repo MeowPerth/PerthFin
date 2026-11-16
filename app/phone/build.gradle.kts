@@ -19,7 +19,7 @@ android {
     buildToolsVersion = Versions.BUILD_TOOLS
 
     defaultConfig {
-        applicationId = "io.github.meowperth.perthfin"
+        applicationId = "com.wuhaohu.perthfin"
         minSdk = Versions.MIN_SDK
         targetSdk = Versions.TARGET_SDK
 

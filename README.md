@@ -2,125 +2,139 @@
 
 # PerthFin
 
-PerthFin is an independent native Android client for [Jellyfin](https://jellyfin.org),
-built on top of the open-source [Findroid](https://github.com/jarnedemeulemeester/findroid)
-project.
+[简体中文](README.md) | [English](README.en.md)
 
-It is an independent derivative, **not a fork of the upstream repository**, and is
-**not affiliated with, endorsed by, or sponsored by** the Jellyfin project or the
-Findroid author. "Jellyfin" is used descriptively only.
+PerthFin 是一个独立的原生 Android [Jellyfin](https://jellyfin.org) 客户端，基于开源项目
+[Findroid](https://github.com/jarnedemeulemeester/findroid) 二次开发。
 
-- Current version: **1.0.0**
-- Package: `io.github.meowperth.perthfin`
-- License: GPLv3
-- Base: Findroid 1.2.0 (commit `3a06420`)
+本项目是独立衍生版本，**不是上游仓库的 fork**，与 Jellyfin 项目及
+[Findroid](https://github.com/jarnedemeulemeester/findroid) 作者无隶属、赞助或背书关系。
+“Jellyfin”仅作描述性使用。
 
-## Features
+<p align="center">
+  <a href="https://github.com/MeowPerth/PerthFin/releases"><img src="https://img.shields.io/github/v/release/MeowPerth/PerthFin?style=flat-square&label=release&color=blue" alt="release"></a>
+  <a href="https://github.com/MeowPerth/PerthFin/stargazers"><img src="https://img.shields.io/github/stars/MeowPerth/PerthFin?style=flat-square&label=stars&color=blue" alt="stars"></a>
+  <a href="https://github.com/MeowPerth/PerthFin/issues"><img src="https://img.shields.io/github/issues/MeowPerth/PerthFin?style=flat-square&label=issues&color=yellow" alt="issues"></a>
+  <a href="https://github.com/MeowPerth/PerthFin/pulls"><img src="https://img.shields.io/github/issues-pr/MeowPerth/PerthFin?style=flat-square&label=pull%20requests&color=yellow" alt="pull requests"></a>
+  <a href="https://github.com/MeowPerth/PerthFin/releases"><img src="https://img.shields.io/github/downloads/MeowPerth/PerthFin/total?style=flat-square&label=downloads&color=green" alt="downloads"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0-orange?style=flat-square" alt="license"></a>
+</p>
 
-### Library and discovery
+- 当前版本：**1.0.0**
+- 包名：`com.wuhaohu.perthfin`
+- 许可证：GPLv3
+- 上游基线：[Findroid](https://github.com/jarnedemeulemeester/findroid) 1.2.0（commit [`3a06420`](https://github.com/jarnedemeulemeester/findroid/commit/3a06420)）
 
-- Native Android interface built with Kotlin and Jetpack Compose
-- Movies, series, seasons and episodes
-- Collections / box sets
-- Multiple Jellyfin libraries
-- Home sections: suggestions, continue watching, next up and latest items
-- Search across movies and series
-- Favorites for movies, series and episodes
-- Item details: overview, cast and crew, media information, chapters and trickplay
-- Configurable number of items per row in libraries, search results and favorites
+## 截图
 
-### Playback
+| 首页 | 媒体库 |
+|:---:|:---:|
+| ![首页](images/screenshots/home.jpg) | ![媒体库](images/screenshots/library.jpg) |
+| **播放（横屏）** | **播放（竖屏）** |
+| ![横屏播放](images/screenshots/player.jpg) | ![竖屏播放](images/screenshots/player-portrait.jpg) |
 
-- Direct play by default
-- Server-side transcoding to HLS (H.264 video / AAC audio)
-- Quality presets: original, 30, 20, 10, 4 and 1.5 Mbps
-- In-player quality switching, resuming at the current position
-- ExoPlayer backend (default) and libmpv backend
-- Picture-in-picture
-- Playback speed selection
-- Chapter timeline markers and chapter skip gestures
-- Intro / outro media segment skipping (button and auto-skip)
-- Trickplay previews while seeking
-- Portrait and landscape playback
-- Quick rotation toggle in the player
-- "Default to landscape" setting; when disabled, the last playback orientation is reused
-- Volume, brightness, seek and zoom gestures
-- Resumes playback from the last reported position
+## 功能
 
-### Audio and subtitles
+### 媒体库与发现
 
-- Audio track selection
-- Subtitle track selection, including "none"
-- Audio and subtitle choices are remembered per item
-- Falls back to the preferred audio / subtitle language when no per-item choice exists
-- Transcoding burns the selected subtitle into the video stream
-- External and embedded subtitles in direct play
-- Subtitle appearance follows the system caption settings
+- Kotlin + Jetpack Compose 原生 Android 界面
+- 电影、剧集、季、单集
+- 合集 / BoxSet
+- 多 Jellyfin 媒体库
+- 首页：推荐、继续观看、接下来、最新
+- 搜索电影和剧集
+- 收藏电影、剧集和单集
+- 详情页：简介、演职人员、媒体信息、章节、Trickplay
+- 媒体库、搜索结果、收藏和合集支持自定义每行数量
 
-### Accounts, servers and UI
+### 播放
 
-- Multiple servers and multiple users per server
-- Jellyfin server discovery
-- Password login and Quick Connect
-- User avatars in the home header and user selection screen
-- App language selection
-- Light, dark, AMOLED and dynamic-color themes
-- Configurable player backend and gesture behavior
-- Preferred audio / subtitle language settings
+- 默认直连播放
+- 服务端转码为 HLS（H.264 视频 / AAC 音频）
+- 画质档位：原画、30、20、10、4、1.5 Mbps
+- 播放中切换画质，并从当前位置继续
+- ExoPlayer（默认）和 libmpv 两种播放后端
+- 画中画
+- 播放速度选择
+- 章节时间轴标记与章节跳转手势
+- 片头 / 片尾跳过（按钮和自动跳过）
+- 拖动进度时显示 Trickplay 预览
+- 横屏和竖屏播放
+- 播放器内快速切换横竖屏
+- 「默认横屏模式」开关；关闭后沿用上一次播放方向
+- 音量、亮度、快进/快退和缩放手势
+- 自动从上次播放位置继续
 
-### Not included in 1.0.0
+### 音轨与字幕
 
-- Downloads and offline playback (removed; PerthFin is online-only)
-- Android TV support (removed)
+- 音轨选择
+- 字幕选择，包括「无」
+- 每部影片分别记忆音轨和字幕选择
+- 没有手动选择时，按首选音轨 / 字幕语言匹配
+- 转码时把选中的字幕烧录进视频码流
+- 直连时支持内嵌和外挂字幕
+- 字幕样式跟随系统字幕设置
+
+### 账号、服务器与界面
+
+- 多服务器、多用户
+- Jellyfin 服务器发现
+- 密码登录和 Quick Connect
+- 首页和用户选择页显示用户头像
+- 应用语言切换
+- 浅色、深色、AMOLED 和动态颜色主题
+- 可配置播放器后端和手势行为
+- 首选音轨 / 字幕语言设置
+
+### 1.0.0 不包含
+
+- 下载与离线播放（已移除，PerthFin 为纯在线客户端）
+- Android TV（已移除）
 - Chromecast / Google Cast
-- DLNA casting — planned for the next release
+- DLNA 投屏（计划下个版本支持）
 
-## Codec support
+## 编解码支持
 
-Codec support depends on the Android device and the selected player backend.
+实际支持取决于 Android 设备和播放后端。
 
-### ExoPlayer (default)
+### ExoPlayer（默认）
 
-- Video: H.263, H.264, H.265, VP8, VP9, AV1
-- Audio: Vorbis, Opus, FLAC, ALAC, PCM, MP3, AAC, AC-3, E-AC-3, DTS, DTS-HD, TrueHD
-  (FFmpeg extension provides part of this support)
-- Subtitles: SRT, VTT, SSA/ASS, PGSSUB
-  (SSA/ASS styling support is limited)
+- 视频：H.263、H.264、H.265、VP8、VP9、AV1
+- 音频：Vorbis、Opus、FLAC、ALAC、PCM、MP3、AAC、AC-3、E-AC-3、DTS、DTS-HD、TrueHD（部分由 FFmpeg 扩展提供）
+- 字幕：SRT、VTT、SSA/ASS、PGSSUB（SSA/ASS 样式支持有限）
 
 ### libmpv
 
-- Containers: MKV, MOV, MP4, AVI
-- Video: H.264, H.265, H.266, VP8, VP9, AV1
-- Audio: Opus, FLAC, MP3, AAC, AC-3, E-AC-3, TrueHD, DTS, DTS-HD
-- Subtitles: SRT, VTT, SSA/ASS, DVDSUB
-- Software decoding can be forced when hardware decoding has issues
+- 容器：MKV、MOV、MP4、AVI
+- 视频：H.264、H.265、H.266、VP8、VP9、AV1
+- 音频：Opus、FLAC、MP3、AAC、AC-3、E-AC-3、TrueHD、DTS、DTS-HD
+- 字幕：SRT、VTT、SSA/ASS、DVDSUB
+- 硬件解码异常时可以强制软件解码
 
-### Transcoding
+### 转码
 
-When a non-original quality is selected, PerthFin asks the server for an HLS
-stream using H.264 video and AAC audio. The selected audio track and subtitle
-track are passed to the server; selected subtitles are burned into the stream.
+选择非「原画」画质时，PerthFin 会向服务端请求 H.264 + AAC 的 HLS 流，
+并把选中的音轨、字幕索引传给服务端；选中的字幕会烧录进码流。
 
-## Requirements
+## 环境要求
 
-- Jellyfin Server 12.0 or newer
-- Android 10 (API 29) or newer
-- A phone or tablet; Android TV is not supported
+- Jellyfin Server 12.0 或更高
+- Android 10（API 29）或更高
+- 手机或平板；不支持 Android TV
 
-## Install
+## 安装
 
-Download the APK for your device ABI from the GitHub Releases page:
+从 GitHub Releases 下载对应 ABI 的 APK：
 
-- `perthfin-v1.0.0-libre-arm64-v8a-release.apk` — most modern phones
-- `perthfin-v1.0.0-libre-armeabi-v7a-release.apk` — older 32-bit devices
-- `perthfin-v1.0.0-libre-x86_64-release.apk` / `x86` — emulators and x86 devices
+- `perthfin-v1.0.0-libre-arm64-v8a.apk`：大多数现代手机
+- `perthfin-v1.0.0-libre-armeabi-v7a.apk`：较老的 32 位设备
+- `perthfin-v1.0.0-libre-x86_64.apk` / `x86`：模拟器和 x86 设备
 
-The first release is intended for direct installation; it is not distributed
-through Google Play.
+APK 使用 release key 签名，直接安装即可；当前不通过 Google Play 分发。
 
-## Building
+## 构建
 
-Requirements: JDK 17, Android SDK platform 37 and build-tools 37.0.0.
+需要 JDK 17、Android SDK platform 37 和 build-tools 37.0.0。
 
 ```bash
 export JAVA_HOME=/path/to/jdk-17
@@ -129,28 +143,27 @@ export ANDROID_HOME=/path/to/android-sdk
 ./gradlew :app:phone:assembleDebug
 ```
 
-Debug APKs are written to `app/phone/build/outputs/apk/libre/debug/`.
+Debug APK 输出到 `app/phone/build/outputs/apk/libre/debug/`。
 
-For a release build:
+Release 构建：
 
 ```bash
 ./gradlew :app:phone:assembleRelease
 ```
 
-Release APKs are written to `app/phone/build/outputs/apk/libre/release/`.
-Configure your own signing key before distributing a release build.
+Release APK 输出到 `app/phone/build/outputs/apk/libre/release/`。
+正式分发前请配置自己的签名密钥。
 
-## Versioning and roadmap
+## 版本与路线图
 
-`1.0.0` is the first public PerthFin release. The next release is planned to add
-DLNA casting.
+`1.0.0` 是 PerthFin 的首个公开版本。下个版本计划加入 DLNA 投屏。
 
-## License and attribution
+## 许可证与署名
 
-PerthFin is licensed under the GNU General Public License v3.0. See
-[LICENSE](LICENSE) and [NOTICE](NOTICE).
+PerthFin 使用 GNU General Public License v3.0 许可，详见 [LICENSE](LICENSE) 和
+[NOTICE](NOTICE)。
 
-The original Findroid project is Copyright (C) Jarne Demeulemeester and
-contributors. PerthFin modifications are Copyright (C) 2026 MeowPerth.
+原 [Findroid](https://github.com/jarnedemeulemeester/findroid) 项目版权归
+Jarne Demeulemeester 及贡献者所有。PerthFin 的修改版权归 MeowPerth 所有。
 
-The upstream project is not responsible for this repository or its releases.
+上游 [Findroid](https://github.com/jarnedemeulemeester/findroid) 项目不对本仓库及其发布负责。
