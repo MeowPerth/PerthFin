@@ -552,22 +552,6 @@ class JellyfinRepositoryImpl(
     override suspend fun getUserConfiguration(): UserConfiguration =
         withContext(Dispatchers.IO) { jellyfinApi.userApi.getCurrentUser().content.configuration!! }
 
-    override suspend fun getDownloads(): List<FindroidItem> =
-        withContext(Dispatchers.IO) {
-            val items = mutableListOf<FindroidItem>()
-            items.addAll(
-                database
-                    .getMoviesByServerId(appPreferences.getValue(appPreferences.currentServer)!!)
-                    .map { it.toFindroidMovie(database, jellyfinApi.userId!!) }
-            )
-            items.addAll(
-                database
-                    .getShowsByServerId(appPreferences.getValue(appPreferences.currentServer)!!)
-                    .map { it.toFindroidShow(database, jellyfinApi.userId!!) }
-            )
-            items
-        }
-
     override fun getUserId(): UUID {
         return jellyfinApi.userId!!
     }

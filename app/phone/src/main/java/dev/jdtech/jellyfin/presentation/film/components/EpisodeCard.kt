@@ -27,7 +27,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.jdtech.jellyfin.core.presentation.dummy.dummyEpisode
 import dev.jdtech.jellyfin.models.FindroidEpisode
-import dev.jdtech.jellyfin.models.isDownloaded
 import dev.jdtech.jellyfin.presentation.theme.FindroidTheme
 import dev.jdtech.jellyfin.presentation.theme.spacings
 
@@ -53,7 +52,6 @@ fun EpisodeCard(episode: FindroidEpisode, onClick: () -> Unit, modifier: Modifie
                 modifier = Modifier.align(Alignment.TopEnd).padding(MaterialTheme.spacings.small),
                 horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacings.small),
             ) {
-                if (episode.isDownloaded()) DownloadedBadge()
                 if (episode.played) PlayedBadge()
             }
         }

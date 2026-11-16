@@ -1,6 +1,6 @@
 PerthFin is an unofficial, native Android client for Jellyfin, based on the open-source Findroid project.
 
-Browse your movies and TV shows and play them directly from your Jellyfin server, with a fast native interface, offline downloads, picture-in-picture, chapters, trickplay previews and media segment skipping.
+Browse your movies and TV shows and play them directly from your Jellyfin server, with a fast native interface, picture-in-picture, chapters, trickplay previews and media segment skipping.
 
 PerthFin is not affiliated with or endorsed by the Jellyfin project or the Findroid author.
 

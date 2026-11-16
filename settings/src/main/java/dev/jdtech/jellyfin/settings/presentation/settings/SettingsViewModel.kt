@@ -66,23 +66,6 @@ class SettingsViewModel @Inject constructor(private val appPreferences: AppPrefe
             PreferenceGroup(
                 preferences =
                     listOf(
-                        PreferenceSwitch(
-                            nameStringResource = R.string.offline_mode,
-                            descriptionStringRes = R.string.offline_mode_summary,
-                            iconDrawableId = R.drawable.ic_server_off,
-                            supportedDeviceTypes = listOf(DeviceType.PHONE),
-                            onClick = {
-                                viewModelScope.launch {
-                                    eventsChannel.send(SettingsEvent.RestartActivity)
-                                }
-                            },
-                            backendPreference = appPreferences.offlineMode,
-                        )
-                    )
-            ),
-            PreferenceGroup(
-                preferences =
-                    listOf(
                         PreferenceCategory(
                             nameStringResource = R.string.settings_category_language,
                             iconDrawableId = R.drawable.ic_languages,
@@ -670,50 +653,6 @@ class SettingsViewModel @Inject constructor(private val appPreferences: AppPrefe
                                     eventsChannel.send(SettingsEvent.NavigateToServers)
                                 }
                             },
-                        )
-                    )
-            ),
-            PreferenceGroup(
-                preferences =
-                    listOf(
-                        PreferenceCategory(
-                            nameStringResource = R.string.title_download,
-                            iconDrawableId = R.drawable.ic_download,
-                            supportedDeviceTypes = listOf(DeviceType.PHONE),
-                            onClick = {
-                                viewModelScope.launch {
-                                    eventsChannel.send(
-                                        SettingsEvent.NavigateToSettings(
-                                            listOf(it.nameStringResource)
-                                        )
-                                    )
-                                }
-                            },
-                            nestedPreferenceGroups =
-                                listOf(
-                                    PreferenceGroup(
-                                        preferences =
-                                            listOf(
-                                                PreferenceSwitch(
-                                                    nameStringResource =
-                                                        R.string.download_mobile_data,
-                                                    supportedDeviceTypes = listOf(DeviceType.PHONE),
-                                                    backendPreference =
-                                                        appPreferences.downloadOverMobileData,
-                                                ),
-                                                PreferenceSwitch(
-                                                    nameStringResource = R.string.download_roaming,
-                                                    dependencies =
-                                                        listOf(
-                                                            appPreferences.downloadOverMobileData
-                                                        ),
-                                                    supportedDeviceTypes = listOf(DeviceType.PHONE),
-                                                    backendPreference =
-                                                        appPreferences.downloadWhenRoaming,
-                                                ),
-                                            )
-                                    )
-                                ),
                         )
                     )
             ),

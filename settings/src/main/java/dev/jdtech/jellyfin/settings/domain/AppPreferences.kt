@@ -82,10 +82,6 @@ class AppPreferences @Inject constructor(val sharedPreferences: SharedPreference
     // Player - PiP
     val playerPipGesture = Preference("pref_player_picture_in_picture_gesture", false)
 
-    // Downloads
-    val downloadOverMobileData = Preference("pref_downloads_mobile_data", false)
-    val downloadWhenRoaming = Preference("pref_downloads_roaming", false)
-
     // Network
     val requestTimeout =
         Preference("pref_network_request_timeout", Constants.NETWORK_DEFAULT_REQUEST_TIMEOUT)

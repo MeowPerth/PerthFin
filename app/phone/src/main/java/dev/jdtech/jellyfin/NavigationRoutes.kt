@@ -22,8 +22,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable data object MediaRoute : NavKey
 
-@Serializable data object DownloadsRoute : NavKey
-
 @Serializable
 data class LibraryRoute(
     val libraryId: String,

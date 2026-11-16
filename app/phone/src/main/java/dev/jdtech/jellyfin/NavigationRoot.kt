@@ -47,7 +47,6 @@ import dev.jdtech.jellyfin.models.FindroidShow
 import dev.jdtech.jellyfin.navigation.navigateOrReuse
 import dev.jdtech.jellyfin.navigation.resumedAction
 import dev.jdtech.jellyfin.presentation.film.CollectionScreen
-import dev.jdtech.jellyfin.presentation.film.DownloadsScreen
 import dev.jdtech.jellyfin.presentation.film.EpisodeScreen
 import dev.jdtech.jellyfin.presentation.film.FavoritesScreen
 import dev.jdtech.jellyfin.presentation.film.HomeScreen
@@ -72,7 +71,7 @@ import dev.jdtech.jellyfin.setup.presentation.permission.PermissionAction
 import dev.jdtech.jellyfin.setup.presentation.permission.PermissionViewModel
 import java.util.UUID
 
-private val TOP_LEVEL_ROUTES = setOf(HomeRoute, MediaRoute, DownloadsRoute)
+private val TOP_LEVEL_ROUTES = setOf(HomeRoute, MediaRoute)
 private val GLOBAL_TRANSITION_SPEC = fadeIn(tween(300)) togetherWith fadeOut(tween(300))
 
 data class TabBarItem(
@@ -90,13 +89,6 @@ val mediaTab =
         title = CoreR.string.title_media,
         icon = CoreR.drawable.ic_library,
         route = MediaRoute,
-    )
-
-val downloadsTab =
-    TabBarItem(
-        title = CoreR.string.title_download,
-        icon = CoreR.drawable.ic_download,
-        route = DownloadsRoute,
     )
 
 @Composable
@@ -205,8 +197,8 @@ private fun MainNavigation(
 ) {
     val navigationItems =
         when (isOfflineMode) {
-            false -> listOf(homeTab, mediaTab, downloadsTab)
-            true -> listOf(homeTab, downloadsTab)
+            false -> listOf(homeTab, mediaTab)
+            true -> listOf(homeTab)
         }
     val tabRoutes = navigationItems.map { it.route }
 
@@ -452,17 +444,6 @@ private fun EntryProviderScope<NavKey>.mainEntries(
             onFavoritesClick = dropUnlessResumed { navigator.navigate(FavoritesRoute) },
             searchExpanded = searchExpanded.value,
             onSearchExpand = { searchExpanded.value = it },
-        )
-    }
-    entry<DownloadsRoute> {
-        DownloadsScreen(
-            onItemClick =
-                resumedAction { item ->
-                    navigateToItem(
-                        navigator,
-                        item,
-                    )
-                }
         )
     }
     entry<LibraryRoute> { key ->
