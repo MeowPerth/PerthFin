@@ -85,7 +85,11 @@ interface JellyfinRepository {
         limit: Int? = null,
     ): List<FindroidEpisode>
 
-    suspend fun getMediaSources(itemId: UUID, includePath: Boolean = false): List<FindroidSource>
+    suspend fun getMediaSources(
+        itemId: UUID,
+        includePath: Boolean = false,
+        maxBitrate: Int? = null,
+    ): List<FindroidSource>
 
     suspend fun getStreamUrl(itemId: UUID, mediaSourceId: String): String
 
@@ -110,6 +114,8 @@ interface JellyfinRepository {
     suspend fun markAsUnplayed(itemId: UUID)
 
     fun getBaseUrl(): String
+
+    fun getAccessToken(): String
 
     suspend fun updateDeviceName(name: String)
 

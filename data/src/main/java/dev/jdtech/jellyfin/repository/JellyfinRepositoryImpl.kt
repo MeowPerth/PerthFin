@@ -36,6 +36,9 @@ import org.jellyfin.sdk.model.api.BaseItemDto
 import org.jellyfin.sdk.model.api.BaseItemKind
 import org.jellyfin.sdk.model.api.DeviceOptionsDto
 import org.jellyfin.sdk.model.api.DeviceProfile
+import org.jellyfin.sdk.model.api.DlnaProfileType
+import org.jellyfin.sdk.model.api.EncodingContext
+import org.jellyfin.sdk.model.api.MediaStreamProtocol
 import org.jellyfin.sdk.model.api.GeneralCommandType
 import org.jellyfin.sdk.model.api.ItemFields
 import org.jellyfin.sdk.model.api.ItemFilter
@@ -52,6 +55,7 @@ import org.jellyfin.sdk.model.api.RepeatMode
 import org.jellyfin.sdk.model.api.SortOrder as ItemSortOrder
 import org.jellyfin.sdk.model.api.SubtitleDeliveryMethod
 import org.jellyfin.sdk.model.api.SubtitleProfile
+import org.jellyfin.sdk.model.api.TranscodingProfile
 import org.jellyfin.sdk.model.api.UserConfiguration
 import timber.log.Timber
 
@@ -290,8 +294,52 @@ class JellyfinRepositoryImpl(
                 .mapNotNull { it.toFindroidEpisode(this@JellyfinRepositoryImpl, database) }
         }
 
-    override suspend fun getMediaSources(itemId: UUID, includePath: Boolean): List<FindroidSource> =
+    override suspend fun getMediaSources(
+        itemId: UUID,
+        includePath: Boolean,
+        maxBitrate: Int?,
+    ): List<FindroidSource> =
         withContext(Dispatchers.IO) {
+            val subtitleProfiles =
+                listOf(
+                    SubtitleProfile("srt", SubtitleDeliveryMethod.EXTERNAL),
+                    SubtitleProfile("ass", SubtitleDeliveryMethod.EXTERNAL),
+                )
+            val deviceProfile =
+                if (maxBitrate == null) {
+                    DeviceProfile(
+                        name = "Direct play all",
+                        maxStaticBitrate = 1_000_000_000,
+                        maxStreamingBitrate = 1_000_000_000,
+                        codecProfiles = emptyList(),
+                        containerProfiles = emptyList(),
+                        directPlayProfiles = emptyList(),
+                        transcodingProfiles = emptyList(),
+                        subtitleProfiles = subtitleProfiles,
+                    )
+                } else {
+                    DeviceProfile(
+                        name = "PerthFin ${maxBitrate / 1_000_000}Mbps",
+                        maxStaticBitrate = maxBitrate,
+                        maxStreamingBitrate = maxBitrate,
+                        codecProfiles = emptyList(),
+                        containerProfiles = emptyList(),
+                        directPlayProfiles = emptyList(),
+                        transcodingProfiles =
+                            listOf(
+                                TranscodingProfile(
+                                    container = "ts",
+                                    type = DlnaProfileType.VIDEO,
+                                    videoCodec = "h264",
+                                    audioCodec = "aac",
+                                    protocol = MediaStreamProtocol.HLS,
+                                    context = EncodingContext.STREAMING,
+                                    conditions = emptyList(),
+                                )
+                            ),
+                        subtitleProfiles = subtitleProfiles,
+                    )
+                }
             val sources = mutableListOf<FindroidSource>()
             sources.addAll(
                 jellyfinApi.mediaInfoApi
@@ -299,22 +347,13 @@ class JellyfinRepositoryImpl(
                         itemId,
                         PlaybackInfoDto(
                             userId = jellyfinApi.userId!!,
-                            deviceProfile =
-                                DeviceProfile(
-                                    name = "Direct play all",
-                                    maxStaticBitrate = 1_000_000_000,
-                                    maxStreamingBitrate = 1_000_000_000,
-                                    codecProfiles = emptyList(),
-                                    containerProfiles = emptyList(),
-                                    directPlayProfiles = emptyList(),
-                                    transcodingProfiles = emptyList(),
-                                    subtitleProfiles =
-                                        listOf(
-                                            SubtitleProfile("srt", SubtitleDeliveryMethod.EXTERNAL),
-                                            SubtitleProfile("ass", SubtitleDeliveryMethod.EXTERNAL),
-                                        ),
-                                ),
-                            maxStreamingBitrate = 1_000_000_000,
+                            deviceProfile = deviceProfile,
+                            maxStreamingBitrate = maxBitrate ?: 1_000_000_000,
+                            enableDirectPlay = maxBitrate == null,
+                            enableDirectStream = maxBitrate == null,
+                            enableTranscoding = true,
+                            allowVideoStreamCopy = true,
+                            allowAudioStreamCopy = true,
                         ),
                     )
                     .content
@@ -524,6 +563,8 @@ class JellyfinRepositoryImpl(
     }
 
     override fun getBaseUrl() = jellyfinApi.api.baseUrl.orEmpty()
+
+    override fun getAccessToken() = jellyfinApi.api.accessToken.orEmpty()
 
     override suspend fun updateDeviceName(name: String) {
         withContext(Dispatchers.IO) {

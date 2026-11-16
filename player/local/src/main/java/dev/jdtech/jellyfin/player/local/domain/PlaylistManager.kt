@@ -13,6 +13,7 @@ import dev.jdtech.jellyfin.player.core.domain.models.PlayerChapter
 import dev.jdtech.jellyfin.player.core.domain.models.PlayerItem
 import dev.jdtech.jellyfin.player.core.domain.models.TrickplayInfo
 import dev.jdtech.jellyfin.repository.JellyfinRepository
+import dev.jdtech.jellyfin.settings.domain.AppPreferences
 import java.util.UUID
 import javax.inject.Inject
 import org.jellyfin.sdk.model.api.BaseItemKind
@@ -20,7 +21,12 @@ import org.jellyfin.sdk.model.api.ItemFields
 import org.jellyfin.sdk.model.api.MediaStreamType
 import timber.log.Timber
 
-class PlaylistManager @Inject internal constructor(private val repository: JellyfinRepository) {
+class PlaylistManager
+@Inject
+internal constructor(
+    private val repository: JellyfinRepository,
+    private val appPreferences: AppPreferences,
+) {
     private var startItem: FindroidItem? = null
     private var items: List<FindroidItem> = emptyList()
     private val playerItems: MutableList<PlayerItem> = mutableListOf()
@@ -206,7 +212,15 @@ class PlaylistManager @Inject internal constructor(private val repository: Jelly
     ): PlayerItem {
         Timber.d("Converting FindroidItem ${this.id} to PlayerItem")
 
-        val mediaSources = repository.getMediaSources(id, true)
+        val maxBitrate =
+            when (appPreferences.getValue(appPreferences.playerQuality)) {
+                "20" -> 20_000_000
+                "10" -> 10_000_000
+                "4" -> 4_000_000
+                "1.5" -> 1_500_000
+                else -> null
+            }
+        val mediaSources = repository.getMediaSources(id, true, maxBitrate)
         val mediaSource =
             if (mediaSourceIndex == null) {
                 mediaSources.firstOrNull { it.type == FindroidSourceType.LOCAL } ?: mediaSources[0]
@@ -254,7 +268,7 @@ class PlaylistManager @Inject internal constructor(private val repository: Jelly
             name = name,
             itemId = id,
             mediaSourceId = mediaSource.id,
-            mediaSourceUri = mediaSource.path,
+            mediaSourceUri = mediaSource.transcodingUrl ?: mediaSource.path,
             playbackPosition = playbackPosition,
             parentIndexNumber = if (this is FindroidEpisode) parentIndexNumber else null,
             indexNumber = if (this is FindroidEpisode) indexNumber else null,
@@ -262,6 +276,7 @@ class PlaylistManager @Inject internal constructor(private val repository: Jelly
             externalSubtitles = externalSubtitles,
             chapters = chapters.toPlayerChapters(),
             trickplayInfo = trickplayInfo,
+            isTranscoding = mediaSource.transcodingUrl != null,
         )
     }
 

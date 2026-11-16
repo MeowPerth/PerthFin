@@ -10,14 +10,14 @@ It is **not affiliated with, endorsed by, or sponsored by** the Jellyfin project
 
 ## Status
 
-This branch is a rebrand and feature fork. The application id and branding are new, and the
-download feature has been removed. Server-side transcoding and DLNA are planned.
+This branch is a rebrand and feature fork. The application id and branding are new, the download and offline features have been removed, and basic
+server-side transcoding with a quality preset is available. DLNA is planned.
 
 ## Features
 
 - Completely native Android interface (Kotlin, Jetpack Compose)
 - Browse and play movies, series, seasons and episodes
-- Direct play only (no server-side transcoding yet)
+- Direct play by default, optional server-side transcoding with bitrate presets
 - ExoPlayer and mpv playback backends
 - Picture-in-picture, chapters, trickplay, media segment skipping
 - Multiple servers and users, Quick Connect login

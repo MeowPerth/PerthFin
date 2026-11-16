@@ -15,6 +15,7 @@ data class FindroidSource(
     val size: Long,
     val mediaStreams: List<FindroidMediaStream>,
     val downloadId: Long? = null,
+    val transcodingUrl: String? = null,
 )
 
 suspend fun MediaSourceInfo.toFindroidSource(
@@ -34,6 +35,21 @@ suspend fun MediaSourceInfo.toFindroidSource(
             MediaProtocol.HTTP -> this.path.orEmpty()
             else -> ""
         }
+    val absoluteTranscodingUrl =
+        transcodingUrl?.let { url ->
+            val absolute =
+                if (url.startsWith("http", ignoreCase = true)) {
+                    url
+                } else {
+                    jellyfinRepository.getBaseUrl().trimEnd('/') + "/" + url.trimStart('/')
+                }
+            if (absolute.contains("api_key=", ignoreCase = true)) {
+                absolute
+            } else {
+                absolute + (if ("?" in absolute) "&" else "?") + "api_key=" +
+                    jellyfinRepository.getAccessToken()
+            }
+        }
     return FindroidSource(
         id = id.orEmpty(),
         name = name.orEmpty(),
@@ -42,6 +58,7 @@ suspend fun MediaSourceInfo.toFindroidSource(
         size = size ?: 0,
         mediaStreams =
             mediaStreams?.map { it.toFindroidMediaStream(jellyfinRepository) } ?: emptyList(),
+        transcodingUrl = absoluteTranscodingUrl,
     )
 }
 

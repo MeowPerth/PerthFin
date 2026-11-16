@@ -27,6 +27,7 @@ class AppPreferences @Inject constructor(val sharedPreferences: SharedPreference
 
     // Player
     val playerBackend = Preference("pref_player_backend", "exoplayer")
+    val playerQuality = Preference("pref_player_quality", "original")
     val playerBrightness = Preference("pref_player_brightness", -1.0f)
 
     // Player - mpv

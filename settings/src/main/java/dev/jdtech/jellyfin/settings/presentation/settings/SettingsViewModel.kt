@@ -258,6 +258,17 @@ class SettingsViewModel @Inject constructor(private val appPreferences: AppPrefe
                                             listOf(
                                                 PreferenceSelect(
                                                     nameStringResource =
+                                                        R.string.pref_player_quality,
+                                                    descriptionStringRes =
+                                                        R.string.pref_player_quality_summary,
+                                                    backendPreference =
+                                                        appPreferences.playerQuality,
+                                                    options = R.array.player_quality,
+                                                    optionValues =
+                                                        R.array.player_quality_values,
+                                                ),
+                                                PreferenceSelect(
+                                                    nameStringResource =
                                                         R.string.pref_player_backend,
                                                     backendPreference =
                                                         appPreferences.playerBackend,
