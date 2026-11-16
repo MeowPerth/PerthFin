@@ -109,4 +109,5 @@
     <string name="download_downloading">Baixando…</string>
     <string name="download_failed">Falha ao baixar</string>
     <string name="discard">Descartar</string>
+    <string name="items_per_row">Itens por linha</string>
 </resources>

@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.recalculateWindowInsets
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.union
+import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -31,7 +32,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
-import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.CombinedLoadStates
@@ -53,7 +53,6 @@ import dev.jdtech.jellyfin.presentation.film.components.ItemCard
 import dev.jdtech.jellyfin.presentation.film.components.SortByDialog
 import dev.jdtech.jellyfin.presentation.theme.FindroidTheme
 import dev.jdtech.jellyfin.presentation.theme.spacings
-import dev.jdtech.jellyfin.presentation.utils.GridCellsAdaptiveWithMinColumns
 import dev.jdtech.jellyfin.presentation.utils.plus
 import java.util.UUID
 import kotlinx.coroutines.flow.Flow
@@ -145,7 +144,7 @@ private fun LibraryScreenLayout(
                 modifier = Modifier.fillMaxWidth().padding(contentPadding + innerPadding),
             )
             LazyVerticalGrid(
-                columns = GridCellsAdaptiveWithMinColumns(minSize = 160.dp, minColumns = 2),
+                columns = GridCells.Fixed(state.columns),
                 modifier = Modifier.fillMaxSize(),
                 contentPadding = contentPadding + innerPadding,
                 horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacings.default),
@@ -170,9 +169,11 @@ private fun LibraryScreenLayout(
         SortByDialog(
             currentSortBy = state.sortBy,
             currentSortOrder = state.sortOrder,
+            currentColumns = state.columns,
             onUpdate = { sortBy, sortOrder ->
                 onAction(LibraryAction.ChangeSorting(sortBy, sortOrder))
             },
+            onColumnsChange = { columns -> onAction(LibraryAction.ChangeColumns(columns)) },
             onDismissRequest = { showSortByDialog = false },
         )
     }

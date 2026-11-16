@@ -32,6 +32,9 @@ constructor(
     lateinit var sortBy: SortBy
     lateinit var sortOrder: SortOrder
 
+    private var columns = 2
+    private var columnsLoaded = false
+
     fun setup(parentId: UUID, libraryType: CollectionType) {
         this.parentId = parentId
         this.libraryType = libraryType
@@ -55,6 +58,7 @@ constructor(
             _state.emit(_state.value.copy(isLoading = true, error = null))
 
             initSorting()
+            initColumns()
 
             try {
                 val items =
@@ -78,6 +82,24 @@ constructor(
             } catch (e: Exception) {
                 _state.emit(_state.value.copy(error = e))
             }
+        }
+    }
+
+    private suspend fun initColumns() {
+        if (!columnsLoaded) {
+            columns = appPreferences.getValue(appPreferences.libraryColumns).coerceIn(2, 5)
+            columnsLoaded = true
+            _state.emit(_state.value.copy(columns = columns))
+        }
+    }
+
+    private fun setColumns(value: Int) {
+        val newValue = value.coerceIn(2, 5)
+        if (newValue == columns) return
+        columns = newValue
+        viewModelScope.launch {
+            _state.emit(_state.value.copy(columns = newValue))
+            appPreferences.setValue(appPreferences.libraryColumns, newValue)
         }
     }
 
@@ -107,6 +129,7 @@ constructor(
                     loadItems()
                 }
             }
+            is LibraryAction.ChangeColumns -> setColumns(action.columns)
             else -> Unit
         }
     }

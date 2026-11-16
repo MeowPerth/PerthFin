@@ -383,14 +383,31 @@ constructor(
 
     fun selectAudioStream(index: Int) {
         selectedAudioStreamIndex = index
-        currentItemId?.let { appPreferences.setSavedAudioStreamIndex(it, index) }
+        currentItemId?.let { itemId ->
+            appPreferences.setSavedAudioStreamIndex(itemId, index)
+            appPreferences.setSavedAudioLanguage(
+                itemId,
+                audioStreams.firstOrNull { it.index == index }?.language,
+            )
+        }
         restartCurrentItem()
     }
 
     fun selectSubtitleStream(index: Int?) {
         // -1 explicitly disables subtitles in Jellyfin's PlaybackInfo request
-        selectedSubtitleStreamIndex = index ?: -1
-        currentItemId?.let { appPreferences.setSavedSubtitleStreamIndex(it, index ?: -1) }
+        val resolvedIndex = index ?: -1
+        selectedSubtitleStreamIndex = resolvedIndex
+        currentItemId?.let { itemId ->
+            appPreferences.setSavedSubtitleStreamIndex(itemId, resolvedIndex)
+            appPreferences.setSavedSubtitleLanguage(
+                itemId,
+                if (resolvedIndex < 0) {
+                    "none"
+                } else {
+                    subtitleStreams.firstOrNull { it.index == resolvedIndex }?.language
+                },
+            )
+        }
         restartCurrentItem()
     }
 

@@ -50,7 +50,9 @@ import dev.jdtech.jellyfin.presentation.theme.spacings
 fun SortByDialog(
     currentSortBy: SortBy,
     currentSortOrder: SortOrder,
+    currentColumns: Int,
     onUpdate: (sortBy: SortBy, sortOrder: SortOrder) -> Unit,
+    onColumnsChange: (Int) -> Unit,
     onDismissRequest: () -> Unit,
 ) {
     val optionValues = SortBy.entries
@@ -63,6 +65,7 @@ fun SortByDialog(
 
     var selectedOption by remember { mutableStateOf(currentSortBy) }
     var selectedOrder by remember { mutableStateOf(currentSortOrder) }
+    var selectedColumns by remember { mutableStateOf(currentColumns) }
 
     val lazyListState = rememberLazyListState()
 
@@ -129,6 +132,39 @@ fun SortByDialog(
                     }
                 }
                 Spacer(modifier = Modifier.height(MaterialTheme.spacings.medium))
+                Text(
+                    text = stringResource(CoreR.string.items_per_row),
+                    modifier =
+                        Modifier.fillMaxWidth()
+                            .padding(horizontal = MaterialTheme.spacings.default),
+                    style = MaterialTheme.typography.titleMedium,
+                )
+                Spacer(modifier = Modifier.height(MaterialTheme.spacings.small))
+                SingleChoiceSegmentedButtonRow(
+                    modifier =
+                        Modifier.padding(horizontal = MaterialTheme.spacings.default).fillMaxWidth()
+                ) {
+                    (2..5).forEachIndexed { index, columns ->
+                        SegmentedButton(
+                            selected = columns == selectedColumns,
+                            onClick = {
+                                selectedColumns = columns
+                                onColumnsChange(columns)
+                            },
+                            shape =
+                                SegmentedButtonDefaults.itemShape(
+                                    index = index,
+                                    count = 4,
+                                ),
+                            colors =
+                                SegmentedButtonDefaults.colors(
+                                    inactiveContainerColor = Color.Transparent
+                                ),
+                            label = { Text(columns.toString()) },
+                        )
+                    }
+                }
+                Spacer(modifier = Modifier.height(MaterialTheme.spacings.medium))
                 if (!isAtTop) {
                     HorizontalDivider()
                 }
@@ -176,7 +212,9 @@ private fun SortByDialogPreview() {
         SortByDialog(
             currentSortBy = SortBy.NAME,
             currentSortOrder = SortOrder.ASCENDING,
+            currentColumns = 2,
             onUpdate = { _, _ -> },
+            onColumnsChange = {},
             onDismissRequest = {},
         )
     }

@@ -108,4 +108,5 @@
     <string name="download_paused">已暂停</string>
     <string name="download_downloading">正在下载…</string>
     <string name="download_failed">下载失败</string>
+    <string name="items_per_row">每行数量</string>
 </resources>

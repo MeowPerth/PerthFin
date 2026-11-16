@@ -108,4 +108,5 @@
     <string name="download_paused">Pausa</string>
     <string name="download_downloading">Lastar ned…</string>
     <string name="download_failed">Feil ved nedlasting</string>
+    <string name="items_per_row">Element per rad</string>
 </resources>

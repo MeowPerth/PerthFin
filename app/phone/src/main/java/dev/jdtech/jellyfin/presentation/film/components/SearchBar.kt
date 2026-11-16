@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.CircularProgressIndicator
@@ -38,7 +39,6 @@ import dev.jdtech.jellyfin.film.R as FilmR
 import dev.jdtech.jellyfin.film.presentation.search.SearchAction
 import dev.jdtech.jellyfin.film.presentation.search.SearchState
 import dev.jdtech.jellyfin.presentation.theme.spacings
-import dev.jdtech.jellyfin.presentation.utils.GridCellsAdaptiveWithMinColumns
 import dev.jdtech.jellyfin.presentation.utils.rememberSafePadding
 import kotlinx.coroutines.delay
 
@@ -49,6 +49,7 @@ fun FilmSearchBar(
     expanded: Boolean,
     onExpand: (Boolean) -> Unit,
     onAction: (SearchAction) -> Unit,
+    columns: Int,
     modifier: Modifier = Modifier,
     paddingStart: Dp = 0.dp,
     paddingEnd: Dp = 0.dp,
@@ -154,7 +155,7 @@ fun FilmSearchBar(
         modifier = modifier.padding(start = searchBarPaddingStart, end = searchBarPaddingEnd),
     ) {
         LazyVerticalGrid(
-            columns = GridCellsAdaptiveWithMinColumns(minSize = 160.dp, minColumns = 2),
+            columns = GridCells.Fixed(columns.coerceIn(2, 5)),
             modifier = Modifier.fillMaxSize(),
             contentPadding =
                 PaddingValues(

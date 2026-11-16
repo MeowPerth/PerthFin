@@ -108,4 +108,5 @@
     <string name="download_paused">Megállítva</string>
     <string name="download_downloading">Letöltés…</string>
     <string name="download_failed">Sikertelen letöltés</string>
+    <string name="items_per_row">Elemek soronként</string>
 </resources>

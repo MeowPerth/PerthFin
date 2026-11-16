@@ -97,4 +97,5 @@
     <string name="temp">temp</string>
     <string name="sort_by_options_6">Náhodně</string>
     <string name="offline_mode_go_online">Jdi online</string>
+    <string name="items_per_row">Položek v řadě</string>
 </resources>

@@ -526,9 +526,7 @@ class JellyfinRepositoryImpl(
                 jellyfinApi.sessionApi.reportPlaybackStopped(
                     PlaybackStopInfo(itemId = itemId, positionTicks = positionTicks, failed = false)
                 )
-            } catch (_: Exception) {
-                database.setUserDataToBeSynced(jellyfinApi.userId!!, itemId, true)
-            }
+            } catch (_: Exception) {}
         }
     }
 
@@ -553,9 +551,7 @@ class JellyfinRepositoryImpl(
                         positionTicks = positionTicks,
                     )
                 )
-            } catch (_: Exception) {
-                database.setUserDataToBeSynced(jellyfinApi.userId!!, itemId, true)
-            }
+            } catch (_: Exception) {}
         }
     }
 
@@ -564,9 +560,7 @@ class JellyfinRepositoryImpl(
             database.setFavorite(jellyfinApi.userId!!, itemId, true)
             try {
                 jellyfinApi.userDataApi.markFavoriteItem(itemId)
-            } catch (_: Exception) {
-                database.setUserDataToBeSynced(jellyfinApi.userId!!, itemId, true)
-            }
+            } catch (_: Exception) {}
         }
     }
 
@@ -575,9 +569,7 @@ class JellyfinRepositoryImpl(
             database.setFavorite(jellyfinApi.userId!!, itemId, false)
             try {
                 jellyfinApi.userDataApi.unmarkFavoriteItem(itemId)
-            } catch (_: Exception) {
-                database.setUserDataToBeSynced(jellyfinApi.userId!!, itemId, true)
-            }
+            } catch (_: Exception) {}
         }
     }
 
@@ -586,9 +578,7 @@ class JellyfinRepositoryImpl(
             database.setPlayed(jellyfinApi.userId!!, itemId, true)
             try {
                 jellyfinApi.userDataApi.markPlayedItem(itemId)
-            } catch (_: Exception) {
-                database.setUserDataToBeSynced(jellyfinApi.userId!!, itemId, true)
-            }
+            } catch (_: Exception) {}
         }
     }
 
@@ -597,9 +587,7 @@ class JellyfinRepositoryImpl(
             database.setPlayed(jellyfinApi.userId!!, itemId, false)
             try {
                 jellyfinApi.userDataApi.markUnplayedItem(itemId)
-            } catch (_: Exception) {
-                database.setUserDataToBeSynced(jellyfinApi.userId!!, itemId, true)
-            }
+            } catch (_: Exception) {}
         }
     }
 

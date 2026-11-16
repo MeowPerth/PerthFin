@@ -12,18 +12,33 @@ import dev.jdtech.jellyfin.models.FindroidMovie
 import dev.jdtech.jellyfin.models.FindroidShow
 import dev.jdtech.jellyfin.models.UiText
 import dev.jdtech.jellyfin.repository.JellyfinRepository
+import dev.jdtech.jellyfin.settings.domain.AppPreferences
 import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 @HiltViewModel
-class FavoritesViewModel @Inject constructor(private val repository: JellyfinRepository) :
-    ViewModel() {
+class FavoritesViewModel
+@Inject
+constructor(
+    private val repository: JellyfinRepository,
+    private val appPreferences: AppPreferences,
+) : ViewModel() {
     private val _state = MutableStateFlow(CollectionState())
     val state = _state.asStateFlow()
+
+    init {
+        viewModelScope.launch {
+            appPreferences.observe(appPreferences.libraryColumns).collect { columns ->
+                _state.update { it.copy(columns = columns.coerceIn(2, 5)) }
+            }
+        }
+    }
 
     fun loadItems() {
         viewModelScope.launch {

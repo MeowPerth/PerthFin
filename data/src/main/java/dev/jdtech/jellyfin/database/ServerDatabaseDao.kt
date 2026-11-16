@@ -228,14 +228,6 @@ interface ServerDatabaseDao {
 
     @Query("DELETE FROM userdata WHERE itemId = :itemId") suspend fun deleteUserData(itemId: UUID)
 
-    @Query("SELECT * FROM userdata WHERE userId = :userId AND itemId = :itemId AND toBeSynced = 1")
-    suspend fun getUserDataToBeSynced(userId: UUID, itemId: UUID): FindroidUserDataDto?
-
-    @Query(
-        "UPDATE userdata SET toBeSynced = :toBeSynced WHERE itemId = :itemId AND userId = :userId"
-    )
-    suspend fun setUserDataToBeSynced(userId: UUID, itemId: UUID, toBeSynced: Boolean)
-
     @Query("SELECT * FROM movies WHERE serverId = :serverId AND name LIKE '%' || :name || '%'")
     suspend fun searchMovies(serverId: String, name: String): List<FindroidMovieDto>
 

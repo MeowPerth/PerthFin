@@ -109,4 +109,5 @@
     <string name="download_downloading">Скачивание…</string>
     <string name="download_failed">Не удалось скачать</string>
     <string name="discard">Отказаться</string>
+    <string name="items_per_row">Элементов в строке</string>
 </resources>

@@ -99,6 +99,9 @@ class AppPreferences @Inject constructor(val sharedPreferences: SharedPreference
     val sortBy = Preference("pref_sort_by", "SortName")
     val sortOrder = Preference("pref_sort_order", "Ascending")
 
+    // Library grid
+    val libraryColumns = Preference("pref_library_columns", 2)
+
     // Permissions
     val localNetworkPermissionDecided = Preference("pref_permission_local_network_decided", false)
 
@@ -145,18 +148,26 @@ class AppPreferences @Inject constructor(val sharedPreferences: SharedPreference
         sharedPreferences.getString("audio_lang_$itemId", null)
 
     fun setSavedAudioLanguage(itemId: java.util.UUID, language: String?) {
-        sharedPreferences.edit().apply {
-            if (language == null) remove("audio_lang_$itemId") else putString("audio_lang_$itemId", language)
-        }.apply()
+        sharedPreferences
+            .edit()
+            .apply {
+                if (language == null) remove("audio_lang_$itemId")
+                else putString("audio_lang_$itemId", language)
+            }
+            .apply()
     }
 
     fun getSavedSubtitleLanguage(itemId: java.util.UUID): String? =
         sharedPreferences.getString("subtitle_lang_$itemId", null)
 
     fun setSavedSubtitleLanguage(itemId: java.util.UUID, language: String?) {
-        sharedPreferences.edit().apply {
-            if (language == null) remove("subtitle_lang_$itemId") else putString("subtitle_lang_$itemId", language)
-        }.apply()
+        sharedPreferences
+            .edit()
+            .apply {
+                if (language == null) remove("subtitle_lang_$itemId")
+                else putString("subtitle_lang_$itemId", language)
+            }
+            .apply()
     }
 
     inline fun <reified T> getValue(preference: Preference<T>): T {

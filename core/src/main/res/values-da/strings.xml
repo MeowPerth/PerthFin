@@ -101,4 +101,5 @@
     <string name="error_preparing_player_items">Fejl i forberedelse af player-elementer.</string>
     <string name="image_description_backdrop">%1$s baggrund</string>
     <string name="none">Ingen</string>
+    <string name="items_per_row">Elementer pr. række</string>
 </resources>

@@ -34,7 +34,6 @@ server-side transcoding with a quality preset is available. DLNA is planned.
 - ExoPlayer and mpv playback backends
 - Picture-in-picture, chapters, trickplay, media segment skipping
 - Multiple servers and users, Quick Connect login
-- Android TV module (experimental, not released)
 
 See the [Findroid README](https://github.com/jarnedemeulemeester/findroid#features) for the
 inherited feature matrix and codec support.

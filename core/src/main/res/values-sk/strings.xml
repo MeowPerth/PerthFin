@@ -99,4 +99,5 @@
     <string name="not_set">Nie je nastavené</string>
     <string name="title_download">Stiahnuté</string>
     <string name="sort_by_options_6">Náhodne</string>
+    <string name="items_per_row">Položiek v riadku</string>
 </resources>

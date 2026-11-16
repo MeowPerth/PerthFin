@@ -102,4 +102,5 @@
     <string name="runtime_minutes_left">Còn %1$d phút</string>
     <string name="none">Trống</string>
     <string name="manage_servers">Quản lý máy chủ</string>
+    <string name="items_per_row">Mục mỗi hàng</string>
 </resources>

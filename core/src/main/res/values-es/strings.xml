@@ -109,4 +109,5 @@
     <string name="download_downloading">Descargando…</string>
     <string name="download_failed">Error al descargar</string>
     <string name="discard">Descartar</string>
+    <string name="items_per_row">Elementos por fila</string>
 </resources>

@@ -125,6 +125,7 @@ private fun MediaScreenLayout(
             expanded = searchExpanded,
             onExpand = onSearchExpand,
             onAction = onSearchAction,
+            columns = state.columns,
             modifier = Modifier.fillMaxWidth(),
             paddingStart = paddingStart,
             paddingEnd = paddingEnd,

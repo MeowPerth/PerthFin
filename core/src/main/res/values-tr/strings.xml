@@ -108,4 +108,5 @@
     <string name="download_paused">Durduruldu</string>
     <string name="download_downloading">İndiriliyor…</string>
     <string name="download_failed">İndirme başarısız oldu</string>
+    <string name="items_per_row">Satır başına öğe</string>
 </resources>

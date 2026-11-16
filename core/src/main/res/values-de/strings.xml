@@ -109,4 +109,5 @@
     <string name="download_pending">Ausstehend…</string>
     <string name="none">Keine</string>
     <string name="discard">Verwerfen</string>
+    <string name="items_per_row">Elemente pro Zeile</string>
 </resources>

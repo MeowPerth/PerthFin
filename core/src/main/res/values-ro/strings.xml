@@ -108,4 +108,5 @@
     <string name="download_paused">Pauzat</string>
     <string name="download_downloading">Se descarcă…</string>
     <string name="download_failed">Descărcarea a eșuat</string>
+    <string name="items_per_row">Elemente pe rând</string>
 </resources>

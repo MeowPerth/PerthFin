@@ -107,4 +107,5 @@
     <string name="download_paused">Peatatud</string>
     <string name="download_downloading">Allalaadimine…</string>
     <string name="download_failed">Allalaadimine nurjus</string>
+    <string name="items_per_row">Üksusi reas</string>
 </resources>

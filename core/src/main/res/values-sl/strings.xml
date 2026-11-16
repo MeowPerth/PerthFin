@@ -99,4 +99,5 @@
     <string name="episode_name_extended_with_end">S%1$d:E%2$d-%3$d - %4$s</string>
     <string name="watch_trailer">Poglej napovednik</string>
     <string name="sort_by_options_6">Naključno</string>
+    <string name="items_per_row">Elementov na vrstico</string>
 </resources>

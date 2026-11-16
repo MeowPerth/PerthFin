@@ -108,4 +108,5 @@
     <string name="download_paused">Wstrzymano</string>
     <string name="download_downloading">Pobieranie…</string>
     <string name="download_failed">Błąd pobierania</string>
+    <string name="items_per_row">Elementy w wierszu</string>
 </resources>

@@ -68,4 +68,5 @@
     <string name="delete_download">Eliminar la baixada</string>
     <string name="download_downloading">Baixant…</string>
     <string name="none">Cap</string>
+    <string name="items_per_row">Elements per fila</string>
 </resources>

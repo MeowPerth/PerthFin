@@ -108,4 +108,5 @@
     <string name="external">Extern</string>
     <string name="delete_download">Ta bort nedladdning</string>
     <string name="not_set">Inte angivet</string>
+    <string name="items_per_row">Objekt per rad</string>
 </resources>

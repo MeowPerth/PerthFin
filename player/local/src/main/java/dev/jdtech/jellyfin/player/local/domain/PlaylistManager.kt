@@ -234,13 +234,11 @@ internal constructor(
             }
         val savedAudioLanguage = appPreferences.getSavedAudioLanguage(id)
         val savedSubtitleLanguage = appPreferences.getSavedSubtitleLanguage(id)
-        val preferredAudioLanguage =
-            appPreferences.getValue(appPreferences.preferredAudioLanguage)
+        val preferredAudioLanguage = appPreferences.getValue(appPreferences.preferredAudioLanguage)
         val preferredSubtitleLanguage =
             appPreferences.getValue(appPreferences.preferredSubtitleLanguage)
 
-        val requestedAudioIndex =
-            audioStreamIndex ?: appPreferences.getSavedAudioStreamIndex(id)
+        val requestedAudioIndex = audioStreamIndex ?: appPreferences.getSavedAudioStreamIndex(id)
         val requestedSubtitleIndex =
             when {
                 subtitleStreamIndex != null -> subtitleStreamIndex
@@ -263,8 +261,24 @@ internal constructor(
                 mediaSources[mediaSourceIndex]
             }
 
-        var resolvedAudioIndex = requestedAudioIndex
-        var resolvedSubtitleIndex = requestedSubtitleIndex
+        var resolvedAudioIndex =
+            when {
+                requestedAudioIndex == null -> null
+                requestedAudioIndex < 0 -> requestedAudioIndex
+                mediaSource.mediaStreams.any {
+                    it.type == MediaStreamType.AUDIO && it.index == requestedAudioIndex
+                } -> requestedAudioIndex
+                else -> null
+            }
+        var resolvedSubtitleIndex =
+            when {
+                requestedSubtitleIndex == null -> null
+                requestedSubtitleIndex < 0 -> requestedSubtitleIndex
+                mediaSource.mediaStreams.any {
+                    it.type == MediaStreamType.SUBTITLE && it.index == requestedSubtitleIndex
+                } -> requestedSubtitleIndex
+                else -> null
+            }
         if (resolvedAudioIndex == null) {
             resolvedAudioIndex =
                 findStreamIndex(mediaSource, MediaStreamType.AUDIO, savedAudioLanguage)
@@ -301,7 +315,7 @@ internal constructor(
                 }
         }
         Timber.d(
-            "Playback source: ${mediaSource.transcodingUrl}, audio=$audioStreamIndex, subtitle=$subtitleStreamIndex"
+            "Playback source: ${mediaSource.transcodingUrl}, audio=$resolvedAudioIndex, subtitle=$resolvedSubtitleIndex"
         )
         val externalSubtitles =
             mediaSource.mediaStreams

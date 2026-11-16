@@ -108,4 +108,5 @@
     <string name="download_paused">متوقف مؤقتاً</string>
     <string name="download_downloading">جاري التنزيل…</string>
     <string name="download_failed">فشل التنزيل</string>
+    <string name="items_per_row">العناصر في الصف</string>
 </resources>
