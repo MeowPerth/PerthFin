@@ -2,11 +2,23 @@
 
 # PerthFin
 
-PerthFin is an unofficial, rebranded fork of [Findroid](https://github.com/jarnedemeulemeester/findroid),
-a native Android client for [Jellyfin](https://jellyfin.org).
+PerthFin is an independent native Android client for [Jellyfin](https://jellyfin.org),
+built on top of the open-source [Findroid](https://github.com/jarnedemeulemeester/findroid) project.
 
-It is **not affiliated with, endorsed by, or sponsored by** the Jellyfin project or the Findroid author.
-"Jellyfin" is used descriptively only.
+It is an independent derivative, **not a fork of the upstream repository**, and is
+**not affiliated with, endorsed by, or sponsored by** the Jellyfin project or the
+Findroid author. "Jellyfin" is used descriptively only.
+
+## Upstream
+
+PerthFin is a secondary development based on Findroid, originally created by
+Jarne Demeulemeester and contributors:
+
+- Upstream: https://github.com/jarnedemeulemeester/findroid
+- Base: Findroid 1.2.0 (commit `3a06420`)
+- License: GPLv3, see [LICENSE](LICENSE) and [NOTICE](NOTICE)
+
+The upstream project is not responsible for this repository or its releases.
 
 ## Status
 

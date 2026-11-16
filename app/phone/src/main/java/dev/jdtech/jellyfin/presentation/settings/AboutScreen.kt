@@ -132,7 +132,7 @@ fun AboutScreen(navigateBack: () -> Unit) {
                                     onClick = {
                                         try {
                                             uriHandler.openUri(
-                                                "https://github.com/MeowPerth/findroid"
+                                                "https://github.com/MeowPerth/PerthFin"
                                             )
                                         } catch (e: IllegalArgumentException) {
                                             Toast.makeText(
@@ -153,7 +153,7 @@ fun AboutScreen(navigateBack: () -> Unit) {
                             Spacer(Modifier.height(MaterialTheme.spacings.medium))
                             Text(
                                 text =
-                                    "Unofficial fork of Findroid by Jarne Demeulemeester. Licensed under GPLv3.",
+                                    "Independent project based on Findroid by Jarne Demeulemeester. Licensed under GPLv3.",
                                 style = MaterialTheme.typography.bodySmall,
                                 modifier =
                                     Modifier.clickable {
