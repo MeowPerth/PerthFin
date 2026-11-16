@@ -779,7 +779,13 @@ class MPVPlayer(
      *   than the size of the playlist, media items to the end of the playlist are removed.
      */
     override fun removeMediaItems(fromIndex: Int, toIndex: Int) {
-        TODO("Not yet implemented")
+        val end = toIndex.coerceAtMost(internalMediaItems.size)
+        if (fromIndex < 0 || fromIndex >= end) return
+
+        repeat(end - fromIndex) {
+            internalMediaItems.removeAt(fromIndex)
+            mpvLib.command(arrayOf("playlist-remove", fromIndex.toString()))
+        }
     }
 
     /**
