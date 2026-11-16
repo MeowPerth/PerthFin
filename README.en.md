@@ -31,11 +31,9 @@ descriptively only.
 
 ### Phone UI (portrait)
 
-| Home | Library (3 per row) |
-|:---:|:---:|
-| ![Home](images/screenshots/home.jpg) | ![Library](images/screenshots/library.jpg) |
-| **Items per row** | **Portrait playback** |
-| ![Items per row](images/screenshots/columns.jpg) | ![Portrait playback](images/screenshots/player-portrait.jpg) |
+| Home | Library (3 per row) | Items per row | Portrait playback |
+|:---:|:---:|:---:|:---:|
+| ![Home](images/screenshots/home.jpg) | ![Library](images/screenshots/library.jpg) | ![Items per row](images/screenshots/columns.jpg) | ![Portrait playback](images/screenshots/player-portrait.jpg) |
 
 ### Landscape and quality
 
