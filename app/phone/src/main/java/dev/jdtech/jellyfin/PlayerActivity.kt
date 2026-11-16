@@ -544,10 +544,15 @@ class PlayerActivity : BasePlayerActivity() {
         val padding = ((if (portrait) 8 else 16) * density).toInt()
         val spaceWidth = ((if (portrait) 4 else 16) * density).toInt()
 
-        for (index in 0 until extraButtons.childCount) {
-            when (val child = extraButtons.getChildAt(index)) {
+        applyControlSpacing(extraButtons, padding, spaceWidth)
+    }
+
+    private fun applyControlSpacing(group: LinearLayout, padding: Int, spaceWidth: Int) {
+        for (index in 0 until group.childCount) {
+            when (val child = group.getChildAt(index)) {
                 is ImageButton -> child.setPadding(padding, padding, padding, padding)
                 is Space -> child.layoutParams = child.layoutParams.apply { width = spaceWidth }
+                is LinearLayout -> applyControlSpacing(child, padding, spaceWidth)
             }
         }
     }
