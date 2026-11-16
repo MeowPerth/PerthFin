@@ -59,4 +59,6 @@
     <string name="pref_player_quality">איכות וידאו</string>
     <string name="pref_player_quality_summary">קצב סיביות עבור ההפעלה הבאה. כשנבחר גבול, נעשה שימוש בתמלול.</string>
     <string name="quality_original">מקורי</string>
+    <string name="player_default_landscape">מצב אופקי כברירת מחדל</string>
+    <string name="player_default_landscape_summary">אם לא מסומן, נעשה שימוש בכיוון הניגון האחרון</string>
 </resources>

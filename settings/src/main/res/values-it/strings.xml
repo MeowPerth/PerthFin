@@ -103,4 +103,6 @@
     <string name="pref_player_quality">Qualità video</string>
     <string name="pref_player_quality_summary">Bitrate per la prossima riproduzione. La transcodifica viene usata quando si seleziona un limite.</string>
     <string name="quality_original">Originale</string>
+    <string name="player_default_landscape">Orizzontale predefinito</string>
+    <string name="player_default_landscape_summary">Se non selezionato, viene usato l\'orientamento dell\'ultima riproduzione</string>
 </resources>

@@ -103,4 +103,6 @@
     <string name="pref_player_quality">Качество на видеото</string>
     <string name="pref_player_quality_summary">Битрейт за следващото възпроизвеждане. При избор на ограничение се използва транскодиране.</string>
     <string name="quality_original">Оригинал</string>
+    <string name="player_default_landscape">Пейзажен режим по подразбиране</string>
+    <string name="player_default_landscape_summary">Ако не е отметнато, се използва последната ориентация</string>
 </resources>

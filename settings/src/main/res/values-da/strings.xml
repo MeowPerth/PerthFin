@@ -49,4 +49,6 @@
     <string name="pref_player_quality">Videokvalitet</string>
     <string name="pref_player_quality_summary">Bitrate for næste afspilning. Transkodning bruges, når en grænse er valgt.</string>
     <string name="quality_original">Original</string>
+    <string name="player_default_landscape">Standard landskab</string>
+    <string name="player_default_landscape_summary">Hvis den ikke er markeret, bruges den seneste afspilningsretning</string>
 </resources>

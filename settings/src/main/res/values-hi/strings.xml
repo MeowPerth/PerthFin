@@ -37,4 +37,6 @@
     <string name="pref_player_quality">वीडियो गुणवत्ता</string>
     <string name="pref_player_quality_summary">अगली प्लेबैक के लिए बिटरेट। सीमा चुनने पर ट्रांसकोडिंग का उपयोग किया जाएगा।</string>
     <string name="quality_original">मूल</string>
+    <string name="player_default_landscape">डिफ़ॉल्ट लैंडस्केप</string>
+    <string name="player_default_landscape_summary">अनचेक होने पर पिछली प्लेबैक दिशा उपयोग होती है</string>
 </resources>

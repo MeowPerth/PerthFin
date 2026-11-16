@@ -103,4 +103,6 @@
     <string name="pref_player_quality">Qualité vidéo</string>
     <string name="pref_player_quality_summary">Débit utilisé pour la prochaine lecture. Le transcodage est utilisé lorsqu\'une limite est sélectionnée.</string>
     <string name="quality_original">Original</string>
+    <string name="player_default_landscape">Mode paysage par défaut</string>
+    <string name="player_default_landscape_summary">Si décoché, l\'orientation de la dernière lecture est utilisée</string>
 </resources>

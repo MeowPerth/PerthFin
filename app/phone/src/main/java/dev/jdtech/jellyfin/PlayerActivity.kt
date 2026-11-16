@@ -22,6 +22,7 @@ import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.Space
 import android.widget.TextView
 import androidx.activity.viewModels
@@ -61,6 +62,7 @@ class PlayerActivity : BasePlayerActivity() {
     override val viewModel: PlayerViewModel by viewModels()
     private var previewScrubListener: PreviewScrubListener? = null
     private var wasZoom: Boolean = false
+    private var isPlayerPortrait = false
     private var skipButtonTimeoutExpired: Boolean = true
 
     private lateinit var skipSegmentButton: Button
@@ -95,11 +97,25 @@ class PlayerActivity : BasePlayerActivity() {
         val itemKind = intent.extras!!.getString("itemKind")
         val startFromBeginning = intent.extras!!.getBoolean("startFromBeginning")
 
+        isPlayerPortrait =
+            if (appPreferences.getValue(appPreferences.playerDefaultLandscape)) {
+                false
+            } else {
+                appPreferences.getValue(appPreferences.playerLastOrientation) == "portrait"
+            }
+        requestedOrientation =
+            if (isPlayerPortrait) {
+                ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+            } else {
+                ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+            }
+
         binding = ActivityPlayerBinding.inflate(layoutInflater)
         setContentView(binding.root)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
         binding.playerView.player = viewModel.player
+        adjustPlayerControls(isPlayerPortrait)
         binding.playerView.setControllerVisibilityListener(
             PlayerView.ControllerVisibilityListener { visibility ->
                 if (visibility == View.GONE) {
@@ -140,6 +156,14 @@ class PlayerActivity : BasePlayerActivity() {
         val pipButton = binding.playerView.findViewById<ImageButton>(R.id.btn_pip)
         val lockButton = binding.playerView.findViewById<ImageButton>(R.id.btn_lockview)
         val unlockButton = binding.playerView.findViewById<ImageButton>(R.id.btn_unlock)
+        val orientationButton = binding.playerView.findViewById<ImageButton>(R.id.btn_orientation)
+
+        orientationButton.setOnClickListener {
+            applyPlayerOrientation(
+                portrait = !isPlayerPortrait,
+                persist = !appPreferences.getValue(appPreferences.playerDefaultLandscape),
+            )
+        }
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -304,7 +328,7 @@ class PlayerActivity : BasePlayerActivity() {
         unlockButton.setOnClickListener {
             exoPlayerControlView.visibility = View.VISIBLE
             lockedLayout.visibility = View.GONE
-            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
+            applyPlayerOrientation(isPlayerPortrait, persist = false)
             isControlsLocked = false
         }
 
@@ -479,6 +503,49 @@ class PlayerActivity : BasePlayerActivity() {
                                 appPreferences.getValue(appPreferences.playerBrightness)
                         }
                 }
+            }
+        }
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        if (::binding.isInitialized) {
+            adjustPlayerControls(newConfig.orientation == Configuration.ORIENTATION_PORTRAIT)
+        }
+    }
+
+    private fun applyPlayerOrientation(portrait: Boolean, persist: Boolean) {
+        isPlayerPortrait = portrait
+        requestedOrientation =
+            if (portrait) {
+                ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+            } else {
+                ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+            }
+        if (persist) {
+            appPreferences.setValue(
+                appPreferences.playerLastOrientation,
+                if (portrait) "portrait" else "landscape",
+            )
+        }
+        if (::binding.isInitialized) {
+            adjustPlayerControls(portrait)
+        }
+    }
+
+    private fun adjustPlayerControls(portrait: Boolean) {
+        val extraButtons = binding.playerView.findViewById<LinearLayout>(R.id.extra_buttons)
+        val title = binding.playerView.findViewById<TextView>(R.id.video_name)
+        title.isVisible = !portrait
+
+        val density = resources.displayMetrics.density
+        val padding = ((if (portrait) 8 else 16) * density).toInt()
+        val spaceWidth = ((if (portrait) 4 else 16) * density).toInt()
+
+        for (index in 0 until extraButtons.childCount) {
+            when (val child = extraButtons.getChildAt(index)) {
+                is ImageButton -> child.setPadding(padding, padding, padding, padding)
+                is Space -> child.layoutParams = child.layoutParams.apply { width = spaceWidth }
             }
         }
     }

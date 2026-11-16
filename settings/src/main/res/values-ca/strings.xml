@@ -33,4 +33,6 @@
     <string name="pref_player_quality">Qualitat de vídeo</string>
     <string name="pref_player_quality_summary">Taxa de bits per a la propera reproducció. S\'utilitza transcodificació quan se selecciona un límit.</string>
     <string name="quality_original">Original</string>
+    <string name="player_default_landscape">Mode horitzontal per defecte</string>
+    <string name="player_default_landscape_summary">Si no es marca, s\'utilitza l\'orientació de la reproducció anterior</string>
 </resources>

@@ -103,4 +103,6 @@
     <string name="pref_player_quality">Video kalitesi</string>
     <string name="pref_player_quality_summary">Sonraki oynatma için bit hızı. Bir sınır seçildiğinde kod dönüştürme kullanılır.</string>
     <string name="quality_original">Orijinal</string>
+    <string name="player_default_landscape">Varsayılan yatay</string>
+    <string name="player_default_landscape_summary">İşaretlenmezse son oynatma yönü kullanılır</string>
 </resources>

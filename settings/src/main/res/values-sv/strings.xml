@@ -103,4 +103,6 @@
     <string name="pref_player_quality">Videokvalitet</string>
     <string name="pref_player_quality_summary">Bitrate för nästa uppspelning. Transkodning används när en gräns har valts.</string>
     <string name="quality_original">Original</string>
+    <string name="player_default_landscape">Standard liggande</string>
+    <string name="player_default_landscape_summary">Om det inte är markerat används den senaste uppspelningsriktningen</string>
 </resources>

@@ -462,6 +462,15 @@ class SettingsViewModel @Inject constructor(private val appPreferences: AppPrefe
                                                     backendPreference =
                                                         appPreferences.playerGesturesStartMaximized,
                                                 ),
+                                                PreferenceSwitch(
+                                                    nameStringResource =
+                                                        R.string.player_default_landscape,
+                                                    descriptionStringRes =
+                                                        R.string.player_default_landscape_summary,
+                                                    supportedDeviceTypes = listOf(DeviceType.PHONE),
+                                                    backendPreference =
+                                                        appPreferences.playerDefaultLandscape,
+                                                ),
                                             ),
                                     ),
                                     PreferenceGroup(

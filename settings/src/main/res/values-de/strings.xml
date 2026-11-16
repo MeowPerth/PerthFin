@@ -109,4 +109,6 @@
     <string name="pref_player_quality">Videoqualität</string>
     <string name="pref_player_quality_summary">Bitrate für die nächste Wiedergabe. Bei Auswahl eines Limits wird transkodiert.</string>
     <string name="quality_original">Original</string>
+    <string name="player_default_landscape">Standardmäßig Querformat</string>
+    <string name="player_default_landscape_summary">Wenn deaktiviert, wird die letzte Wiedergabeausrichtung verwendet</string>
 </resources>

@@ -73,4 +73,6 @@
     <string name="pref_player_quality">Calitate video</string>
     <string name="pref_player_quality_summary">Bitrate pentru următoarea redare. Transcodarea este folosită când este selectată o limită.</string>
     <string name="quality_original">Original</string>
+    <string name="player_default_landscape">Mod implicit orizontal</string>
+    <string name="player_default_landscape_summary">Dacă nu este bifat, se folosește orientarea ultimei redări</string>
 </resources>

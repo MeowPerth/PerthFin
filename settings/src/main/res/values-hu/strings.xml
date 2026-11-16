@@ -71,4 +71,6 @@
     <string name="pref_player_quality">Videóminőség</string>
     <string name="pref_player_quality_summary">A következő lejátszáshoz használt bitráta. Korlát kiválasztásakor átkódolás történik.</string>
     <string name="quality_original">Eredeti</string>
+    <string name="player_default_landscape">Alapértelmezett fekvő</string>
+    <string name="player_default_landscape_summary">Ha nincs bejelölve, az utolsó lejátszási tájolás lesz használva</string>
 </resources>

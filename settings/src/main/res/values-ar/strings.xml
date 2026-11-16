@@ -103,4 +103,6 @@
     <string name="pref_player_quality">جودة الفيديو</string>
     <string name="pref_player_quality_summary">معدل البت المستخدم في التشغيل التالي. يتم استخدام الترميز عند تحديد حد أقصى.</string>
     <string name="quality_original">الأصلي</string>
+    <string name="player_default_landscape">الوضع الأفقي الافتراضي</string>
+    <string name="player_default_landscape_summary">عند عدم التحديد، يُستخدم اتجاه التشغيل الأخير</string>
 </resources>

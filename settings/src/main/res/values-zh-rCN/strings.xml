@@ -107,4 +107,6 @@
     <string name="quality_10">10 Mbps</string>
     <string name="quality_4">4 Mbps</string>
     <string name="quality_1_5">1.5 Mbps</string>
+    <string name="player_default_landscape">默认横屏模式</string>
+    <string name="player_default_landscape_summary">不勾选则为上一次的播放模式</string>
 </resources>

@@ -60,4 +60,6 @@
     <string name="pref_player_quality">Chất lượng video</string>
     <string name="pref_player_quality_summary">Bitrate cho lần phát tiếp theo. Chuyển mã được dùng khi chọn giới hạn.</string>
     <string name="quality_original">Gốc</string>
+    <string name="player_default_landscape">Mặc định ngang</string>
+    <string name="player_default_landscape_summary">Nếu không chọn, dùng hướng phát lại gần nhất</string>
 </resources>

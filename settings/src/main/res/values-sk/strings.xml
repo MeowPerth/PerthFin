@@ -71,4 +71,6 @@
     <string name="pref_player_quality">Kvalita videa</string>
     <string name="pref_player_quality_summary">Bitová rýchlosť pre nasledujúce prehrávanie. Pri výbere limitu sa použije transkódovanie.</string>
     <string name="quality_original">Originál</string>
+    <string name="player_default_landscape">Predvolene na šírku</string>
+    <string name="player_default_landscape_summary">Ak nie je zaškrtnuté, použije sa posledná orientácia prehrávania</string>
 </resources>

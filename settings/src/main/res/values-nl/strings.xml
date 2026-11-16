@@ -78,4 +78,6 @@
     <string name="pref_player_quality">Videokwaliteit</string>
     <string name="pref_player_quality_summary">Bitrate voor de volgende weergave. Transcodering wordt gebruikt als een limiet is geselecteerd.</string>
     <string name="quality_original">Origineel</string>
+    <string name="player_default_landscape">Standaard liggend</string>
+    <string name="player_default_landscape_summary">Indien uitgeschakeld, wordt de laatste afspeeloriëntatie gebruikt</string>
 </resources>

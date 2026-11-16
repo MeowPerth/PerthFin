@@ -110,4 +110,5 @@
     <string name="download_downloading">Downloading…</string>
     <string name="download_failed">Failed to download</string>
     <string name="items_per_row">Items per row</string>
+    <string name="player_controls_orientation">Toggle orientation</string>
 </resources>

@@ -103,4 +103,6 @@
     <string name="pref_player_quality">Kualitas video</string>
     <string name="pref_player_quality_summary">Bitrate untuk pemutaran berikutnya. Transcoding digunakan saat batas dipilih.</string>
     <string name="quality_original">Asli</string>
+    <string name="player_default_landscape">Lanskap default</string>
+    <string name="player_default_landscape_summary">Jika tidak dicentang, orientasi pemutaran terakhir digunakan</string>
 </resources>

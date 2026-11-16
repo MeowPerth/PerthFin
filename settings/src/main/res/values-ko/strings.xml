@@ -115,4 +115,6 @@
     <string name="pref_player_quality">영상 화질</string>
     <string name="pref_player_quality_summary">다음 재생에 사용할 비트레이트입니다. 제한을 선택하면 트랜스코딩이 사용됩니다.</string>
     <string name="quality_original">원본</string>
+    <string name="player_default_landscape">기본 가로 모드</string>
+    <string name="player_default_landscape_summary">선택하지 않으면 마지막 재생 방향을 사용합니다</string>
 </resources>

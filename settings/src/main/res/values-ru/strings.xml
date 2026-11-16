@@ -63,4 +63,6 @@
     <string name="pref_player_quality">Качество видео</string>
     <string name="pref_player_quality_summary">Битрейт для следующего воспроизведения. При выборе ограничения используется транскодирование.</string>
     <string name="quality_original">Оригинал</string>
+    <string name="player_default_landscape">Режим по умолчанию — горизонтальный</string>
+    <string name="player_default_landscape_summary">Если не отмечено, используется ориентация последнего воспроизведения</string>
 </resources>

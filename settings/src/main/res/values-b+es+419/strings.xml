@@ -72,4 +72,6 @@
     <string name="pref_player_quality">Calidad de video</string>
     <string name="pref_player_quality_summary">Tasa de bits para la próxima reproducción. Se usa transcodificación cuando se selecciona un límite.</string>
     <string name="quality_original">Original</string>
+    <string name="player_default_landscape">Modo horizontal predeterminado</string>
+    <string name="player_default_landscape_summary">Si no se marca, se usa la orientación de la última reproducción</string>
 </resources>
