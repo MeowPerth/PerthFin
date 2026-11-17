@@ -114,7 +114,8 @@ class AvTransport(private val soapClient: SoapClient = SoapClient()) {
         action: String,
         arguments: Map<String, String>,
     ): Map<String, String> {
-        val service = device.avTransport ?: throw DlnaException("Renderer does not support AVTransport")
+        val service =
+            device.avTransport ?: throw DlnaException("Renderer does not support AVTransport")
         Timber.d("AVTransport $action on ${device.displayName}")
         return soapClient.call(service, action, arguments)
     }
