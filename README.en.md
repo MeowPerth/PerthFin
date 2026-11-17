@@ -59,24 +59,14 @@ descriptively only.
 
 ### Playback
 
-- Direct play when the video bitrate is within the selected preset and the player supports the container/video/audio/subtitle formats
-- HLS transcode (H.264 video / AAC audio) when the bitrate is above the preset or a format is unsupported
-- Bitrate presets: 40, 30, 20, 10, 4 and 1.5 Mbps (40 Mbps replaces "original")
-- In-player bitrate switching, resuming at the current position
-- ExoPlayer (default) and libmpv backends
-- Picture-in-picture
-- Playback speed selection
-- Chapter timeline markers and chapter skip gestures
-- Intro / outro media segment skipping (button and auto-skip)
-- Trickplay previews while seeking
-- Portrait and landscape playback
-- Quick rotation toggle in the player
-- "Default to landscape" setting; when disabled, the last playback orientation is reused
-- Bottom bar: play/pause on the left, progress in the middle and time on the right; in portrait the time sits above the right end of the progress bar
-- The centre play button is shown only while paused
-- Double-tap zones split 25% / 50% / 25%: rewind 5 seconds, pause/resume, forward 15 seconds
-- Volume, brightness, seek and zoom gestures; the volume indicator follows the phone's media volume in real time
-- Resumes playback from the last reported position
+- Direct play or HLS transcode based on bitrate and format; presets 40/30/20/10/4/1.5 Mbps
+- ExoPlayer / libmpv, picture-in-picture, playback speed, chapters, intro/outro skipping, trickplay
+- Portrait/landscape playback, quick rotation and a "default to landscape" setting
+- Bottom bar: play/pause left, progress in the middle, time right; portrait time sits above the progress end
+- Centre play button while paused, hidden during playback
+- Double-tap zones split 25%/50%/25%: rewind 5 s, pause/resume, forward 15 s
+- Volume, brightness, seek and zoom gestures; volume indicator syncs with the phone's media volume
+- Resumes from the last playback position
 
 ### DLNA casting
 
