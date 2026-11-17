@@ -20,7 +20,7 @@ PerthFin 是一个独立的原生 Android [Jellyfin](https://jellyfin.org) 客�
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0-orange?style=flat-square" alt="license"></a>
 </p>
 
-- 当前版本：**1.1.0**
+- 当前版本：**1.1.1**
 - 包名：`com.wuhaohu.perthfin`
 - 许可证：GPLv3
 - 上游基线：[Findroid](https://github.com/jarnedemeulemeester/findroid) 1.2.0（commit [`3a06420`](https://github.com/jarnedemeulemeester/findroid/commit/3a06420)）
@@ -131,9 +131,9 @@ PerthFin 会向服务端请求 H.264 + AAC 的 HLS 流，并把选中的音轨�
 
 从 GitHub Releases 下载对应 ABI 的 APK：
 
-- `perthfin-v1.1.0-libre-arm64-v8a.apk`：大多数现代手机
-- `perthfin-v1.1.0-libre-armeabi-v7a.apk`：较老的 32 位设备
-- `perthfin-v1.1.0-libre-x86_64.apk` / `x86`：模拟器和 x86 设备
+- `perthfin-v1.1.1-libre-arm64-v8a.apk`：大多数现代手机
+- `perthfin-v1.1.1-libre-armeabi-v7a.apk`：较老的 32 位设备
+- `perthfin-v1.1.1-libre-x86_64.apk` / `x86`：模拟器和 x86 设备
 
 APK 使用 release key 签名，直接安装即可；当前不通过 Google Play 分发。
 
@@ -161,7 +161,7 @@ Release APK 输出到 `app/phone/build/outputs/apk/libre/release/`。
 
 ## 版本与路线图
 
-当前版本为 `1.1.0`。后续将继续完善投屏兼容性、错误提示和播放器交互。
+当前版本为 `1.1.1`。后续将继续完善投屏兼容性、错误提示和播放器交互。
 
 ## 许可证与署名
 

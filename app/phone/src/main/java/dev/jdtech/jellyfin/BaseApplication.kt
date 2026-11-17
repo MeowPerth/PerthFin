@@ -18,7 +18,6 @@ import coil3.network.okhttp.OkHttpNetworkFetcherFactory
 import coil3.request.CachePolicy
 import coil3.request.crossfade
 import coil3.svg.SvgDecoder
-import com.google.android.material.color.DynamicColors
 import dagger.hilt.android.HiltAndroidApp
 import dev.jdtech.jellyfin.player.local.cast.CastSession
 import dev.jdtech.jellyfin.settings.domain.AppPreferences
@@ -59,10 +58,6 @@ class BaseApplication : Application(), Configuration.Provider, SingletonImageLoa
 
         if (appPreferences.getValue(appPreferences.playerQuality) == "original") {
             appPreferences.setValue(appPreferences.playerQuality, "40")
-        }
-
-        if (appPreferences.getValue(appPreferences.dynamicColors)) {
-            DynamicColors.applyToActivitiesIfAvailable(this)
         }
 
         castSession.restore()

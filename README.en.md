@@ -22,7 +22,7 @@ descriptively only.
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0-orange?style=flat-square" alt="license"></a>
 </p>
 
-- Current version: **1.1.0**
+- Current version: **1.1.1**
 - Package: `com.wuhaohu.perthfin`
 - License: GPLv3
 - Base: [Findroid](https://github.com/jarnedemeulemeester/findroid) 1.2.0 (commit [`3a06420`](https://github.com/jarnedemeulemeester/findroid/commit/3a06420))
@@ -136,9 +136,9 @@ source is passed through directly.
 
 Download the APK for your device ABI from GitHub Releases:
 
-- `perthfin-v1.1.0-libre-arm64-v8a.apk` — most modern phones
-- `perthfin-v1.1.0-libre-armeabi-v7a.apk` — older 32-bit devices
-- `perthfin-v1.1.0-libre-x86_64.apk` / `x86` — emulators and x86 devices
+- `perthfin-v1.1.1-libre-arm64-v8a.apk` — most modern phones
+- `perthfin-v1.1.1-libre-armeabi-v7a.apk` — older 32-bit devices
+- `perthfin-v1.1.1-libre-x86_64.apk` / `x86` — emulators and x86 devices
 
 The APKs are signed release builds and can be installed directly. PerthFin is not
 currently distributed through Google Play.
@@ -167,7 +167,7 @@ Configure your own signing key before distributing a release build.
 
 ## Versioning and roadmap
 
-The current version is `1.1.0`. Future work focuses on cast compatibility, clearer errors and player interaction.
+The current version is `1.1.1`. Future work focuses on cast compatibility, clearer errors and player interaction.
 
 ## License and attribution
 

@@ -369,10 +369,12 @@ fun CastControls(
                     SliderDefaults.colors(
                         thumbColor = MaterialTheme.colorScheme.primary,
                         activeTrackColor = MaterialTheme.colorScheme.primary,
-                        inactiveTrackColor = Color.White.copy(alpha = 0.38f),
+                        inactiveTrackColor =
+                            MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.38f),
                         disabledThumbColor = MaterialTheme.colorScheme.primary,
                         disabledActiveTrackColor = MaterialTheme.colorScheme.primary,
-                        disabledInactiveTrackColor = Color.White.copy(alpha = 0.38f),
+                        disabledInactiveTrackColor =
+                            MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.38f),
                     ),
                 modifier = Modifier.fillMaxWidth().padding(horizontal = sliderHorizontalPadding),
             )

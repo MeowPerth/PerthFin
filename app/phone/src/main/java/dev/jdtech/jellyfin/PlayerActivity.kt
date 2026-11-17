@@ -41,6 +41,7 @@ import androidx.media3.common.Player
 import androidx.media3.ui.DefaultTimeBar
 import androidx.media3.ui.PlayerControlView
 import androidx.media3.ui.PlayerView
+import com.google.android.material.color.DynamicColors
 import dagger.hilt.android.AndroidEntryPoint
 import dev.jdtech.jellyfin.cast.dlna.DlnaDevice
 import dev.jdtech.jellyfin.core.R as CoreR
@@ -116,6 +117,10 @@ class PlayerActivity : BasePlayerActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (appPreferences.getValue(appPreferences.dynamicColors)) {
+            DynamicColors.applyToActivityIfAvailable(this)
+        }
 
         val itemId = UUID.fromString(intent.extras!!.getString("itemId"))
         val itemKind = intent.extras!!.getString("itemKind")
@@ -474,7 +479,7 @@ class PlayerActivity : BasePlayerActivity() {
 
     private fun setupCastUi() {
         binding.castControls.setContent {
-            FindroidTheme {
+            FindroidTheme(dynamicColor = appPreferences.getValue(appPreferences.dynamicColors)) {
                 val castState by viewModel.castState.collectAsStateWithLifecycle()
                 if (castState.isActive || castState.status == CastStatus.ERROR) {
                     CastControls(
@@ -512,7 +517,7 @@ class PlayerActivity : BasePlayerActivity() {
         }
 
         binding.castPicker.setContent {
-            FindroidTheme {
+            FindroidTheme(dynamicColor = appPreferences.getValue(appPreferences.dynamicColors)) {
                 if (showCastPicker) {
                     CastDeviceSheet(
                         onDismiss = {

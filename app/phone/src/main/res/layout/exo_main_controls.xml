@@ -203,7 +203,7 @@
             android:contentDescription="@string/player_controls_play_pause"
             android:padding="16dp"
             android:src="@drawable/ic_play"
-            app:tint="@android:color/white" />
+            app:tint="?attr/colorOnPrimary" />
 
     </LinearLayout>
 
@@ -252,7 +252,8 @@
             app:layout_constraintEnd_toStartOf="@id/exo_bottom_time"
             app:layout_constraintStart_toEndOf="@id/exo_play_pause"
             app:layout_constraintTop_toTopOf="@id/exo_play_pause"
-            app:played_color="?attr/colorPrimary" />
+            app:played_color="?attr/colorPrimary"
+            app:scrubber_color="?attr/colorPrimary" />
 
         <TextView
             android:id="@+id/exo_bottom_time"

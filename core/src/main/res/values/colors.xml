@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Primary -->
-    <color name="primary_light">#0060ac</color>
+    <color name="primary_light">#3A608F</color>
     <color name="primary_container_light">#d3e4ff</color>
     <color name="on_primary_container_light">#001c3a</color>
 
-    <color name="primary_dark">#a1c9ff</color>
+    <color name="primary_dark">#A4C9FE</color>
     <color name="on_primary_dark">#00315e</color>
     <color name="primary_container_dark">#004884</color>
     <color name="on_primary_container_dark">#d3e4ff</color>
