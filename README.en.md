@@ -80,21 +80,11 @@ descriptively only.
 
 ### DLNA casting
 
-- Discovers UPnP MediaRenderers (TVs, boxes and projectors) on the local network
-- Cast button on the left of the player's second control row; pick a TV and push the current video
-- The current bitrate preset, audio track and subtitle selection are used for the cast stream; selected subtitles are burned in
-- Pause, resume, seek and exit casting from the phone; transcoded streams restart at the target position (about 1–2 seconds)
-- Playing another video while casting asks whether to cast it too; choosing "No" does nothing
-- Changing the audio track, subtitle or bitrate re-pushes the stream at the current position
-- The cast controls match the player; buttons, progress bar and time align with the top button centres
-- Cast errors show a warning icon with the status under the title
-- The TV keeps playing after leaving the player; the app keeps reporting progress in the background
-- After an app restart the last TV is re-attached and the current position is restored
-- Settings live under "Network → DLNA casting": enable, discovery timeout, transcode container (MPEG-TS by default)
-- Some TVs (for example Xiaomi) cannot play Jellyfin's progressive MP4 transcode; keep MPEG-TS
-- Casting always transcodes to H.264 + AAC stereo; selected subtitles are always burned in
-- Resolution is capped by bitrate preset: 40/30→2160p, 20/10→1080p, 4→720p, 1.5→480p
-- Limitations: the TV must be able to reach the Jellyfin server directly; app-side relay is not supported yet; Chromecast is not supported
+- Discovers UPnP MediaRenderers on the local network and casts the current video
+- Uses the current bitrate, audio track and subtitles; transcodes to H.264 + AAC stereo and burns subtitles
+- Supports pause/resume, seeking, stopping and re-pushing the stream
+- Cast controls match the player, with a warning state for errors
+- The TV keeps playing after leaving the player; settings live under "Network → DLNA casting"
 
 ### Audio and subtitles
 
