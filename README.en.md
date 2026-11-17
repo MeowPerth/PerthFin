@@ -86,9 +86,8 @@ descriptively only.
 - Pause, resume, seek and exit casting from the phone; transcoded streams restart at the target position (about 1–2 seconds)
 - Playing another video while casting asks whether to cast it too; choosing "No" does nothing
 - Changing the audio track, subtitle or bitrate re-pushes the stream at the current position
-- The cast controls reuse the player's 5+3 button grid; the progress bar and time align with the top button centres
-- Cast errors show a warning icon and a single status line under the title
-- Fixed negative timestamps after seek/subtitle burn-in that left TVs showing only the first frame (`CopyTimestamps`)
+- The cast controls match the player; buttons, progress bar and time align with the top button centres
+- Cast errors show a warning icon with the status under the title
 - The TV keeps playing after leaving the player; the app keeps reporting progress in the background
 - After an app restart the last TV is re-attached and the current position is restored
 - Settings live under "Network → DLNA casting": enable, discovery timeout, transcode container (MPEG-TS by default)
@@ -119,11 +118,6 @@ descriptively only.
 - "Interface → Playback area → Notch screen mode": portrait always avoids the cutout; landscape can toggle safe-area compensation
 - Preferred audio / subtitle language settings
 
-### Not included in 1.1.0
-
-- Downloads and offline playback (removed; PerthFin is online-only)
-- Android TV support (removed)
-- Chromecast / Google Cast
 
 ## Codec support
 
@@ -193,7 +187,7 @@ Configure your own signing key before distributing a release build.
 
 ## Versioning and roadmap
 
-`1.1.0` adds DLNA casting, bitrate-aware direct play/transcoding, a redesigned player bottom bar and notch-screen handling on top of `1.0.0`. Future work focuses on cast compatibility, clearer errors and player interaction.
+The current version is `1.1.0`. Future work focuses on cast compatibility, clearer errors and player interaction.
 
 ## License and attribution
 
