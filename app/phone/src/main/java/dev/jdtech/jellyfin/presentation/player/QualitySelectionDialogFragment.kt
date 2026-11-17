@@ -14,10 +14,10 @@ import java.lang.IllegalStateException
 
 class QualitySelectionDialogFragment(private val viewModel: PlayerViewModel) : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val values = listOf("original", "30", "20", "10", "4", "1.5")
+        val values = listOf("40", "30", "20", "10", "4", "1.5")
         val labels =
             listOf(
-                getString(SettingsR.string.quality_original),
+                getString(SettingsR.string.quality_40),
                 getString(SettingsR.string.quality_30),
                 getString(SettingsR.string.quality_20),
                 getString(SettingsR.string.quality_10),
@@ -27,7 +27,7 @@ class QualitySelectionDialogFragment(private val viewModel: PlayerViewModel) : D
 
         return activity?.let { activity ->
             val builder = MaterialAlertDialogBuilder(activity)
-            builder.setTitle(getString(R.string.select_quality)).setSingleChoiceItems(
+            builder.setTitle(getString(R.string.select_bitrate)).setSingleChoiceItems(
                 labels.toTypedArray(),
                 values.indexOf(viewModel.selectedQuality).coerceAtLeast(0),
             ) { dialog, which ->

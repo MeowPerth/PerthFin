@@ -17,5 +17,6 @@
     <string name="player_controls_fast_forward">Derulare rapidă înainte</string>
     <string name="player_trickplay">Trickplay</string>
     <string name="player_controls_progress">Bară de progres</string>
+    <string name="select_bitrate">Selectează bitrate</string>
     <string name="select_quality">Calitate video</string>
 </resources>

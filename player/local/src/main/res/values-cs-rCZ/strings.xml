@@ -17,5 +17,6 @@
     <string name="player_controls_progress">Ukazatel průběhu</string>
     <string name="none">Žádné</string>
     <string name="player_trickplay">Trickplay</string>
+    <string name="select_bitrate">Vybrat datový tok</string>
     <string name="select_quality">Kvalita videa</string>
 </resources>

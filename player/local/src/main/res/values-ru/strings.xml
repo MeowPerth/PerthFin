@@ -23,5 +23,6 @@
     <string name="player_controls_skip_preview">Пропустить предпросмотр</string>
     <string name="player_controls_skip_commercial">Пропустить рекламу</string>
     <string name="player_controls_skip_unknown">Пропустить</string>
+    <string name="select_bitrate">Выбрать битрейт</string>
     <string name="select_quality">Качество видео</string>
 </resources>

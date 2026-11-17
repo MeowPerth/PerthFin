@@ -185,4 +185,20 @@
         android:alpha="0"
         android:src="@drawable/transparent_circle"
         tools:ignore="ContentDescription" />
+
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/cast_controls"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone" />
+
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/cast_picker"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone" />
 </FrameLayout>

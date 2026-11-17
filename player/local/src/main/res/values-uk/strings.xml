@@ -23,5 +23,6 @@
     <string name="player_controls_skip_unknown">Пропустити</string>
     <string name="player_controls_lock">Блокує програвач</string>
     <string name="player_trickplay">Попередній перегляд</string>
+    <string name="select_bitrate">Вибрати бітрейт</string>
     <string name="select_quality">Якість відео</string>
 </resources>

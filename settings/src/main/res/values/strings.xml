@@ -18,6 +18,15 @@
     <string name="settings_request_timeout">Request timeout</string>
     <string name="settings_connect_timeout">Connect timeout</string>
     <string name="settings_socket_timeout">Socket timeout</string>
+    <string name="settings_dlna">DLNA casting</string>
+    <string name="settings_dlna_enabled">Enable DLNA casting</string>
+    <string name="settings_dlna_enabled_summary">Show the cast button in the player and scan for televisions on the local network.</string>
+    <string name="settings_dlna_discovery_timeout">Discovery timeout</string>
+    <string name="settings_dlna_discovery_timeout_summary">How long to wait for televisions to answer. Increase this if your TV is missing from the list.</string>
+    <string name="settings_dlna_container">Transcode container</string>
+    <string name="settings_dlna_container_summary">MPEG-TS is the most compatible choice and is used by default. MP4 may fail on some TVs (for example Xiaomi).</string>
+    <string name="settings_dlna_container_mp4">MP4</string>
+    <string name="settings_dlna_container_ts">MPEG-TS (recommended)</string>
     <string name="settings_category_permissions">Permissions</string>
     <string name="permission_local_network">Local network access</string>
     <string name="permission_local_network_summary">Required to find and connect to servers on your local network</string>
@@ -36,9 +45,11 @@
     <string name="mpv_player">mpv player</string>
     <string name="download_mobile_data">Download using mobile data</string>
     <string name="download_roaming">Download when roaming</string>
+    <string name="pref_player_bitrate">Video bitrate</string>
     <string name="pref_player_quality">Video quality</string>
-    <string name="pref_player_quality_summary">Bitrate used for the next playback. Transcoding is used when a limit is selected.</string>
+    <string name="pref_player_quality_summary">Bitrate cap for the next playback. Video above the cap is transcoded; video within the cap is passed through when the player supports its formats.</string>
     <string name="quality_original">Original</string>
+    <string name="quality_40">40 Mbps</string>
     <string name="quality_30">30 Mbps</string>
     <string name="quality_20">20 Mbps</string>
     <string name="quality_10">10 Mbps</string>
@@ -122,4 +133,7 @@
     <string name="discard_changes_dialog_text">You have unsaved changes.</string>
     <string name="player_default_landscape">Default to landscape</string>
     <string name="player_default_landscape_summary">When unchecked, the last playback orientation is used</string>
+    <string name="settings_category_playback_area">Playback area</string>
+    <string name="player_notch_mode">Notch screen mode</string>
+    <string name="player_notch_mode_summary">When enabled, player controls avoid the display cutout. When disabled, controls use the raw screen edges.</string>
 </resources>

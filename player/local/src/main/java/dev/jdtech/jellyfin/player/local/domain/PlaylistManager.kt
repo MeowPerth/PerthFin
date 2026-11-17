@@ -225,12 +225,13 @@ internal constructor(
 
         val maxBitrate =
             when (appPreferences.getValue(appPreferences.playerQuality)) {
+                "40" -> 40_000_000
                 "30" -> 30_000_000
                 "20" -> 20_000_000
                 "10" -> 10_000_000
                 "4" -> 4_000_000
                 "1.5" -> 1_500_000
-                else -> null
+                else -> 40_000_000
             }
         val savedAudioLanguage = appPreferences.getSavedAudioLanguage(id)
         val savedSubtitleLanguage = appPreferences.getSavedSubtitleLanguage(id)
@@ -364,6 +365,7 @@ internal constructor(
                             title = stream.title.ifBlank { stream.displayTitle ?: stream.language },
                             language = stream.language,
                             codec = stream.codec,
+                            isDefault = stream.isDefault,
                         )
                     }
                 }
@@ -377,6 +379,7 @@ internal constructor(
                             title = stream.title.ifBlank { stream.displayTitle ?: stream.language },
                             language = stream.language,
                             codec = stream.codec,
+                            isDefault = stream.isDefault,
                         )
                     }
                 }
@@ -392,6 +395,7 @@ internal constructor(
             mediaSourceId = mediaSource.id,
             mediaSourceUri = mediaSource.transcodingUrl ?: mediaSource.path,
             playbackPosition = playbackPosition,
+            durationMs = runtimeTicks / 10_000,
             parentIndexNumber = if (this is FindroidEpisode) parentIndexNumber else null,
             indexNumber = if (this is FindroidEpisode) indexNumber else null,
             indexNumberEnd = if (this is FindroidEpisode) indexNumberEnd else null,

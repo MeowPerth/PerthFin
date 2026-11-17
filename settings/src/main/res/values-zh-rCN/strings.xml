@@ -43,6 +43,15 @@
     <string name="settings_request_timeout">请求超时</string>
     <string name="settings_connect_timeout">连接超时</string>
     <string name="settings_socket_timeout">Socket 超时</string>
+    <string name="settings_dlna">DLNA 投屏</string>
+    <string name="settings_dlna_enabled">启用 DLNA 投屏</string>
+    <string name="settings_dlna_enabled_summary">在播放器中显示投屏按钮，并扫描局域网中的电视。</string>
+    <string name="settings_dlna_discovery_timeout">发现超时</string>
+    <string name="settings_dlna_discovery_timeout_summary">等待电视响应的时间。电视未出现在列表中时可适当调大。</string>
+    <string name="settings_dlna_container">转码容器</string>
+    <string name="settings_dlna_container_summary">MPEG-TS 兼容性最好并作为默认值；MP4 在部分电视（如小米）上可能失败。</string>
+    <string name="settings_dlna_container_mp4">MP4</string>
+    <string name="settings_dlna_container_ts">MPEG-TS（推荐）</string>
     <string name="pref_player_mpv_hwdec">硬件解码</string>
     <string name="pref_player_mpv_vo">视频输出</string>
     <string name="pref_player_mpv_ao">音频输出</string>
@@ -100,13 +109,18 @@
     <string name="media_segments_type_outro">片尾</string>
     <string name="media_segments_type_intro">片头</string>
     <string name="pref_player_media_segments_skip_button_duration">显示跳过按钮</string>
+    <string name="pref_player_bitrate">视频码率</string>
     <string name="pref_player_quality">视频画质</string>
     <string name="pref_player_quality_summary">下次播放使用的码率；选择限制码率时会使用服务端转码</string>
     <string name="quality_original">原画</string>
+    <string name="quality_40">40 Mbps</string>
     <string name="quality_20">20 Mbps</string>
     <string name="quality_10">10 Mbps</string>
     <string name="quality_4">4 Mbps</string>
     <string name="quality_1_5">1.5 Mbps</string>
     <string name="player_default_landscape">默认横屏模式</string>
     <string name="player_default_landscape_summary">不勾选则为上一次的播放模式</string>
+    <string name="settings_category_playback_area">播放区域设置</string>
+    <string name="player_notch_mode">刘海屏模式</string>
+    <string name="player_notch_mode_summary">开启后播放器控件避开屏幕刘海/挖孔并计算安全区；关闭后按屏幕原始边缘布局。</string>
 </resources>

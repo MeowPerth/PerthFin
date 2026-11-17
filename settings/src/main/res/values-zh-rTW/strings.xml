@@ -100,6 +100,7 @@
     <string name="media_segments_type_outro">收尾</string>
     <string name="media_segments_type_intro">開頁</string>
     <string name="offline_mode_summary">离線模式摘要</string>
+    <string name="pref_player_bitrate">影片位元率</string>
     <string name="pref_player_quality">影片畫質</string>
     <string name="pref_player_quality_summary">下次播放使用的位元率；選擇限制位元率時會使用伺服器轉碼</string>
     <string name="quality_original">原畫</string>
@@ -109,4 +110,7 @@
     <string name="quality_1_5">1.5 Mbps</string>
     <string name="player_default_landscape">預設橫向模式</string>
     <string name="player_default_landscape_summary">未勾選則使用上一次播放方向</string>
+    <string name="settings_category_playback_area">播放區域設定</string>
+    <string name="player_notch_mode">瀏海螢幕模式</string>
+    <string name="player_notch_mode_summary">開啟後播放器控制項避開螢幕瀏海/挖孔並計算安全區；關閉後按螢幕原始邊緣排版。</string>
 </resources>

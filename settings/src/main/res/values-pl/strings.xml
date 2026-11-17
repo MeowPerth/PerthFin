@@ -100,6 +100,7 @@
     <string name="media_segments_type_outro">Napisy końcowe</string>
     <string name="media_segments_type_intro">Czołówka</string>
     <string name="none">Żadne</string>
+    <string name="pref_player_bitrate">Bitrate wideo</string>
     <string name="pref_player_quality">Jakość wideo</string>
     <string name="pref_player_quality_summary">Przepływność dla następnego odtwarzania. Po wybraniu limitu używane jest transkodowanie.</string>
     <string name="quality_original">Oryginał</string>

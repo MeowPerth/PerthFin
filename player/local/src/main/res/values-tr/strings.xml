@@ -23,5 +23,6 @@
     <string name="player_controls_skip_preview">Önizlemeyi atla</string>
     <string name="player_controls_skip_commercial">Reklamı atla</string>
     <string name="player_controls_skip_unknown">Atla</string>
+    <string name="select_bitrate">Bit hızını seç</string>
     <string name="select_quality">Video kalitesi</string>
 </resources>

@@ -112,6 +112,7 @@
     <string name="advanced">고급</string>
     <string name="discard_changes_dialog_title">변경 사항을 버리시겠습니까?</string>
     <string name="discard_changes_dialog_text">저장하지 않은 변경 사항이 있습니다.</string>
+    <string name="pref_player_bitrate">비디오 비트레이트</string>
     <string name="pref_player_quality">영상 화질</string>
     <string name="pref_player_quality_summary">다음 재생에 사용할 비트레이트입니다. 제한을 선택하면 트랜스코딩이 사용됩니다.</string>
     <string name="quality_original">원본</string>

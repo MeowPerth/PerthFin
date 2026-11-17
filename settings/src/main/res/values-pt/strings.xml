@@ -97,6 +97,7 @@
     <string name="edit_file_title">Editar %1$s</string>
     <string name="mpv_options">Opções do mpv</string>
     <string name="advanced">Avançado</string>
+    <string name="pref_player_bitrate">Taxa de bits de vídeo</string>
     <string name="pref_player_quality">Qualidade de vídeo</string>
     <string name="pref_player_quality_summary">Taxa de bits para a próxima reprodução. A transcodificação é usada quando um limite é selecionado.</string>
     <string name="quality_original">Original</string>

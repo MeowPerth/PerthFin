@@ -106,6 +106,7 @@
     <string name="advanced">Fortgeschritten</string>
     <string name="discard_changes_dialog_title">Verwerfe Änderungen?</string>
     <string name="discard_changes_dialog_text">Es gibt ungespeicherte Änderungen.</string>
+    <string name="pref_player_bitrate">Video-Bitrate</string>
     <string name="pref_player_quality">Videoqualität</string>
     <string name="pref_player_quality_summary">Bitrate für die nächste Wiedergabe. Bei Auswahl eines Limits wird transkodiert.</string>
     <string name="quality_original">Original</string>

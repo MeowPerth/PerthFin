@@ -23,5 +23,6 @@
     <string name="player_controls_skip_preview">Saltar pré-visualização</string>
     <string name="player_controls_skip_commercial">Saltar anúncio</string>
     <string name="player_controls_skip_unknown">Saltar</string>
+    <string name="select_bitrate">Selecionar taxa de bits</string>
     <string name="select_quality">Qualidade de vídeo</string>
 </resources>

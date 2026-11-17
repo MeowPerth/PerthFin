@@ -75,6 +75,7 @@
     <string name="media_segments">Media Segmenten</string>
     <string name="pref_player_media_segments_skip_button">Skip knop weergeven</string>
     <string name="pref_player_media_segments_skip_button_summary">Laat een knop zien om makkelijk delen over te slaan</string>
+    <string name="pref_player_bitrate">Videobitrate</string>
     <string name="pref_player_quality">Videokwaliteit</string>
     <string name="pref_player_quality_summary">Bitrate voor de volgende weergave. Transcodering wordt gebruikt als een limiet is geselecteerd.</string>
     <string name="quality_original">Origineel</string>

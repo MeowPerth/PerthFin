@@ -17,5 +17,6 @@
     <string name="none">Ingen</string>
     <string name="player_controls_progress">Process indikator</string>
     <string name="player_controls_rewind">Spol tilbage</string>
+    <string name="select_bitrate">Vælg bitrate</string>
     <string name="select_quality">Videokvalitet</string>
 </resources>

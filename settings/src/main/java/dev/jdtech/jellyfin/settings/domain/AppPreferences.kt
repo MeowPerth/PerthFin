@@ -24,10 +24,11 @@ class AppPreferences @Inject constructor(val sharedPreferences: SharedPreference
     val homeNextUp = Preference<Boolean>("home_next_up", true)
     val homeLatest = Preference<Boolean>("home_latest", true)
     val displayExtraInfo = Preference("pref_display_extra_info", false)
+    val playerNotchMode = Preference("pref_player_notch_mode_v2", true)
 
     // Player
     val playerBackend = Preference("pref_player_backend", "exoplayer")
-    val playerQuality = Preference("pref_player_quality", "original")
+    val playerQuality = Preference("pref_player_quality", "40")
     val playerBrightness = Preference("pref_player_brightness", -1.0f)
 
     // Player - mpv
@@ -92,6 +93,11 @@ class AppPreferences @Inject constructor(val sharedPreferences: SharedPreference
         Preference("pref_network_connect_timeout", Constants.NETWORK_DEFAULT_CONNECT_TIMEOUT)
     val socketTimeout =
         Preference("pref_network_socket_timeout", Constants.NETWORK_DEFAULT_SOCKET_TIMEOUT)
+
+    // Network - DLNA
+    val dlnaEnabled = Preference("pref_dlna_enabled", true)
+    val dlnaDiscoveryTimeout = Preference("pref_dlna_discovery_timeout", 4_000L)
+    val dlnaContainer = Preference("pref_dlna_container", "ts")
 
     // Cache
     val imageCache = Preference("pref_image_cache", true)

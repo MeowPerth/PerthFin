@@ -2,9 +2,12 @@ package dev.jdtech.jellyfin.utils
 
 import android.annotation.SuppressLint
 import android.content.res.Resources
+import android.database.ContentObserver
 import android.graphics.Bitmap
 import android.media.AudioManager
 import android.os.Build
+import android.os.Handler
+import android.os.Looper
 import android.os.SystemClock
 import android.provider.Settings
 import android.view.GestureDetector
@@ -66,6 +69,23 @@ class PlayerGestureHelper(
     private var playbackSpeedIncrease: Float = 2f
     private var lastPlaybackSpeed: Float = 0f
 
+    private var volumeObserver: ContentObserver? = null
+
+    init {
+        val observer =
+            object : ContentObserver(Handler(Looper.getMainLooper())) {
+                override fun onChange(selfChange: Boolean) {
+                    syncVolumeFromSystem()
+                }
+            }
+        activity.contentResolver.registerContentObserver(
+            Settings.System.getUriFor("volume_music"),
+            false,
+            observer,
+        )
+        volumeObserver = observer
+    }
+
     private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
     private val screenHeight = Resources.getSystem().displayMetrics.heightPixels
 
@@ -108,12 +128,12 @@ class PlayerGestureHelper(
                     if (isControlsLocked) return false
 
                     val viewWidth = playerView.measuredWidth
-                    val areaWidth = viewWidth / 5 // Divide the view into 5 parts: 2:1:2
+                    val quarterWidth = viewWidth / 4 // 25% | 50% | 25%
 
                     // Define the areas and their boundaries
                     val leftmostAreaStart = 0
-                    val middleAreaStart = areaWidth * 2
-                    val rightmostAreaStart = middleAreaStart + areaWidth
+                    val middleAreaStart = quarterWidth
+                    val rightmostAreaStart = quarterWidth * 3
 
                     when (e.x.toInt()) {
                         in leftmostAreaStart until middleAreaStart -> {
@@ -332,11 +352,11 @@ class PlayerGestureHelper(
                     if (firstEvent.x.toInt() > viewCenterX) {
                         // Swiping on the right, change volume
 
-                        val currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
-                        if (swipeGestureValueTrackerVolume == -1f)
-                            swipeGestureValueTrackerVolume = currentVolume.toFloat()
-
                         val maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
+                        if (!swipeGestureVolumeOpen) {
+                            swipeGestureValueTrackerVolume =
+                                audioManager.getStreamVolume(AudioManager.STREAM_MUSIC).toFloat()
+                        }
                         val change = ratioChange * maxVolume
                         swipeGestureValueTrackerVolume =
                             (swipeGestureValueTrackerVolume + change).coerceIn(
@@ -349,17 +369,10 @@ class PlayerGestureHelper(
                             swipeGestureValueTrackerVolume.toInt(),
                             0,
                         )
-
-                        activity.binding.gestureVolumeLayout.visibility = View.VISIBLE
-                        activity.binding.gestureVolumeProgressBar.max = maxVolume.times(100)
-                        activity.binding.gestureVolumeProgressBar.progress =
-                            swipeGestureValueTrackerVolume.times(100).toInt()
-                        val process =
-                            (swipeGestureValueTrackerVolume / maxVolume.toFloat())
-                                .times(100)
-                                .toInt()
-                        activity.binding.gestureVolumeText.text = "$process%"
-                        activity.binding.gestureVolumeImage.setImageLevel(process)
+                        updateVolumeIndicator(
+                            volume = swipeGestureValueTrackerVolume.toInt(),
+                            show = true,
+                        )
 
                         swipeGestureVolumeOpen = true
                     } else {
@@ -410,6 +423,38 @@ class PlayerGestureHelper(
 
     private val hideGestureVolumeIndicatorOverlayAction = Runnable {
         activity.binding.gestureVolumeLayout.visibility = View.GONE
+    }
+
+    /** Keep the gesture volume bar in sync with hardware volume keys. */
+    private fun syncVolumeFromSystem() {
+        updateVolumeIndicator(
+            volume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC),
+            show = false,
+        )
+    }
+
+    private fun updateVolumeIndicator(volume: Int, show: Boolean) {
+        val maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC).coerceAtLeast(1)
+        val clampedVolume = volume.coerceIn(0, maxVolume)
+        swipeGestureValueTrackerVolume = clampedVolume.toFloat()
+
+        if (show) {
+            activity.binding.gestureVolumeLayout.visibility = View.VISIBLE
+        }
+        if (!activity.binding.gestureVolumeLayout.isVisible) return
+
+        val percent = (clampedVolume.toFloat() / maxVolume.toFloat() * 100).toInt()
+        activity.binding.gestureVolumeProgressBar.max = maxVolume * 100
+        activity.binding.gestureVolumeProgressBar.progress = clampedVolume * 100
+        activity.binding.gestureVolumeText.text = "$percent%"
+        activity.binding.gestureVolumeImage.setImageLevel(percent)
+    }
+
+    fun release() {
+        volumeObserver?.let { observer ->
+            runCatching { activity.contentResolver.unregisterContentObserver(observer) }
+        }
+        volumeObserver = null
     }
 
     private val hideGestureBrightnessIndicatorOverlayAction = Runnable {

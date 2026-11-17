@@ -70,6 +70,7 @@
     <string name="amoled_theme">Tema întunecată AMOLED</string>
     <string name="amoled_theme_summary">Folsește tema AMOLED cu un fundal negru</string>
     <string name="none">Niciunul</string>
+    <string name="pref_player_bitrate">Bitrate video</string>
     <string name="pref_player_quality">Calitate video</string>
     <string name="pref_player_quality_summary">Bitrate pentru următoarea redare. Transcodarea este folosită când este selectată o limită.</string>
     <string name="quality_original">Original</string>

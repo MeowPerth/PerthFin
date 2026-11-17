@@ -32,7 +32,7 @@ class TrackSelectionDialogFragment(
 
             when {
                 type == C.TRACK_TYPE_AUDIO &&
-                    viewModel.isTranscoding &&
+                    (viewModel.isTranscoding || viewModel.isCasting) &&
                     viewModel.audioStreams.isNotEmpty() -> {
                     val streams = viewModel.audioStreams
                     val checked =
@@ -51,7 +51,7 @@ class TrackSelectionDialogFragment(
                 }
 
                 type == C.TRACK_TYPE_TEXT &&
-                    viewModel.isTranscoding &&
+                    (viewModel.isTranscoding || viewModel.isCasting) &&
                     viewModel.subtitleStreams.isNotEmpty() -> {
                     val streams = viewModel.subtitleStreams
                     val selected = viewModel.selectedSubtitleIndex

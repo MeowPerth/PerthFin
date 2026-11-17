@@ -16,5 +16,6 @@
     <string name="player_controls_skip_forward">Preskoči naprej</string>
     <string name="none">Brez</string>
     <string name="player_controls_picture_in_picture">Vklopi sliko v sliki</string>
+    <string name="select_bitrate">Izberi bitno hitrost</string>
     <string name="select_quality">Kakovost videa</string>
 </resources>

@@ -1,6 +1,7 @@
 package dev.jdtech.jellyfin.repository
 
 import androidx.paging.PagingData
+import dev.jdtech.jellyfin.models.CastMediaSource
 import dev.jdtech.jellyfin.models.FindroidCollection
 import dev.jdtech.jellyfin.models.FindroidEpisode
 import dev.jdtech.jellyfin.models.FindroidItem
@@ -94,6 +95,24 @@ interface JellyfinRepository {
     ): List<FindroidSource>
 
     suspend fun getStreamUrl(itemId: UUID, mediaSourceId: String): String
+
+    /**
+     * Builds a playback URL for a DLNA renderer.
+     *
+     * [subtitleStreamIndex] should be -1 when subtitles are disabled; any selected subtitle is
+     * burned into the video because DLNA renderers do not have a portable external subtitle
+     * protocol. When [maxBitrate] is null ("original quality") and a subtitle is selected, the
+     * server is asked to encode at 40 Mbps so the burn-in does not destroy the picture quality.
+     */
+    suspend fun getCastMediaSource(
+        itemId: UUID,
+        maxBitrate: Int? = null,
+        audioStreamIndex: Int? = null,
+        subtitleStreamIndex: Int? = null,
+        container: String = "ts",
+        startPositionMs: Long = 0L,
+        maxHeight: Int? = null,
+    ): CastMediaSource
 
     suspend fun getSegments(itemId: UUID): List<FindroidSegment>
 

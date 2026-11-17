@@ -72,13 +72,17 @@ abstract class BasePlayerActivity : AppCompatActivity() {
             WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
     }
 
-    protected fun configureInsets(playerControls: View) {
+    protected fun configureInsets(
+        playerControls: View,
+        compensateCutout: () -> Boolean,
+    ) {
         playerControls.setOnApplyWindowInsetsListener { view, windowInsets ->
             val cutout = windowInsets.displayCutout
-            val left = cutout?.safeInsetLeft ?: 0
-            val top = cutout?.safeInsetTop ?: 0
-            val right = cutout?.safeInsetRight ?: 0
-            val bottom = cutout?.safeInsetBottom ?: 0
+            val applyCutout = compensateCutout()
+            val left = if (applyCutout) cutout?.safeInsetLeft ?: 0 else 0
+            val top = if (applyCutout) cutout?.safeInsetTop ?: 0 else 0
+            val right = if (applyCutout) cutout?.safeInsetRight ?: 0 else 0
+            val bottom = if (applyCutout) cutout?.safeInsetBottom ?: 0 else 0
 
             val topControls = view.findViewById<View>(R.id.top_controls)
             val bottomControls = view.findViewById<View>(R.id.bottom_controls)
@@ -87,7 +91,12 @@ abstract class BasePlayerActivity : AppCompatActivity() {
                 // top and bottom bars need to avoid the display cutout.
                 view.updatePadding(0, 0, 0, 0)
                 topControls?.updatePadding(left = left, top = top, right = right)
-                bottomControls?.updatePadding(left = left, right = right, bottom = bottom)
+                val density = view.resources.displayMetrics.density
+                bottomControls?.updatePadding(
+                    left = (8 * density).toInt() + left,
+                    right = (16 * density).toInt() + right,
+                    bottom = (4 * density).toInt() + bottom,
+                )
             } else {
                 view.updatePadding(left = left, top = top, right = right, bottom = bottom)
             }

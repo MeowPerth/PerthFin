@@ -100,6 +100,7 @@
     <string name="media_segments_type_recap">Riepilogo</string>
     <string name="media_segments_type_outro">Outro</string>
     <string name="media_segments_type_intro">Intro</string>
+    <string name="pref_player_bitrate">Bitrate video</string>
     <string name="pref_player_quality">Qualità video</string>
     <string name="pref_player_quality_summary">Bitrate per la prossima riproduzione. La transcodifica viene usata quando si seleziona un limite.</string>
     <string name="quality_original">Originale</string>

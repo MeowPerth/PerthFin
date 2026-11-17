@@ -3,6 +3,7 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 rootProject.name = "perthfin"
 
 include(":app:phone")
+include(":cast")
 include(":core")
 include(":data")
 include(":player:core")

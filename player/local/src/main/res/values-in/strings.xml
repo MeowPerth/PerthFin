@@ -23,5 +23,6 @@
     <string name="none">Tidak ada</string>
     <string name="player_controls_lock">Kunci pemutar</string>
     <string name="player_controls_picture_in_picture">Masuk ke mode gambar-dalam-gambar</string>
+    <string name="select_bitrate">Pilih bitrate</string>
     <string name="select_quality">Kualitas video</string>
 </resources>

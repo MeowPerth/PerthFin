@@ -11,7 +11,7 @@
         <item>dark</item>
     </string-array>
     <string-array name="player_quality">
-        <item>@string/quality_original</item>
+        <item>@string/quality_40</item>
         <item>@string/quality_30</item>
         <item>@string/quality_20</item>
         <item>@string/quality_10</item>
@@ -19,7 +19,7 @@
         <item>@string/quality_1_5</item>
     </string-array>
     <string-array name="player_quality_values">
-        <item>original</item>
+        <item>40</item>
         <item>30</item>
         <item>20</item>
         <item>10</item>
@@ -67,5 +67,13 @@
         <item>PREVIEW</item>
         <item>COMMERCIAL</item>
         <item>UNKNOWN</item>
+    </string-array>
+    <string-array name="dlna_container">
+        <item>@string/settings_dlna_container_ts</item>
+        <item>@string/settings_dlna_container_mp4</item>
+    </string-array>
+    <string-array name="dlna_container_values">
+        <item>ts</item>
+        <item>mp4</item>
     </string-array>
 </resources>

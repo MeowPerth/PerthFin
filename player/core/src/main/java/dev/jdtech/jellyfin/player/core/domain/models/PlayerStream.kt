@@ -9,4 +9,5 @@ data class PlayerStream(
     val title: String,
     val language: String,
     val codec: String,
+    val isDefault: Boolean = false,
 ) : Parcelable

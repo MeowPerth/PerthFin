@@ -112,6 +112,7 @@
     <string name="permission_local_network_rationale">O PerthFin precisa de acesso à sua rede local para encontrar e conectar-se ao seu servidor Jellyfin. Servidores remotos não são afetados.</string>
     <string name="permission_status_granted">Permitido</string>
     <string name="permission_status_denied">Negado</string>
+    <string name="pref_player_bitrate">Taxa de bits de vídeo</string>
     <string name="pref_player_quality">Qualidade de vídeo</string>
     <string name="pref_player_quality_summary">Taxa de bits para a próxima reprodução. A transcodificação é usada quando um limite é selecionado.</string>
     <string name="quality_original">Original</string>

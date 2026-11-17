@@ -57,6 +57,7 @@
     <string name="picture_in_picture_gesture_summary">Sử dùng phím hoặc cử chỉ về màn hình chính để vào chế độ Hình trong Hình khi video đang phát</string>
     <string name="picture_in_picture_gesture">Cử chỉ về màn hình chính khi đang hình trong hình</string>
     <string name="app_language">Ngôn ngữ của ứng dụng</string>
+    <string name="pref_player_bitrate">Tốc độ bit video</string>
     <string name="pref_player_quality">Chất lượng video</string>
     <string name="pref_player_quality_summary">Bitrate cho lần phát tiếp theo. Chuyển mã được dùng khi chọn giới hạn.</string>
     <string name="quality_original">Gốc</string>

@@ -22,7 +22,7 @@ descriptively only.
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0-orange?style=flat-square" alt="license"></a>
 </p>
 
-- Current version: **1.0.0**
+- Current version: **1.1.0**
 - Package: `com.wuhaohu.perthfin`
 - License: GPLv3
 - Base: [Findroid](https://github.com/jarnedemeulemeester/findroid) 1.2.0 (commit [`3a06420`](https://github.com/jarnedemeulemeester/findroid/commit/3a06420))
@@ -37,11 +37,11 @@ descriptively only.
 |:---:|:---:|:---:|:---:|
 | ![Home](images/screenshots/home.jpg) | ![Library](images/screenshots/library.jpg) | ![Items per row](images/screenshots/columns.jpg) | ![Portrait playback](images/screenshots/player-portrait.jpg) |
 
-### Landscape and quality
+### Landscape, bitrate and casting
 
-| Quality / bitrate | Landscape playback |
-|:---:|:---:|
-| ![Quality selection](images/screenshots/quality.jpg) | ![Landscape playback](images/screenshots/player.jpg) |
+| Bitrate | Landscape playback | Cast controls |
+|:---:|:---:|:---:|
+| ![Bitrate selection](images/screenshots/quality.jpg) | ![Landscape playback](images/screenshots/player.jpg) | ![Cast controls](images/screenshots/cast.jpg) |
 
 ## Features
 
@@ -59,10 +59,10 @@ descriptively only.
 
 ### Playback
 
-- Direct play by default
-- Server-side transcoding to HLS (H.264 video / AAC audio)
-- Quality presets: original, 30, 20, 10, 4 and 1.5 Mbps
-- In-player quality switching, resuming at the current position
+- Direct play when the video bitrate is within the selected preset and the player supports the container/video/audio/subtitle formats
+- HLS transcode (H.264 video / AAC audio) when the bitrate is above the preset or a format is unsupported
+- Bitrate presets: 40, 30, 20, 10, 4 and 1.5 Mbps (40 Mbps replaces "original")
+- In-player bitrate switching, resuming at the current position
 - ExoPlayer (default) and libmpv backends
 - Picture-in-picture
 - Playback speed selection
@@ -72,8 +72,30 @@ descriptively only.
 - Portrait and landscape playback
 - Quick rotation toggle in the player
 - "Default to landscape" setting; when disabled, the last playback orientation is reused
-- Volume, brightness, seek and zoom gestures
+- Bottom bar: play/pause on the left, progress in the middle and time on the right; in portrait the time sits above the right end of the progress bar
+- The centre play button is shown only while paused
+- Double-tap zones split 25% / 50% / 25%: rewind 5 seconds, pause/resume, forward 15 seconds
+- Volume, brightness, seek and zoom gestures; the volume indicator follows the phone's media volume in real time
 - Resumes playback from the last reported position
+
+### DLNA casting
+
+- Discovers UPnP MediaRenderers (TVs, boxes and projectors) on the local network
+- Cast button on the left of the player's second control row; pick a TV and push the current video
+- The current bitrate preset, audio track and subtitle selection are used for the cast stream; selected subtitles are burned in
+- Pause, resume, seek and exit casting from the phone; transcoded streams restart at the target position (about 1–2 seconds)
+- Playing another video while casting asks whether to cast it too; choosing "No" does nothing
+- Changing the audio track, subtitle or bitrate re-pushes the stream at the current position
+- The cast controls reuse the player's 5+3 button grid; the progress bar and time align with the top button centres
+- Cast errors show a warning icon and a single status line under the title
+- Fixed negative timestamps after seek/subtitle burn-in that left TVs showing only the first frame (`CopyTimestamps`)
+- The TV keeps playing after leaving the player; the app keeps reporting progress in the background
+- After an app restart the last TV is re-attached and the current position is restored
+- Settings live under "Network → DLNA casting": enable, discovery timeout, transcode container (MPEG-TS by default)
+- Some TVs (for example Xiaomi) cannot play Jellyfin's progressive MP4 transcode; keep MPEG-TS
+- Casting always transcodes to H.264 + AAC stereo; selected subtitles are always burned in
+- Resolution is capped by bitrate preset: 40/30→2160p, 20/10→1080p, 4→720p, 1.5→480p
+- Limitations: the TV must be able to reach the Jellyfin server directly; app-side relay is not supported yet; Chromecast is not supported
 
 ### Audio and subtitles
 
@@ -94,14 +116,14 @@ descriptively only.
 - App language selection
 - Light, dark, AMOLED and dynamic-color themes
 - Configurable player backend and gesture behavior
+- "Interface → Playback area → Notch screen mode": portrait always avoids the cutout; landscape can toggle safe-area compensation
 - Preferred audio / subtitle language settings
 
-### Not included in 1.0.0
+### Not included in 1.1.0
 
 - Downloads and offline playback (removed; PerthFin is online-only)
 - Android TV support (removed)
 - Chromecast / Google Cast
-- DLNA casting (planned for the next release)
 
 ## Codec support
 
@@ -124,9 +146,11 @@ Codec support depends on the Android device and the selected player backend.
 
 ### Transcoding
 
-When a non-original quality is selected, PerthFin asks the server for an HLS stream
-using H.264 video and AAC audio. The selected audio and subtitle indices are passed
-to the server; selected subtitles are burned into the stream.
+When the source video bitrate exceeds the selected preset, or a container/video/audio/
+subtitle format is not supported by the player, PerthFin asks the server for an HLS
+stream using H.264 video and AAC audio. The selected audio and subtitle indices are
+passed to the server; selected subtitles are burned into the stream. Otherwise the
+source is passed through directly.
 
 ## Requirements
 
@@ -138,9 +162,9 @@ to the server; selected subtitles are burned into the stream.
 
 Download the APK for your device ABI from GitHub Releases:
 
-- `perthfin-v1.0.0-libre-arm64-v8a.apk` — most modern phones
-- `perthfin-v1.0.0-libre-armeabi-v7a.apk` — older 32-bit devices
-- `perthfin-v1.0.0-libre-x86_64.apk` / `x86` — emulators and x86 devices
+- `perthfin-v1.1.0-libre-arm64-v8a.apk` — most modern phones
+- `perthfin-v1.1.0-libre-armeabi-v7a.apk` — older 32-bit devices
+- `perthfin-v1.1.0-libre-x86_64.apk` / `x86` — emulators and x86 devices
 
 The APKs are signed release builds and can be installed directly. PerthFin is not
 currently distributed through Google Play.
@@ -169,8 +193,7 @@ Configure your own signing key before distributing a release build.
 
 ## Versioning and roadmap
 
-`1.0.0` is the first public PerthFin release. The next release is planned to add
-DLNA casting.
+`1.1.0` adds DLNA casting, bitrate-aware direct play/transcoding, a redesigned player bottom bar and notch-screen handling on top of `1.0.0`. Future work focuses on cast compatibility, clearer errors and player interaction.
 
 ## License and attribution
 

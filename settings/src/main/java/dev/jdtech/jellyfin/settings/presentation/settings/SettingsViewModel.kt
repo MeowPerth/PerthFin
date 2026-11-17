@@ -173,6 +173,20 @@ class SettingsViewModel @Inject constructor(private val appPreferences: AppPrefe
                                             ),
                                     ),
                                     PreferenceGroup(
+                                        nameStringResource =
+                                            R.string.settings_category_playback_area,
+                                        preferences =
+                                            listOf(
+                                                PreferenceSwitch(
+                                                    nameStringResource = R.string.player_notch_mode,
+                                                    descriptionStringRes =
+                                                        R.string.player_notch_mode_summary,
+                                                    backendPreference =
+                                                        appPreferences.playerNotchMode,
+                                                )
+                                            ),
+                                    ),
+                                    PreferenceGroup(
                                         nameStringResource = R.string.home,
                                         preferences =
                                             listOf(
@@ -258,7 +272,7 @@ class SettingsViewModel @Inject constructor(private val appPreferences: AppPrefe
                                             listOf(
                                                 PreferenceSelect(
                                                     nameStringResource =
-                                                        R.string.pref_player_quality,
+                                                        R.string.pref_player_bitrate,
                                                     descriptionStringRes =
                                                         R.string.pref_player_quality_summary,
                                                     backendPreference =
@@ -717,7 +731,44 @@ class SettingsViewModel @Inject constructor(private val appPreferences: AppPrefe
                                                     suffixRes = R.string.ms,
                                                 ),
                                             )
-                                    )
+                                    ),
+                                    PreferenceGroup(
+                                        nameStringResource = R.string.settings_dlna,
+                                        preferences =
+                                            listOf(
+                                                PreferenceSwitch(
+                                                    nameStringResource =
+                                                        R.string.settings_dlna_enabled,
+                                                    descriptionStringRes =
+                                                        R.string.settings_dlna_enabled_summary,
+                                                    backendPreference = appPreferences.dlnaEnabled,
+                                                ),
+                                                PreferenceLongInput(
+                                                    nameStringResource =
+                                                        R.string.settings_dlna_discovery_timeout,
+                                                    descriptionStringRes =
+                                                        R.string
+                                                            .settings_dlna_discovery_timeout_summary,
+                                                    backendPreference =
+                                                        appPreferences.dlnaDiscoveryTimeout,
+                                                    suffixRes = R.string.ms,
+                                                    dependencies =
+                                                        listOf(appPreferences.dlnaEnabled),
+                                                ),
+                                                PreferenceSelect(
+                                                    nameStringResource =
+                                                        R.string.settings_dlna_container,
+                                                    descriptionStringRes =
+                                                        R.string.settings_dlna_container_summary,
+                                                    backendPreference =
+                                                        appPreferences.dlnaContainer,
+                                                    options = R.array.dlna_container,
+                                                    optionValues = R.array.dlna_container_values,
+                                                    dependencies =
+                                                        listOf(appPreferences.dlnaEnabled),
+                                                ),
+                                            ),
+                                    ),
                                 ),
                         )
                     )

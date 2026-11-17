@@ -19,6 +19,7 @@ import androidx.media3.exoplayer.DefaultRenderersFactory
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.trackselection.DefaultTrackSelector
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dev.jdtech.jellyfin.cast.dlna.DlnaDevice
 import dev.jdtech.jellyfin.models.FindroidSegment
 import dev.jdtech.jellyfin.models.FindroidSegmentType
 import dev.jdtech.jellyfin.player.core.domain.models.PlayerChapter
@@ -26,6 +27,9 @@ import dev.jdtech.jellyfin.player.core.domain.models.PlayerItem
 import dev.jdtech.jellyfin.player.core.domain.models.PlayerStream
 import dev.jdtech.jellyfin.player.core.domain.models.Trickplay
 import dev.jdtech.jellyfin.player.local.R
+import dev.jdtech.jellyfin.player.local.cast.CastRequest
+import dev.jdtech.jellyfin.player.local.cast.CastSession
+import dev.jdtech.jellyfin.player.local.cast.CastState
 import dev.jdtech.jellyfin.player.local.domain.PlaylistManager
 import dev.jdtech.jellyfin.player.local.mpv.MPVPlayer
 import dev.jdtech.jellyfin.repository.JellyfinRepository
@@ -40,6 +44,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
@@ -56,6 +61,7 @@ constructor(
     private val playlistManager: PlaylistManager,
     private val repository: JellyfinRepository,
     private val appPreferences: AppPreferences,
+    private val castSession: CastSession,
     private val savedStateHandle: SavedStateHandle,
 ) : ViewModel(), Player.Listener {
     val player: Player
@@ -72,6 +78,11 @@ constructor(
             )
         )
     val uiState = _uiState.asStateFlow()
+
+    val castState: StateFlow<CastState> = castSession.state
+
+    val isCasting: Boolean
+        get() = castSession.state.value.isActive
 
     private val eventsChannel = Channel<PlayerEvents>()
     val eventsChannelFlow = eventsChannel.receiveAsFlow()
@@ -191,6 +202,7 @@ constructor(
         startFromBeginning: Boolean,
         audioStreamIndex: Int? = null,
         subtitleStreamIndex: Int? = null,
+        castOnStart: Boolean = false,
     ) {
         currentItemId = itemId
         currentItemKind = itemKind
@@ -200,6 +212,16 @@ constructor(
         }
 
         viewModelScope.launch {
+            val currentCast = castSession.state.value
+            val switchingCast = castOnStart && currentCast.isActive && currentCast.itemId != itemId
+            if (currentCast.isActive && currentCast.itemId != itemId && !castOnStart) {
+                // Starting a different item hands playback back to the phone.
+                castSession.stop()
+            } else if (currentCast.isActive && currentCast.itemId == itemId) {
+                _uiState.update { it.copy(currentItemTitle = currentCast.title, fileLoaded = true) }
+                return@launch
+            }
+
             val startItem =
                 try {
                     playlistManager.getInitialItem(
@@ -236,6 +258,27 @@ constructor(
             }
             items = listOfNotNull(startItem).toMutableList()
             currentMediaItemIndex = items.indexOf(startItem)
+
+            if (switchingCast) {
+                val device = currentCast.device
+                if (device != null) {
+                    val position =
+                        if (startFromBeginning) {
+                            0L
+                        } else {
+                            playbackPosition.takeIf { it > 0L } ?: startItem.playbackPosition
+                        }
+                    val request = buildCastRequest(position)
+                    if (request != null) {
+                        _uiState.update {
+                            it.copy(currentItemTitle = startItem.name, fileLoaded = true)
+                        }
+                        castSession.cast(device, request)
+                        return@launch
+                    }
+                }
+                castSession.stop()
+            }
 
             val mediaItems = mutableListOf<MediaItem>()
             try {
@@ -385,6 +428,7 @@ constructor(
                 audioStreams.firstOrNull { it.index == index }?.language,
             )
         }
+        if (recastIfCasting()) return
         restartCurrentItem()
     }
 
@@ -403,6 +447,7 @@ constructor(
                 },
             )
         }
+        if (recastIfCasting()) return
         restartCurrentItem()
     }
 
@@ -423,6 +468,7 @@ constructor(
 
     fun selectQuality(quality: String) {
         appPreferences.setValue(appPreferences.playerQuality, quality)
+        if (recastIfCasting()) return
         val itemId = currentItemId ?: return
         val itemKind = currentItemKind ?: return
         playbackPosition = player.currentPosition.coerceAtLeast(0L)
@@ -471,10 +517,11 @@ constructor(
         val mediaId = player.currentMediaItem?.mediaId
         val position = player.currentPosition
         val duration = player.duration
+        val casting = castSession.state.value.isActive
         GlobalScope.launch {
             delay(200L)
             try {
-                if (mediaId != null && duration != C.TIME_UNSET) {
+                if (mediaId != null && duration != C.TIME_UNSET && !casting) {
                     Timber.d("Sending playback stop")
                     repository.postPlaybackStop(
                         UUID.fromString(mediaId),
@@ -498,6 +545,10 @@ constructor(
     fun updatePlaybackProgress() {
         Timber.d("Updating playback progress")
         viewModelScope.launch(Dispatchers.Main) {
+            if (castSession.state.value.isActive) {
+                savedStateHandle["position"] = castSession.state.value.positionMs
+                return@launch
+            }
             savedStateHandle["position"] = player.currentPosition
             if (player.currentMediaItem != null && player.currentMediaItem!!.mediaId.isNotEmpty()) {
                 val itemId = UUID.fromString(player.currentMediaItem!!.mediaId)
@@ -673,6 +724,86 @@ constructor(
         Timber.d("Changed player state to $stateString")
     }
 
+    fun castTo(device: DlnaDevice) {
+        val request = buildCastRequest() ?: return
+        player.pause()
+        castSession.cast(device, request)
+    }
+
+    fun pauseCast() = castSession.pause()
+
+    fun resumeCast() = castSession.resume()
+
+    fun seekCast(positionMs: Long) = castSession.seekTo(positionMs)
+
+    fun stopCastingAndResumeLocal() {
+        val cast = castSession.state.value
+        val itemId = currentItemId
+        val itemKind = currentItemKind
+        castSession.stop()
+        if (itemId != null && itemKind != null) {
+            val resumePosition =
+                if (cast.positionMs > 0L) cast.positionMs else player.currentPosition
+            playbackPosition = resumePosition.coerceAtLeast(0L)
+            player.stop()
+            player.clearMediaItems()
+            initializePlayer(
+                itemId = itemId,
+                itemKind = itemKind,
+                startFromBeginning = false,
+                audioStreamIndex = selectedAudioStreamIndex,
+                subtitleStreamIndex = selectedSubtitleStreamIndex,
+            )
+        }
+    }
+
+    private fun recastIfCasting(): Boolean {
+        val cast = castSession.state.value
+        if (!cast.isActive || cast.itemId != currentItemId) return false
+        val request = buildCastRequest(cast.positionMs) ?: return false
+        castSession.recast(request)
+        return true
+    }
+
+    private fun buildCastRequest(positionMs: Long = player.currentPosition): CastRequest? {
+        val item = items.getOrNull(currentMediaItemIndex) ?: return null
+        val duration =
+            player.duration.takeIf { it != C.TIME_UNSET && it > 0L }
+                ?: item.durationMs.takeIf { it > 0L }
+                ?: castSession.state.value.durationMs
+        val bitrate = maxBitrateForQuality(selectedQuality)
+        return CastRequest(
+            itemId = item.itemId,
+            title = item.name,
+            positionMs = positionMs.coerceAtLeast(0L),
+            durationMs = duration,
+            maxBitrate = bitrate,
+            audioStreamIndex = selectedAudioStreamIndex,
+            subtitleStreamIndex = selectedSubtitleStreamIndex ?: -1,
+            container = appPreferences.getValue(appPreferences.dlnaContainer),
+            maxHeight = maxHeightForBitrate(bitrate),
+        )
+    }
+
+    private fun maxBitrateForQuality(quality: String): Int =
+        when (quality) {
+            "40" -> 40_000_000
+            "30" -> 30_000_000
+            "20" -> 20_000_000
+            "10" -> 10_000_000
+            "4" -> 4_000_000
+            "1.5" -> 1_500_000
+            else -> 40_000_000
+        }
+
+    private fun maxHeightForBitrate(bitrate: Int): Int =
+        when {
+            bitrate >= 30_000_000 -> 2160
+            bitrate >= 10_000_000 -> 1080
+            bitrate >= 4_000_000 -> 720
+            else -> 480
+        }
+
     override fun onCleared() {
         super.onCleared()
         Timber.d("Clearing Player ViewModel")
@@ -680,6 +811,20 @@ constructor(
     }
 
     fun switchToTrack(trackType: @C.TrackType Int, index: Int) {
+        if (castSession.state.value.isActive) {
+            val itemId = currentItemId ?: return
+            if (trackType == C.TRACK_TYPE_AUDIO) {
+                val audioIndex = appPreferences.getSavedAudioStreamIndex(itemId) ?: return
+                // Disabling audio on the TV is not supported by most renderers.
+                if (audioIndex < 0) return
+                selectedAudioStreamIndex = audioIndex
+            } else {
+                selectedSubtitleStreamIndex =
+                    appPreferences.getSavedSubtitleStreamIndex(itemId) ?: -1
+            }
+            recastIfCasting()
+            return
+        }
         // Index -1 equals disable track
         if (index == -1) {
             player.trackSelectionParameters =

@@ -21,6 +21,7 @@ android {
 }
 
 dependencies {
+    implementation(projects.cast)
     implementation(projects.player.core)
     implementation(projects.data)
     implementation(projects.settings)

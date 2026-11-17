@@ -20,6 +20,7 @@ import coil3.request.crossfade
 import coil3.svg.SvgDecoder
 import com.google.android.material.color.DynamicColors
 import dagger.hilt.android.HiltAndroidApp
+import dev.jdtech.jellyfin.player.local.cast.CastSession
 import dev.jdtech.jellyfin.settings.domain.AppPreferences
 import dev.jdtech.jellyfin.work.MpvCleanupWorker
 import javax.inject.Inject
@@ -32,6 +33,8 @@ class BaseApplication : Application(), Configuration.Provider, SingletonImageLoa
     @Inject lateinit var appPreferences: AppPreferences
 
     @Inject lateinit var workerFactory: HiltWorkerFactory
+
+    @Inject lateinit var castSession: CastSession
 
     override val workManagerConfiguration: Configuration
         get() = Configuration.Builder().setWorkerFactory(workerFactory).build()
@@ -54,9 +57,15 @@ class BaseApplication : Application(), Configuration.Provider, SingletonImageLoa
             AppCompatDelegate.setDefaultNightMode(mode)
         }
 
+        if (appPreferences.getValue(appPreferences.playerQuality) == "original") {
+            appPreferences.setValue(appPreferences.playerQuality, "40")
+        }
+
         if (appPreferences.getValue(appPreferences.dynamicColors)) {
             DynamicColors.applyToActivitiesIfAvailable(this)
         }
+
+        castSession.restore()
 
         val workManager = WorkManager.getInstance(applicationContext)
 

@@ -23,5 +23,6 @@
     <string name="player_controls_skip_preview">法解 Jellyfin</string>
     <string name="player_controls_skip_commercial">跳過廣告</string>
     <string name="player_controls_skip_unknown">跳過</string>
+    <string name="select_bitrate">選擇位元率</string>
     <string name="select_quality">選擇畫質</string>
 </resources>

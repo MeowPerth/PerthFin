@@ -97,6 +97,7 @@ androidComponents {
 }
 
 dependencies {
+    implementation(projects.cast)
     implementation(projects.core)
     implementation(projects.data)
     implementation(projects.player.core)

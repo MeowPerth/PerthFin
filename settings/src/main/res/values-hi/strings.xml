@@ -34,6 +34,7 @@
     <string name="subtitles">उपशीर्षक</string>
     <string name="mpv_player_summary">वीडियो चलाने के लिए प्रयोगात्मक एमपीवी (mpv) प्लेयर का उपयोग करें। एमपीवी में अधिक वीडियो, ऑडियो और सबटाइटल कोडेक्स के लिए समर्थन है।</string>
     <string name="player_gestures_seek_summary">आगे या पीछे खोजने (सीक) के लिए क्षैतिज रूप से स्वाइप करें</string>
+    <string name="pref_player_bitrate">वीडियो बिटरेट</string>
     <string name="pref_player_quality">वीडियो गुणवत्ता</string>
     <string name="pref_player_quality_summary">अगली प्लेबैक के लिए बिटरेट। सीमा चुनने पर ट्रांसकोडिंग का उपयोग किया जाएगा।</string>
     <string name="quality_original">मूल</string>

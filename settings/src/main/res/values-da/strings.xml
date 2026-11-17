@@ -46,6 +46,7 @@
     <string name="player_gestures_chapter_skip">Kapitelbevægelse</string>
     <string name="player_start_maximized">Start maksimeret</string>
     <string name="player_start_maximized_summary">Åben video i maksimeret tilstand som standard</string>
+    <string name="pref_player_bitrate">Videobitrate</string>
     <string name="pref_player_quality">Videokvalitet</string>
     <string name="pref_player_quality_summary">Bitrate for næste afspilning. Transkodning bruges, når en grænse er valgt.</string>
     <string name="quality_original">Original</string>

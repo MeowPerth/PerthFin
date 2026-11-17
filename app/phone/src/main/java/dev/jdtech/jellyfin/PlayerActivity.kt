@@ -26,8 +26,14 @@ import android.widget.LinearLayout
 import android.widget.Space
 import android.widget.TextView
 import androidx.activity.viewModels
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.media3.common.C
@@ -36,12 +42,18 @@ import androidx.media3.ui.DefaultTimeBar
 import androidx.media3.ui.PlayerControlView
 import androidx.media3.ui.PlayerView
 import dagger.hilt.android.AndroidEntryPoint
+import dev.jdtech.jellyfin.cast.dlna.DlnaDevice
+import dev.jdtech.jellyfin.core.R as CoreR
 import dev.jdtech.jellyfin.databinding.ActivityPlayerBinding
+import dev.jdtech.jellyfin.player.local.cast.CastStatus
 import dev.jdtech.jellyfin.player.local.presentation.PlayerEvents
 import dev.jdtech.jellyfin.player.local.presentation.PlayerViewModel
+import dev.jdtech.jellyfin.presentation.player.CastControls
+import dev.jdtech.jellyfin.presentation.player.CastDeviceSheet
 import dev.jdtech.jellyfin.presentation.player.QualitySelectionDialogFragment
 import dev.jdtech.jellyfin.presentation.player.SpeedSelectionDialogFragment
 import dev.jdtech.jellyfin.presentation.player.TrackSelectionDialogFragment
+import dev.jdtech.jellyfin.presentation.theme.FindroidTheme
 import dev.jdtech.jellyfin.settings.domain.AppPreferences
 import dev.jdtech.jellyfin.utils.PlayerGestureHelper
 import dev.jdtech.jellyfin.utils.PreviewScrubListener
@@ -65,8 +77,11 @@ class PlayerActivity : BasePlayerActivity() {
     private var wasZoom: Boolean = false
     private var isPlayerPortrait = false
     private var skipButtonTimeoutExpired: Boolean = true
+    private var showCastPicker by mutableStateOf(false)
 
     private lateinit var skipSegmentButton: Button
+    private lateinit var centerControls: View
+    private lateinit var centerPlayPauseButton: ImageButton
 
     private val isPipSupported by lazy {
         // Check if device has PiP feature
@@ -91,12 +106,21 @@ class PlayerActivity : BasePlayerActivity() {
         }
     }
 
+    private val timeUpdateRunnable =
+        object : Runnable {
+            override fun run() {
+                updatePlayerTime()
+                handler.postDelayed(this, 500)
+            }
+        }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         val itemId = UUID.fromString(intent.extras!!.getString("itemId"))
         val itemKind = intent.extras!!.getString("itemKind")
         val startFromBeginning = intent.extras!!.getBoolean("startFromBeginning")
+        val castOnStart = intent.extras!!.getBoolean("castOnStart")
 
         isPlayerPortrait =
             if (appPreferences.getValue(appPreferences.playerDefaultLandscape)) {
@@ -115,6 +139,8 @@ class PlayerActivity : BasePlayerActivity() {
         setContentView(binding.root)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
+        setupCastUi()
+
         binding.playerView.player = viewModel.player
         adjustPlayerControls(isPlayerPortrait)
         binding.playerView.setControllerVisibilityListener(
@@ -130,8 +156,31 @@ class PlayerActivity : BasePlayerActivity() {
 
         isControlsLocked = false
 
-        configureInsets(playerControls)
-        configureInsets(lockedControls)
+        configureInsets(playerControls) {
+            isPlayerPortrait || appPreferences.getValue(appPreferences.playerNotchMode)
+        }
+        configureInsets(lockedControls) {
+            isPlayerPortrait || appPreferences.getValue(appPreferences.playerNotchMode)
+        }
+
+        centerControls = binding.playerView.findViewById(R.id.exo_center_controls)
+        centerPlayPauseButton = binding.playerView.findViewById(R.id.btn_center_play_pause)
+        centerPlayPauseButton.setOnClickListener {
+            val player = viewModel.player
+            if (player.isPlaying) player.pause() else player.play()
+        }
+        centerControls.isVisible = false
+        viewModel.player.addListener(
+            object : Player.Listener {
+                override fun onIsPlayingChanged(isPlaying: Boolean) {
+                    updateCenterControls()
+                }
+
+                override fun onPlaybackStateChanged(playbackState: Int) {
+                    updateCenterControls()
+                }
+            }
+        )
 
         if (appPreferences.getValue(appPreferences.playerGestures)) {
             playerGestureHelper =
@@ -158,16 +207,7 @@ class PlayerActivity : BasePlayerActivity() {
         val lockButton = binding.playerView.findViewById<ImageButton>(R.id.btn_lockview)
         val unlockButton = binding.playerView.findViewById<ImageButton>(R.id.btn_unlock)
         val orientationButton = binding.playerView.findViewById<ImageButton>(R.id.btn_orientation)
-        val centerControls = binding.playerView.findViewById<View>(R.id.exo_center_controls)
-        centerControls.isVisible = !viewModel.player.isPlaying
-        val centerControlsListener =
-            object : Player.Listener {
-                override fun onIsPlayingChanged(isPlaying: Boolean) {
-                    centerControls.isVisible = !isPlaying
-                }
-            }
-        viewModel.player.addListener(centerControlsListener)
-
+        val castButton = binding.playerView.findViewById<ImageButton>(R.id.btn_cast)
         orientationButton.setOnClickListener {
             applyPlayerOrientation(
                 portrait = !isPlayerPortrait,
@@ -247,6 +287,8 @@ class PlayerActivity : BasePlayerActivity() {
                                 qualityButton.imageAlpha = 255
                                 pipButton.isEnabled = true
                                 pipButton.imageAlpha = 255
+                                castButton.isEnabled = true
+                                castButton.imageAlpha = 255
                             }
                         }
                     }
@@ -293,6 +335,17 @@ class PlayerActivity : BasePlayerActivity() {
                         }
                     }
                 }
+
+                launch {
+                    viewModel.castState.collect { state ->
+                        val overlay = state.isActive || state.status == CastStatus.ERROR
+                        binding.castControls.isVisible = overlay
+                        binding.playerView.useController = !overlay
+                        if (overlay) {
+                            hideSystemUI()
+                        }
+                    }
+                }
             }
         }
 
@@ -310,6 +363,16 @@ class PlayerActivity : BasePlayerActivity() {
 
         qualityButton.isEnabled = false
         qualityButton.imageAlpha = 75
+
+        castButton.isEnabled = false
+        castButton.imageAlpha = 75
+        if (!appPreferences.getValue(appPreferences.dlnaEnabled)) {
+            castButton.isVisible = false
+        }
+        castButton.setOnClickListener {
+            showCastPicker = true
+            binding.castPicker.isVisible = true
+        }
 
         if (isPipSupported) {
             pipButton.isEnabled = false
@@ -374,8 +437,10 @@ class PlayerActivity : BasePlayerActivity() {
             itemId = itemId,
             itemKind = itemKind ?: "",
             startFromBeginning = startFromBeginning,
+            castOnStart = castOnStart,
         )
         hideSystemUI()
+        handler.post(timeUpdateRunnable)
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -385,11 +450,13 @@ class PlayerActivity : BasePlayerActivity() {
         val itemId = UUID.fromString(intent.extras!!.getString("itemId"))
         val itemKind = intent.extras!!.getString("itemKind")
         val startFromBeginning = intent.extras!!.getBoolean("startFromBeginning")
+        val castOnStart = intent.extras!!.getBoolean("castOnStart")
 
         viewModel.initializePlayer(
             itemId = itemId,
             itemKind = itemKind ?: "",
             startFromBeginning = startFromBeginning,
+            castOnStart = castOnStart,
         )
     }
 
@@ -402,6 +469,64 @@ class PlayerActivity : BasePlayerActivity() {
                 !isControlsLocked
         ) {
             pictureInPicture()
+        }
+    }
+
+    private fun setupCastUi() {
+        binding.castControls.setContent {
+            FindroidTheme {
+                val castState by viewModel.castState.collectAsStateWithLifecycle()
+                if (castState.isActive || castState.status == CastStatus.ERROR) {
+                    CastControls(
+                        state = castState,
+                        onBack = { finishPlayback() },
+                        onPlayPause = {
+                            if (castState.isPlaying) {
+                                viewModel.pauseCast()
+                            } else {
+                                viewModel.resumeCast()
+                            }
+                        },
+                        onSeek = { viewModel.seekCast(it) },
+                        onAudioTrack = {
+                            TrackSelectionDialogFragment(C.TRACK_TYPE_AUDIO, viewModel)
+                                .show(supportFragmentManager, "cast_trackselectiondialog")
+                        },
+                        onSubtitleTrack = {
+                            TrackSelectionDialogFragment(C.TRACK_TYPE_TEXT, viewModel)
+                                .show(supportFragmentManager, "cast_trackselectiondialog")
+                        },
+                        onQuality = {
+                            QualitySelectionDialogFragment(viewModel)
+                                .show(supportFragmentManager, "cast_qualityselectiondialog")
+                        },
+                        notchModeEnabled = appPreferences.getValue(appPreferences.playerNotchMode),
+                        onStop = {
+                            showCastPicker = false
+                            binding.castPicker.isVisible = false
+                            viewModel.stopCastingAndResumeLocal()
+                        },
+                    )
+                }
+            }
+        }
+
+        binding.castPicker.setContent {
+            FindroidTheme {
+                if (showCastPicker) {
+                    CastDeviceSheet(
+                        onDismiss = {
+                            showCastPicker = false
+                            binding.castPicker.isVisible = false
+                        },
+                        onSelect = { device: DlnaDevice ->
+                            showCastPicker = false
+                            binding.castPicker.isVisible = false
+                            viewModel.castTo(device)
+                        },
+                    )
+                }
+            }
         }
     }
 
@@ -521,6 +646,7 @@ class PlayerActivity : BasePlayerActivity() {
         super.onConfigurationChanged(newConfig)
         if (::binding.isInitialized) {
             adjustPlayerControls(newConfig.orientation == Configuration.ORIENTATION_PORTRAIT)
+            binding.playerView.requestApplyInsets()
         }
     }
 
@@ -540,6 +666,7 @@ class PlayerActivity : BasePlayerActivity() {
         }
         if (::binding.isInitialized) {
             adjustPlayerControls(portrait)
+            binding.playerView.requestApplyInsets()
         }
     }
 
@@ -555,28 +682,91 @@ class PlayerActivity : BasePlayerActivity() {
 
         applyControlSpacing(extraButtons, horizontalPadding, verticalPadding, spaceWidth)
 
-        val centerControls = binding.playerView.findViewById<LinearLayout>(R.id.exo_center_controls)
-        applyCenterControlSpacing(centerControls, portrait)
+        // Keep the exit button and title on the same centre line as the first row
+        // of the right-hand control buttons.
+        binding.playerView
+            .findViewById<ImageButton>(R.id.back_button)
+            .setPadding(
+                horizontalPadding,
+                verticalPadding,
+                horizontalPadding,
+                verticalPadding,
+            )
+
+        // Orientation changes don't always redispatch window insets. Reset the
+        // bottom padding before requesting insets, otherwise the bottom bar keeps
+        // the previous orientation's inset and leaves a large gap.
+        val bottomControls = binding.playerView.findViewById<View>(R.id.bottom_controls)
+        val baseBottomPadding = (4 * density).toInt()
+        bottomControls.setPadding(
+            bottomControls.paddingLeft,
+            bottomControls.paddingTop,
+            bottomControls.paddingRight,
+            baseBottomPadding,
+        )
+        binding.playerView.requestApplyInsets()
+        configureBottomBar(portrait)
     }
 
-    private fun applyCenterControlSpacing(group: LinearLayout, portrait: Boolean) {
+    private fun configureBottomBar(portrait: Boolean) {
+        val bottomControls = binding.playerView.findViewById<ConstraintLayout>(R.id.bottom_controls)
         val density = resources.displayMetrics.density
-        val padding = ((if (portrait) 8 else 16) * density).toInt()
-        val margin = ((if (portrait) 8 else 32) * density).toInt()
+        val constraints = ConstraintSet()
+        constraints.clone(bottomControls)
 
-        for (index in 0 until group.childCount) {
-            val child = group.getChildAt(index)
-            if (child !is ImageButton) continue
-            child.setPadding(padding, padding, padding, padding)
-            val params = child.layoutParams as? LinearLayout.LayoutParams ?: continue
-            when (child.id) {
-                R.id.exo_prev,
-                R.id.exo_rew -> params.marginEnd = margin
-                R.id.exo_ffwd,
-                R.id.exo_next -> params.marginStart = margin
-            }
-            child.layoutParams = params
+        val play = R.id.exo_play_pause
+        val progress = R.id.exo_progress
+        val time = R.id.exo_bottom_time
+
+        for (id in listOf(play, progress, time)) {
+            constraints.clear(id, ConstraintSet.START)
+            constraints.clear(id, ConstraintSet.END)
+            constraints.clear(id, ConstraintSet.TOP)
+            constraints.clear(id, ConstraintSet.BOTTOM)
         }
+
+        constraints.connect(play, ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START)
+        constraints.connect(
+            play,
+            ConstraintSet.BOTTOM,
+            ConstraintSet.PARENT_ID,
+            ConstraintSet.BOTTOM,
+        )
+        constraints.connect(
+            progress,
+            ConstraintSet.START,
+            play,
+            ConstraintSet.END,
+            (-4 * density).toInt(),
+        )
+        constraints.connect(progress, ConstraintSet.TOP, play, ConstraintSet.TOP)
+        constraints.connect(progress, ConstraintSet.BOTTOM, play, ConstraintSet.BOTTOM)
+        constraints.connect(time, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END)
+
+        if (portrait) {
+            // Portrait: time sits above the progress line, which extends to the right edge.
+            constraints.connect(
+                progress,
+                ConstraintSet.END,
+                ConstraintSet.PARENT_ID,
+                ConstraintSet.END,
+            )
+            constraints.connect(
+                time,
+                ConstraintSet.BOTTOM,
+                progress,
+                ConstraintSet.TOP,
+                (2 * density).toInt(),
+            )
+        } else {
+            // Landscape: play | progress | time on one line.
+            constraints.connect(progress, ConstraintSet.END, time, ConstraintSet.START)
+            constraints.setMargin(progress, ConstraintSet.END, (8 * density).toInt())
+            constraints.connect(time, ConstraintSet.TOP, play, ConstraintSet.TOP)
+            constraints.connect(time, ConstraintSet.BOTTOM, play, ConstraintSet.BOTTOM)
+        }
+
+        constraints.applyTo(bottomControls)
     }
 
     private fun applyControlSpacing(
@@ -599,5 +789,39 @@ class PlayerActivity : BasePlayerActivity() {
                     applyControlSpacing(child, horizontalPadding, verticalPadding, spaceWidth)
             }
         }
+    }
+
+    private fun updateCenterControls() {
+        val player = viewModel.player
+        centerControls.isVisible = !player.isPlaying && player.playbackState == Player.STATE_READY
+        centerPlayPauseButton.setImageResource(
+            if (player.isPlaying) CoreR.drawable.ic_pause else CoreR.drawable.ic_play
+        )
+    }
+
+    private fun updatePlayerTime() {
+        val player = binding.playerView.player ?: return
+        val timeView = binding.playerView.findViewById<TextView>(R.id.exo_bottom_time) ?: return
+        val position = player.currentPosition.coerceAtLeast(0L)
+        val duration = player.duration.takeIf { it != C.TIME_UNSET && it > 0L } ?: 0L
+        timeView.text = "${formatPlayerTime(position)}/${formatPlayerTime(duration)}"
+    }
+
+    private fun formatPlayerTime(milliseconds: Long): String {
+        val totalSeconds = milliseconds.coerceAtLeast(0L) / 1000
+        val hours = totalSeconds / 3600
+        val minutes = (totalSeconds % 3600) / 60
+        val seconds = totalSeconds % 60
+        return if (hours > 0) {
+            "$hours:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}"
+        } else {
+            "$minutes:${seconds.toString().padStart(2, '0')}"
+        }
+    }
+
+    override fun onDestroy() {
+        handler.removeCallbacks(timeUpdateRunnable)
+        playerGestureHelper?.release()
+        super.onDestroy()
     }
 }

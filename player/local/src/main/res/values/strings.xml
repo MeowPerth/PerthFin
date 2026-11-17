@@ -6,6 +6,30 @@
     <string name="external">External</string>
     <string name="none">None</string>
     <string name="player_controls_picture_in_picture">Enter picture-in-picture</string>
+    <string name="player_controls_cast">Cast to TV</string>
+    <string name="cast_to_tv">Cast to TV</string>
+    <string name="cast_searching">Searching for TVs on your network…</string>
+    <string name="cast_no_devices">No DLNA TVs found</string>
+    <string name="cast_no_devices_summary">Make sure the TV is on the same Wi-Fi network and has DLNA/UPnP enabled.</string>
+    <string name="cast_retry">Search again</string>
+    <string name="cast_stop">Stop casting</string>
+    <string name="cast_exit">Exit casting</string>
+    <string name="cast_switch_title">Casting in progress</string>
+    <string name="cast_switch_message">Currently casting “%1$s” on %2$s. Cast the new video to the TV instead?</string>
+    <string name="cast_switch_unknown_title">Unknown video</string>
+    <string name="cast_switch_unknown_device">TV</string>
+    <string name="cast_switch_confirm">Cast new video</string>
+    <string name="cast_switch_cancel">No</string>
+    <string name="cast_playing_on">Playing on %1$s</string>
+    <string name="cast_connecting">Connecting to %1$s…</string>
+    <string name="cast_error">Cast failed</string>
+    <string name="cast_search_failed">Failed to search for TVs</string>
+    <string name="cast_seek">Seek on TV</string>
+    <string name="cast_status_playing">Casting</string>
+    <string name="cast_status_paused">Paused on TV</string>
+    <string name="cast_stop_and_play_here">Stop casting and play here</string>
+    <string name="cast_unreachable">This Jellyfin address cannot be reached by the TV. Use a server address available on the local network. App-side relay is not supported yet.</string>
+    <string name="cast_no_playback">The TV did not start playback. Check that it can reach the Jellyfin server.</string>
     <string name="player_controls_lock">Locks the player</string>
     <string name="player_controls_skip_back">Skip back</string>
     <string name="player_controls_play_pause">Play pause</string>
@@ -22,5 +46,6 @@
     <string name="player_controls_skip_preview">Skip preview</string>
     <string name="player_controls_skip_commercial">Skip commercial</string>
     <string name="player_controls_skip_unknown">Skip</string>
+    <string name="select_bitrate">Select bitrate</string>
     <string name="select_quality">Video quality</string>
 </resources>
