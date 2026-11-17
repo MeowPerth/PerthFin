@@ -362,7 +362,9 @@ class JellyfinRepositoryImpl(
                     .mediaSources
 
             var mediaSources = loadSources(allowDirect = true)
-            var chosen = mediaSources.firstOrNull() ?: throw IllegalStateException("Server returned no usable media source")
+            var chosen =
+                mediaSources.firstOrNull()
+                    ?: throw IllegalStateException("Server returned no usable media source")
 
             if (chosen.transcodingUrl == null) {
                 val videoBitrate =
@@ -386,7 +388,9 @@ class JellyfinRepositoryImpl(
                     mediaSources = loadSources(allowDirect = false)
                     chosen =
                         mediaSources.firstOrNull { it.transcodingUrl != null }
-                            ?: throw IllegalStateException("Server returned no usable transcode stream")
+                            ?: throw IllegalStateException(
+                                "Server returned no usable transcode stream"
+                            )
                 }
             }
 
