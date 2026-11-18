@@ -35,11 +35,11 @@ PerthFin 是一个独立的原生 Android [Jellyfin](https://jellyfin.org) 客�
 |:---:|:---:|:---:|:---:|
 | ![首页](images/screenshots/home.jpg) | ![媒体库](images/screenshots/library.jpg) | ![每行数量设置](images/screenshots/columns.jpg) | ![竖屏播放](images/screenshots/player-portrait.jpg) |
 
-### 横屏、码率与投屏
+### 横屏、码率、投屏与选集
 
-| 码率调整 | 横屏播放 | 投屏控制 |
-|:---:|:---:|:---:|
-| ![码率调整](images/screenshots/quality.jpg) | ![横屏播放](images/screenshots/player.jpg) | ![投屏控制](images/screenshots/cast.jpg) |
+| 码率调整 | 横屏播放 | 投屏控制 | 选集与自动下一集 |
+|:---:|:---:|:---:|:---:|
+| ![码率调整](images/screenshots/quality.jpg) | ![横屏播放](images/screenshots/player.jpg) | ![投屏控制](images/screenshots/cast.jpg) | ![选集与自动下一集](images/screenshots/episodes.jpg) |
 
 ## 功能
 
@@ -59,6 +59,9 @@ PerthFin 是一个独立的原生 Android [Jellyfin](https://jellyfin.org) 客�
 
 - 按码率与格式自动直连或 HLS 转码；码率档位 40/30/20/10/4/1.5 Mbps
 - 支持 ExoPlayer / libmpv、画中画、播放速度、章节与片头片尾跳过、Trickplay
+- 剧集选集：本地播放器和投屏界面都能打开当前季选集，按集数方块选择，当前集高亮
+- 「自动播放下一集」开关：位于选集面板顶部，并与「设置 → 播放器」同步；关闭后不会自动续播
+- 选集按钮只在剧集内容中显示，电影等单视频不会出现
 - 横竖屏播放、快速旋转和「默认横屏模式」
 - 底栏：暂停/播放在左，进度条居中，时间在右；竖屏时间位于进度条右上方
 - 暂停时中央显示播放按钮，播放时自动隐藏
@@ -71,6 +74,7 @@ PerthFin 是一个独立的原生 Android [Jellyfin](https://jellyfin.org) 客�
 - 自动发现局域网内的 UPnP MediaRenderer，选择电视后推送当前视频
 - 投屏沿用当前码率、音轨和字幕；统一转码为 H.264 + AAC 2ch，字幕烧录
 - 支持暂停/继续、拖动进度、退出投屏和重新推送
+- 投屏界面支持当前季选集，可直接切换剧集并重新推送
 - 投屏控制界面与播放器统一，异常时显示警告图标和状态
 - 离开播放器后电视继续播放；设置位于「网络 → DLNA 投屏」
 

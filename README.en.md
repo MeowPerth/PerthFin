@@ -37,11 +37,11 @@ descriptively only.
 |:---:|:---:|:---:|:---:|
 | ![Home](images/screenshots/home.jpg) | ![Library](images/screenshots/library.jpg) | ![Items per row](images/screenshots/columns.jpg) | ![Portrait playback](images/screenshots/player-portrait.jpg) |
 
-### Landscape, bitrate and casting
+### Landscape, bitrate, casting and episodes
 
-| Bitrate | Landscape playback | Cast controls |
-|:---:|:---:|:---:|
-| ![Bitrate selection](images/screenshots/quality.jpg) | ![Landscape playback](images/screenshots/player.jpg) | ![Cast controls](images/screenshots/cast.jpg) |
+| Bitrate | Landscape playback | Cast controls | Episodes and auto-play |
+|:---:|:---:|:---:|:---:|
+| ![Bitrate selection](images/screenshots/quality.jpg) | ![Landscape playback](images/screenshots/player.jpg) | ![Cast controls](images/screenshots/cast.jpg) | ![Episodes and auto-play](images/screenshots/episodes.jpg) |
 
 ## Features
 
@@ -61,6 +61,9 @@ descriptively only.
 
 - Direct play or HLS transcode based on bitrate and format; presets 40/30/20/10/4/1.5 Mbps
 - ExoPlayer / libmpv, picture-in-picture, playback speed, chapters, intro/outro skipping, trickplay
+- Episode picker for the current season in both the local player and cast controls, with a numbered grid and current-episode highlight
+- "Auto-play next episode" switch at the top of the episode picker, synced with Settings → Player; disabling it stops automatic continuation
+- The episode button is shown only for episodic content, not movies or other single videos
 - Portrait/landscape playback, quick rotation and a "default to landscape" setting
 - Bottom bar: play/pause left, progress in the middle, time right; portrait time sits above the progress end
 - Centre play button while paused, hidden during playback
@@ -73,6 +76,7 @@ descriptively only.
 - Discovers UPnP MediaRenderers on the local network and casts the current video
 - Uses the current bitrate, audio track and subtitles; transcodes to H.264 + AAC stereo and burns subtitles
 - Supports pause/resume, seeking, stopping and re-pushing the stream
+- The cast UI supports selecting an episode from the current season and re-pushing it
 - Cast controls match the player, with a warning state for errors
 - The TV keeps playing after leaving the player; settings live under "Network → DLNA casting"
 
