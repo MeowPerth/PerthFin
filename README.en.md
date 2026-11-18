@@ -37,11 +37,11 @@ descriptively only.
 |:---:|:---:|:---:|:---:|
 | ![Home](images/screenshots/home-v2.jpg) | ![Library](images/screenshots/library-v2.jpg) | ![Items per row](images/screenshots/columns-v2.jpg) | ![Portrait playback](images/screenshots/player-portrait-v2.jpg) |
 
-### Landscape, bitrate, casting and episodes
+### Bitrate, casting and episodes
 
-| Bitrate | Landscape playback | Cast controls | Episodes and auto-play |
-|:---:|:---:|:---:|:---:|
-| ![Bitrate selection](images/screenshots/quality-v2.jpg) | ![Landscape playback](images/screenshots/player-v2.jpg) | ![Cast controls](images/screenshots/cast-v2.jpg) | ![Episodes and auto-play](images/screenshots/episodes-v2.jpg) |
+| Bitrate | Cast controls | Episodes and auto-play |
+|:---:|:---:|:---:|
+| ![Bitrate selection](images/screenshots/quality-v2.jpg) | ![Cast controls](images/screenshots/cast-v2.jpg) | ![Episodes and auto-play](images/screenshots/episodes-v3.jpg) |
 
 ## Features
 
