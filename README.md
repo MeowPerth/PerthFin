@@ -33,13 +33,13 @@ PerthFin 是一个独立的原生 Android [Jellyfin](https://jellyfin.org) 客�
 
 | 首页 | 媒体库（每行 3 个） | 每行数量设置 | 竖屏播放 |
 |:---:|:---:|:---:|:---:|
-| ![首页](images/screenshots/home.jpg) | ![媒体库](images/screenshots/library.jpg) | ![每行数量设置](images/screenshots/columns.jpg) | ![竖屏播放](images/screenshots/player-portrait.jpg) |
+| ![首页](images/screenshots/home-v2.jpg) | ![媒体库](images/screenshots/library-v2.jpg) | ![每行数量设置](images/screenshots/columns-v2.jpg) | ![竖屏播放](images/screenshots/player-portrait-v2.jpg) |
 
 ### 横屏、码率、投屏与选集
 
 | 码率调整 | 横屏播放 | 投屏控制 | 选集与自动下一集 |
 |:---:|:---:|:---:|:---:|
-| ![码率调整](images/screenshots/quality.jpg) | ![横屏播放](images/screenshots/player.jpg) | ![投屏控制](images/screenshots/cast.jpg) | ![选集与自动下一集](images/screenshots/episodes.jpg) |
+| ![码率调整](images/screenshots/quality-v2.jpg) | ![横屏播放](images/screenshots/player-v2.jpg) | ![投屏控制](images/screenshots/cast-v2.jpg) | ![选集与自动下一集](images/screenshots/episodes-v2.jpg) |
 
 ## 功能
 

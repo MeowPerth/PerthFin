@@ -35,13 +35,13 @@ descriptively only.
 
 | Home | Library (3 per row) | Items per row | Portrait playback |
 |:---:|:---:|:---:|:---:|
-| ![Home](images/screenshots/home.jpg) | ![Library](images/screenshots/library.jpg) | ![Items per row](images/screenshots/columns.jpg) | ![Portrait playback](images/screenshots/player-portrait.jpg) |
+| ![Home](images/screenshots/home-v2.jpg) | ![Library](images/screenshots/library-v2.jpg) | ![Items per row](images/screenshots/columns-v2.jpg) | ![Portrait playback](images/screenshots/player-portrait-v2.jpg) |
 
 ### Landscape, bitrate, casting and episodes
 
 | Bitrate | Landscape playback | Cast controls | Episodes and auto-play |
 |:---:|:---:|:---:|:---:|
-| ![Bitrate selection](images/screenshots/quality.jpg) | ![Landscape playback](images/screenshots/player.jpg) | ![Cast controls](images/screenshots/cast.jpg) | ![Episodes and auto-play](images/screenshots/episodes.jpg) |
+| ![Bitrate selection](images/screenshots/quality-v2.jpg) | ![Landscape playback](images/screenshots/player-v2.jpg) | ![Cast controls](images/screenshots/cast-v2.jpg) | ![Episodes and auto-play](images/screenshots/episodes-v2.jpg) |
 
 ## Features
 
