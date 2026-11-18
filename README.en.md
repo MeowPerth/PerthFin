@@ -61,9 +61,7 @@ descriptively only.
 
 - Direct play or HLS transcode based on bitrate and format; presets 40/30/20/10/4/1.5 Mbps
 - ExoPlayer / libmpv, picture-in-picture, playback speed, chapters, intro/outro skipping, trickplay
-- Episode picker for the current season in both the local player and cast controls, with a numbered grid and current-episode highlight
-- "Auto-play next episode" switch at the top of the episode picker, synced with Settings → Player; disabling it stops automatic continuation
-- The episode button is shown only for episodic content, not movies or other single videos
+- Episode picker: available from both the local player and cast controls, limited to the current season and shown only for episodic content; movies and other single videos do not show it
 - Portrait/landscape playback, quick rotation and a "default to landscape" setting
 - Bottom bar: play/pause left, progress in the middle, time right; portrait time sits above the progress end
 - Centre play button while paused, hidden during playback
