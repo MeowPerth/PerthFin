@@ -39,4 +39,8 @@
     <string name="add_server_error_not_jellyfin">Bukan server Jellyfin: %1$s</string>
     <string name="add_server_error_outdated">Versi server usang: %1$s. Harap perbarui server Anda</string>
     <string name="add_server_error_slow">Server terlalu lambat untuk merespons: %1$s</string>
+    <string name="permission_btn_grant">Hibah</string>
+    <string name="permission_btn_not_now">Tidak sekarang</string>
+    <string name="permission_btn_open_settings">Buka pengaturan</string>
+    <string name="permission_permanently_denied">%1$s ditolak. Untuk menggunakannya, izinkan di pengaturan sistem.</string>
 </resources>

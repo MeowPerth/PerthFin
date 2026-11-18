@@ -109,4 +109,22 @@
     <string name="download_downloading">جاري التنزيل…</string>
     <string name="download_failed">فشل التنزيل</string>
     <string name="items_per_row">العناصر في الصف</string>
+    <string name="discard">تجاهل</string>
+    <string name="player_controls_orientation">تبديل الاتجاه</string>
+    <string name="copy">نسخ</string>
+    <string name="copied">منقول</string>
+    <string name="error_details">تفاصيل الخطأ</string>
+    <string name="back">العودة</string>
+    <string name="error_connection_title">لا يمكن الاتصال بالخادم</string>
+    <string name="error_connection_message">تحقق من اتصالك بالشبكة وعنوان خادم Jellyfin، ثم حاول مرة أخرى.</string>
+    <string name="error_auth_title">انتهت صلاحية تسجيل الدخول</string>
+    <string name="error_auth_message">قم بتسجيل الدخول إلى حساب Jellyfin الخاص بك مرة أخرى وأعد المحاولة.</string>
+    <string name="error_not_found_title">لم يتم العثور على عنوان الخادم</string>
+    <string name="error_not_found_message">تأكد من صحة عنوان خادم Jellyfin.</string>
+    <string name="error_server_title">خطأ في الخادم</string>
+    <string name="error_server_message">تعذر على خادم Jellyfin التعامل مع الطلب. حاول مرة أخرى لاحقًا.</string>
+    <string name="error_parse_title">استجابة الخادم غير صالحة</string>
+    <string name="error_parse_message">قام الخادم بإرجاع البيانات بتنسيق غير متوقع. تحقق من إصدار الخادم وعنوانه.</string>
+    <string name="error_unknown_message">حدث خطأ غير متوقع. افتح تفاصيل الخطأ لمزيد من المعلومات.</string>
+    <string name="app_name">PerthFin</string>
 </resources>

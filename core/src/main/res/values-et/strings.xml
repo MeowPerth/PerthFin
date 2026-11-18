@@ -108,4 +108,23 @@
     <string name="download_downloading">Allalaadimine…</string>
     <string name="download_failed">Allalaadimine nurjus</string>
     <string name="items_per_row">Üksusi reas</string>
+    <string name="discard">Visake ära</string>
+    <string name="temp">temp</string>
+    <string name="player_controls_orientation">Lülita orientatsiooni sisse</string>
+    <string name="copy">Kopeeri</string>
+    <string name="copied">Kopeeritud</string>
+    <string name="error_details">Vea üksikasjad</string>
+    <string name="back">Tagasi</string>
+    <string name="error_connection_title">Serveriga ei saa ühendust</string>
+    <string name="error_connection_message">Kontrollige oma võrguühendust ja Jellyfini serveri aadressi ning proovige uuesti.</string>
+    <string name="error_auth_title">Sisselogimine aegus</string>
+    <string name="error_auth_message">Logige uuesti sisse oma Jellyfini kontole ja proovige uuesti.</string>
+    <string name="error_not_found_title">Serveri aadressi ei leitud</string>
+    <string name="error_not_found_message">Kontrollige, kas Jellyfini serveri aadress on õige.</string>
+    <string name="error_server_title">Serveri viga</string>
+    <string name="error_server_message">Jellyfini server ei saanud päringut käsitleda. Proovige hiljem uuesti.</string>
+    <string name="error_parse_title">Vale serveri vastus</string>
+    <string name="error_parse_message">Server tagastas andmed ootamatus vormingus. Kontrollige serveri versiooni ja aadressi.</string>
+    <string name="error_unknown_message">Ilmnes ootamatu viga. Lisateabe saamiseks avage vea üksikasjad.</string>
+    <string name="app_name">PerthFin</string>
 </resources>

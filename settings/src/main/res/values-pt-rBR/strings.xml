@@ -101,8 +101,8 @@
     <string name="pref_player_media_segments_auto_skip_type">Tipo de segmento para pular automaticamente</string>
     <string name="pref_player_media_segments_next_episode_threshold">Limite para pular para o próximo episódio</string>
     <string name="edit_file_title">Editar %1$s</string>
-    <string name="pref_player_backend">Back-end do player</string>
-    <string name="mpv_options">opções do mpv</string>
+    <string name="pref_player_backend">Backend do player</string>
+    <string name="mpv_options">Opções do MPV</string>
     <string name="advanced">Avançado</string>
     <string name="discard_changes_dialog_title">Descartar alterações?</string>
     <string name="discard_changes_dialog_text">Você tem alterações não salvas.</string>
@@ -118,4 +118,70 @@
     <string name="quality_original">Original</string>
     <string name="player_default_landscape">Modo horizontal padrão</string>
     <string name="player_default_landscape_summary">Se desmarcado, usa a orientação da última reprodução</string>
+    <string name="settings_dlna_enabled_summary">Mostre o botão de transmissão no player e procure televisões na rede local.
+[[[SET_3]]]
+Tempo limite de descoberta</string>
+    <string name="settings_dlna_discovery_timeout_summary">Quanto tempo esperar que as televisões respondam. Aumente se sua TV estiver faltando na lista.
+[[[SET_5]]]
+Contêiner de transcodificação
+[[[SET_6]]]
+MPEG-TS é a escolha mais compatível e é usada por padrão. O MP4 pode falhar em algumas TVs (por exemplo, Xiaomi).
+[[[SET_7]]]
+MP4
+[[[SET_8]]]
+MPEG-TS (recomendado)
+[[[SET_9]]]
+40Mbps
+[[[SET_10]]]
+30Mbps
+[[[SET_11]]]
+20Mbps
+[[[SET_12]]]
+10Mbps
+[[[SET_13]]]
+4Mbps
+[[[SET_14]]]
+1,5Mbps
+[[[SET_15]]]
+Área de reprodução
+[[[SET_16]]]
+Modo de tela notch
+[[[SET_17]]]
+Quando ativado, os controles do player evitam o corte da tela. Quando desativados, os controles usam as bordas brutas da tela.</string>
+    <string name="app_name">PerthFin</string>
+    <string name="settings_dlna_discovery_timeout">Tempo limite de descoberta
+[[[SET_3]]]
+Contêiner de transcodificação</string>
+    <string name="settings_dlna_container_summary">MPEG-TS é a escolha mais compatível e é usada por padrão. O MP4 pode falhar em algumas TVs (por exemplo, Xiaomi).
+[[[SET_5]]]
+MP4
+[[[SET_6]]]
+MPEG-TS (recomendado)
+[[[SET_7]]]
+40Mbps
+[[[SET_8]]]
+30Mbps
+[[[SET_9]]]
+20Mbps</string>
+    <string name="quality_1_5">1,5Mbps
+[[[SET_3]]]
+Área de reprodução</string>
+    <string name="player_notch_mode">Modo de tela notch
+[[[SET_5]]]
+Quando ativado, os controles do player evitam o corte da tela. Quando desativados, os controles usam as bordas brutas da tela.</string>
+    <string name="settings_dlna">Transmissão DLNA</string>
+    <string name="settings_dlna_enabled">Ativar transmissão de DLNA</string>
+    <string name="settings_dlna_container">Contêiner de transcodificação</string>
+    <string name="settings_dlna_container_mp4">MP4</string>
+    <string name="settings_dlna_container_ts">MPEG-TS (recomendado)</string>
+    <string name="quality_40">40Mbps</string>
+    <string name="quality_30">30Mbps</string>
+    <string name="quality_20">20Mbps</string>
+    <string name="quality_10">10Mbps</string>
+    <string name="quality_4">4Mbps</string>
+    <string name="settings_category_playback_area">Área de reprodução</string>
+    <string name="player_notch_mode_summary">Quando ativado, os controles do player evitam o corte da tela. Quando desativados, os controles usam as bordas brutas da tela.</string>
+    <string name="player_settings">Configurações do player</string>
+    <string name="pref_auto_play_next">Reproduzir automaticamente o próximo episódio</string>
+    <string name="pref_auto_play_next_summary">Episódio: Reproduzir automaticamente o próximo episódio da temporada atual</string>
 </resources>

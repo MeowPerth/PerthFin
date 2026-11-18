@@ -136,4 +136,7 @@
     <string name="settings_category_playback_area">Playback area</string>
     <string name="player_notch_mode">Notch screen mode</string>
     <string name="player_notch_mode_summary">When enabled, player controls avoid the display cutout. When disabled, controls use the raw screen edges.</string>
+    <string name="player_settings">Player settings</string>
+    <string name="pref_auto_play_next">Auto-play next episode</string>
+    <string name="pref_auto_play_next_summary">Episode: Automatically play the next episode in the current season</string>
 </resources>

@@ -39,4 +39,8 @@
     <string name="welcome_text">Фіндроїд — це сторонній клієнт для Джелліфін. Сам по собі Фіндроїд не містить жодних медіафайлів.\n\nЩоб використовувати цей клієнт, вам потрібно розмістити власний сервер Джелліфін.</string>
     <string name="server_subtitle">Сервер: %s</string>
     <string name="remove_server_address_dialog_text">Ви впевнені, що ви хочете видалити адресу сервера %1$s</string>
+    <string name="permission_btn_grant">Грант</string>
+    <string name="permission_btn_not_now">Не зараз</string>
+    <string name="permission_btn_open_settings">Відкрийте налаштування</string>
+    <string name="permission_permanently_denied">%1$s було відхилено. Щоб використовувати його, дозвольте це в налаштуваннях системи.</string>
 </resources>

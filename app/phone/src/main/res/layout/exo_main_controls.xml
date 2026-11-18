@@ -142,6 +142,23 @@
                 android:orientation="horizontal">
 
                 <ImageButton
+                    android:id="@+id/btn_episodes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/transparent_circle_background"
+                    android:contentDescription="@string/episodes"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_logs"
+                    android:visibility="gone"
+                    app:tint="@android:color/white" />
+
+                <Space
+                    android:id="@+id/space_episodes"
+                    android:layout_width="16dp"
+                    android:layout_height="0dp"
+                    android:visibility="gone" />
+
+                <ImageButton
                     android:id="@+id/btn_cast"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

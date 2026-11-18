@@ -39,4 +39,8 @@
     <string name="add_server_address">Server adresini əlavə edin</string>
     <string name="remove_server_address">Server adresini silin</string>
     <string name="remove_server_address_dialog_text">%1$s adlı server adresini silmək istədiyinizə əminsinizmi</string>
+    <string name="permission_btn_grant">Qrant</string>
+    <string name="permission_btn_not_now">İndi yox</string>
+    <string name="permission_btn_open_settings">Parametrləri açın</string>
+    <string name="permission_permanently_denied">[[PH_0]]] rədd edildi. Onu istifadə etmək üçün sistem parametrlərində icazə verin.</string>
 </resources>

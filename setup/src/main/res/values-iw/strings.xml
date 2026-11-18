@@ -27,4 +27,20 @@
     <string name="add_server_address">הוסף כתובת שרת</string>
     <string name="remove_server_address">הסר כתובת שרת</string>
     <string name="remove_server_address_dialog_text">האם אתה בטוח שברצונך להסיר את כתובת השרת %1$s</string>
+    <string name="servers">שרתים</string>
+    <string name="servers_no_servers">לא נמצאו שרתים</string>
+    <string name="servers_btn_add_server">הוסף שרת</string>
+    <string name="welcome">ברוכים הבאים ל-PerthFin</string>
+    <string name="welcome_btn_continue">המשך</string>
+    <string name="welcome_btn_learn_more">למידע נוסף על Jellyfin</string>
+    <string name="welcome_text">PerthFin הוא לקוח צד שלישי עבור Jellyfin. PerthFin כשלעצמו אינו מכיל מדיה כלשהי.\n\nכדי להשתמש בלקוח זה, עליך לארח שרת Jellyfin משלך.</string>
+    <string name="permission_btn_grant">גרנט</string>
+    <string name="permission_btn_not_now">לא עכשיו</string>
+    <string name="permission_btn_open_settings">פתח את ההגדרות</string>
+    <string name="permission_permanently_denied">%1$s נדחה. כדי להשתמש בו, אפשר זאת בהגדרות המערכת.</string>
+    <string name="confirm">אשר</string>
+    <string name="cancel">בטל</string>
+    <string name="or">או</string>
+    <string name="server_subtitle">שרת: %s</string>
+    <string name="users_no_users">לא נמצאו משתמשים</string>
 </resources>

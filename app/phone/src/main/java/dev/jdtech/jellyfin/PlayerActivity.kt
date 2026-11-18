@@ -51,6 +51,7 @@ import dev.jdtech.jellyfin.player.local.presentation.PlayerEvents
 import dev.jdtech.jellyfin.player.local.presentation.PlayerViewModel
 import dev.jdtech.jellyfin.presentation.player.CastControls
 import dev.jdtech.jellyfin.presentation.player.CastDeviceSheet
+import dev.jdtech.jellyfin.presentation.player.EpisodeSelectionSheet
 import dev.jdtech.jellyfin.presentation.player.QualitySelectionDialogFragment
 import dev.jdtech.jellyfin.presentation.player.SpeedSelectionDialogFragment
 import dev.jdtech.jellyfin.presentation.player.TrackSelectionDialogFragment
@@ -79,6 +80,7 @@ class PlayerActivity : BasePlayerActivity() {
     private var isPlayerPortrait = false
     private var skipButtonTimeoutExpired: Boolean = true
     private var showCastPicker by mutableStateOf(false)
+    private var showEpisodePicker by mutableStateOf(false)
 
     private lateinit var skipSegmentButton: Button
     private lateinit var centerControls: View
@@ -145,6 +147,7 @@ class PlayerActivity : BasePlayerActivity() {
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
         setupCastUi()
+        setupEpisodeUi()
 
         binding.playerView.player = viewModel.player
         adjustPlayerControls(isPlayerPortrait)
@@ -213,6 +216,8 @@ class PlayerActivity : BasePlayerActivity() {
         val unlockButton = binding.playerView.findViewById<ImageButton>(R.id.btn_unlock)
         val orientationButton = binding.playerView.findViewById<ImageButton>(R.id.btn_orientation)
         val castButton = binding.playerView.findViewById<ImageButton>(R.id.btn_cast)
+        val episodeButton = binding.playerView.findViewById<ImageButton>(R.id.btn_episodes)
+        val episodeSpace = binding.playerView.findViewById<Space>(R.id.space_episodes)
         orientationButton.setOnClickListener {
             applyPlayerOrientation(
                 portrait = !isPlayerPortrait,
@@ -300,6 +305,13 @@ class PlayerActivity : BasePlayerActivity() {
                 }
 
                 launch {
+                    viewModel.isEpisodeContent.collect { isEpisode ->
+                        episodeButton.isVisible = isEpisode
+                        episodeSpace.isVisible = isEpisode
+                    }
+                }
+
+                launch {
                     viewModel.eventsChannelFlow.collect { event ->
                         when (event) {
                             is PlayerEvents.NavigateBack -> finishPlayback()
@@ -379,6 +391,11 @@ class PlayerActivity : BasePlayerActivity() {
             binding.castPicker.isVisible = true
         }
 
+        episodeButton.setOnClickListener {
+            showEpisodePicker = true
+            binding.episodePicker.isVisible = true
+        }
+
         if (isPipSupported) {
             pipButton.isEnabled = false
             pipButton.imageAlpha = 75
@@ -450,6 +467,7 @@ class PlayerActivity : BasePlayerActivity() {
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
+        if (isFinishing || isDestroyed) return
         setIntent(intent)
 
         val itemId = UUID.fromString(intent.extras!!.getString("itemId"))
@@ -481,6 +499,7 @@ class PlayerActivity : BasePlayerActivity() {
         binding.castControls.setContent {
             FindroidTheme(dynamicColor = appPreferences.getValue(appPreferences.dynamicColors)) {
                 val castState by viewModel.castState.collectAsStateWithLifecycle()
+                val isEpisodeContent by viewModel.isEpisodeContent.collectAsStateWithLifecycle()
                 if (castState.isActive || castState.status == CastStatus.ERROR) {
                     CastControls(
                         state = castState,
@@ -506,6 +525,11 @@ class PlayerActivity : BasePlayerActivity() {
                                 .show(supportFragmentManager, "cast_qualityselectiondialog")
                         },
                         notchModeEnabled = appPreferences.getValue(appPreferences.playerNotchMode),
+                        onEpisodes = {
+                            showEpisodePicker = true
+                            binding.episodePicker.isVisible = true
+                        },
+                        showEpisodes = isEpisodeContent,
                         onStop = {
                             showCastPicker = false
                             binding.castPicker.isVisible = false
@@ -528,6 +552,33 @@ class PlayerActivity : BasePlayerActivity() {
                             showCastPicker = false
                             binding.castPicker.isVisible = false
                             viewModel.castTo(device)
+                        },
+                    )
+                }
+            }
+        }
+    }
+
+    private fun setupEpisodeUi() {
+        binding.episodePicker.setContent {
+            FindroidTheme(dynamicColor = appPreferences.getValue(appPreferences.dynamicColors)) {
+                if (showEpisodePicker) {
+                    val episodes by viewModel.episodes.collectAsStateWithLifecycle()
+                    val currentEpisodeId by viewModel.currentEpisodeId.collectAsStateWithLifecycle()
+                    val autoPlayNext by viewModel.autoPlayNext.collectAsStateWithLifecycle()
+                    EpisodeSelectionSheet(
+                        episodes = episodes,
+                        currentEpisodeId = currentEpisodeId,
+                        autoPlayNext = autoPlayNext,
+                        onAutoPlayNextChange = viewModel::setAutoPlayNext,
+                        onSelect = {
+                            showEpisodePicker = false
+                            binding.episodePicker.isVisible = false
+                            viewModel.selectEpisode(it)
+                        },
+                        onDismiss = {
+                            showEpisodePicker = false
+                            binding.episodePicker.isVisible = false
                         },
                     )
                 }

@@ -48,4 +48,6 @@
     <string name="player_controls_skip_unknown">Skip</string>
     <string name="select_bitrate">Select bitrate</string>
     <string name="select_quality">Video quality</string>
+    <string name="episodes">Episodes</string>
+    <string name="auto_play_next">Auto-play next episode</string>
 </resources>

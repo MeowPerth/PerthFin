@@ -39,4 +39,8 @@
     <string name="cancel">İptal et</string>
     <string name="or">veya</string>
     <string name="server_subtitle">Sunucu:%s</string>
+    <string name="permission_btn_grant">Hibe</string>
+    <string name="permission_btn_not_now">Şimdi değil</string>
+    <string name="permission_btn_open_settings">Ayarları aç</string>
+    <string name="permission_permanently_denied">%1$s reddedildi. Kullanmak için sistem ayarlarında buna izin verin.</string>
 </resources>

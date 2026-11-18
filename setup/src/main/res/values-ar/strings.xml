@@ -39,4 +39,8 @@
     <string name="add_server_address">إضافة عنوان الخادم</string>
     <string name="remove_server_address">إزالة عنوان الخادم</string>
     <string name="remove_server_address_dialog_text">هل أنت متأكد من إزالة عنوان الخادم %1$s</string>
+    <string name="permission_btn_grant">جرانت</string>
+    <string name="permission_btn_not_now">ليس الآن</string>
+    <string name="permission_btn_open_settings">افتح الإعدادات</string>
+    <string name="permission_permanently_denied">تم رفض %1$s. لاستخدامه، قم بالسماح به في إعدادات النظام.</string>
 </resources>

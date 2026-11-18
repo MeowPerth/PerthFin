@@ -74,4 +74,104 @@
     <string name="quality_original">Eredeti</string>
     <string name="player_default_landscape">Alapértelmezett fekvő</string>
     <string name="player_default_landscape_summary">Ha nincs bejelölve, az utolsó lejátszási tájolás lesz használva</string>
+    <string name="settings_category_interface">Interfész</string>
+    <string name="settings_dlna">DLNA öntés</string>
+    <string name="settings_dlna_enabled">DLNA-casting engedélyezése</string>
+    <string name="settings_dlna_enabled_summary">Mutasd meg a Cast gombot a lejátszóban, és keress televíziókat a helyi hálózaton.</string>
+    <string name="settings_dlna_discovery_timeout">Felfedezési időtúllépés
+[[[SZEP_5]]]
+Mennyi ideig kell várni a televíziók válaszára. Növelje ezt, ha TV-je hiányzik a listáról.</string>
+    <string name="settings_dlna_container">Átkódoló tároló</string>
+    <string name="settings_dlna_container_summary">Az MPEG-TS a leginkább kompatibilis választás, és alapértelmezés szerint használatos. Előfordulhat, hogy az MP4 meghibásodik egyes tévéken (például a Xiaomi).</string>
+    <string name="settings_dlna_container_mp4">MP4
+[[[SZEP_9]]]
+MPEG-TS (ajánlott)</string>
+    <string name="settings_category_permissions">Engedélyek</string>
+    <string name="permission_local_network">Helyi hálózati hozzáférés</string>
+    <string name="permission_local_network_summary">Szükséges a helyi hálózat kiszolgálóinak megtalálásához és csatlakozásához</string>
+    <string name="permission_local_network_rationale">A PerthFinnek hozzá kell férnie a helyi hálózathoz, hogy megtalálja Jellyfin szerverét és csatlakozzon hozzá. A távoli szervereket ez nem érinti.</string>
+    <string name="permission_status_granted">Megadva
+[[[SZEP_15.]]]
+Megtagadva
+[[[SZEP_16]]]
+40 Mbps</string>
+    <string name="quality_30">30 Mbps</string>
+    <string name="quality_20">20 Mbps
+[[[SZEP_19.]]]
+10 Mbps
+[[[SZEP_20]]]
+4 Mbps
+[[[SZEP_21]]]
+1,5 Mbps</string>
+    <string name="users">Felhasználók</string>
+    <string name="home">Otthon</string>
+    <string name="home_suggestions">Javaslatok megjelenítése</string>
+    <string name="home_continue_watching">A kijelző tovább néz</string>
+    <string name="home_next_up">Következő megjelenítése</string>
+    <string name="home_latest">A legújabb elemek megjelenítése</string>
+    <string name="offline_mode_summary">Nézzen filmeket és sorozatokat anélkül, hogy csatlakozna a szerverhez</string>
+    <string name="mb">MB
+[[[SZEP_5]]]
+ms</string>
+    <string name="seconds">s</string>
+    <string name="save">Mentés</string>
+    <string name="cancel">Mégse
+[[[SZEP_9]]]
+Média szegmensek</string>
+    <string name="pref_player_media_segments_skip_button">Kihagyás gomb megjelenítése</string>
+    <string name="pref_player_media_segments_skip_button_summary">Biztosítson egy gombot az alkatrészek egyszerű kihagyásához</string>
+    <string name="pref_player_media_segments_skip_button_type">Szegmens típusa a kihagyás gomb megjelenítéséhez</string>
+    <string name="pref_player_media_segments_skip_button_duration">Kihagyás gomb megjelenítése ehhez</string>
+    <string name="pref_player_media_segments_auto_skip">Automatikus kihagyás
+[[[SZEP_15.]]]
+Automatikus kihagyás engedélyezése a kiválasztott szegmenstípusoknál
+[[[SZEP_16]]]
+Mikor kell automatikusan kihagyni</string>
+    <string name="pref_player_media_segments_auto_skip_type">Szegmens típusa az automatikus kihagyáshoz</string>
+    <string name="pref_player_media_segments_next_episode_threshold">Ugrás a következő epizód küszöbére
+[[[SZEP_19.]]]
+csak pip módban
+[[[SZEP_20]]]
+mindig
+[[[SZEP_21]]]
+Mások</string>
+    <string name="media_segments_type_commercial">Kereskedelmi</string>
+    <string name="media_segments_type_preview">Előnézet</string>
+    <string name="media_segments_type_recap">Összefoglaló</string>
+    <string name="media_segments_type_outro">Outro</string>
+    <string name="media_segments_type_intro">Intro</string>
+    <string name="none">Egyik sem</string>
+    <string name="edit_file_title">Szerkesztés %1$s</string>
+    <string name="pref_player_backend">Lejátszó háttérrendszere</string>
+    <string name="advanced">Haladó</string>
+    <string name="discard_changes_dialog_title">Elveti a változtatásokat?</string>
+    <string name="discard_changes_dialog_text">Nem mentett módosításai vannak.
+[[[SZEP_9]]]
+Lejátszási terület</string>
+    <string name="player_notch_mode">Bevágás képernyő mód</string>
+    <string name="player_notch_mode_summary">Ha engedélyezve van, a lejátszó kezelőszervei elkerülik a kijelző levágását. Ha le van tiltva, a vezérlők a nyers képernyő széleit használják.</string>
+    <string name="app_name">PerthFin</string>
+    <string name="settings_dlna_discovery_timeout_summary">Mennyi ideig kell várni a televíziók válaszára. Növelje ezt, ha TV-je hiányzik a listáról.</string>
+    <string name="settings_dlna_container_ts">MPEG-TS (ajánlott)</string>
+    <string name="permission_status_denied">Megtagadva</string>
+    <string name="quality_40">40 Mbps</string>
+    <string name="quality_10">10 Mbps
+[[[SZEP_5]]]
+4 Mbps</string>
+    <string name="quality_1_5">1,5 Mbps</string>
+    <string name="ms">ms</string>
+    <string name="media_segments">Média szegmensek
+[[[SZEP_9]]]
+Automatikus kihagyás engedélyezése a kiválasztott szegmenstípusoknál</string>
+    <string name="pref_player_media_segments_auto_skip_mode">Mikor kell automatikusan kihagyni</string>
+    <string name="media_segments_auto_skip_pip">csak pip módban</string>
+    <string name="media_segments_auto_skip_always">mindig</string>
+    <string name="media_segments_type_unknown">Mások</string>
+    <string name="mpv_options">MPV-beállítások</string>
+    <string name="quality_4">4 Mbps</string>
+    <string name="pref_player_media_segments_auto_skip_summary">Automatikus kihagyás engedélyezése a kiválasztott szegmenstípusoknál</string>
+    <string name="settings_category_playback_area">Lejátszási terület</string>
+    <string name="player_settings">Lejátszó beállításai</string>
+    <string name="pref_auto_play_next">Következő epizód automatikus lejátszása</string>
+    <string name="pref_auto_play_next_summary">Epizód: Az aktuális évad következő epizódjának automatikus lejátszása</string>
 </resources>

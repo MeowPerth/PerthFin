@@ -111,4 +111,19 @@
     <string name="download_failed">Failed to download</string>
     <string name="items_per_row">Items per row</string>
     <string name="player_controls_orientation">Toggle orientation</string>
+    <string name="copy">Copy</string>
+    <string name="copied">Copied</string>
+    <string name="error_details">Error details</string>
+    <string name="back">Back</string>
+    <string name="error_connection_title">Cannot connect to server</string>
+    <string name="error_connection_message">Check your network connection and Jellyfin server address, then try again.</string>
+    <string name="error_auth_title">Sign-in expired</string>
+    <string name="error_auth_message">Sign in to your Jellyfin account again and retry.</string>
+    <string name="error_not_found_title">Server address not found</string>
+    <string name="error_not_found_message">Check that the Jellyfin server address is correct.</string>
+    <string name="error_server_title">Server error</string>
+    <string name="error_server_message">The Jellyfin server could not handle the request. Try again later.</string>
+    <string name="error_parse_title">Invalid server response</string>
+    <string name="error_parse_message">The server returned data in an unexpected format. Check the server version and address.</string>
+    <string name="error_unknown_message">An unexpected error occurred. Open the error details for more information.</string>
 </resources>

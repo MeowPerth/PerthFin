@@ -109,4 +109,22 @@
     <string name="download_downloading">İndiriliyor…</string>
     <string name="download_failed">İndirme başarısız oldu</string>
     <string name="items_per_row">Satır başına öğe</string>
+    <string name="discard">At</string>
+    <string name="player_controls_orientation">Yönü değiştir</string>
+    <string name="copy">Kopyala</string>
+    <string name="copied">Kopyalandı</string>
+    <string name="error_details">Hata ayrıntıları</string>
+    <string name="back">Geri</string>
+    <string name="error_connection_title">Sunucuya bağlanılamıyor</string>
+    <string name="error_connection_message">Ağ bağlantınızı ve Jellyfin sunucu adresinizi kontrol edip tekrar deneyin.</string>
+    <string name="error_auth_title">Oturum açma süresi doldu</string>
+    <string name="error_auth_message">Jellyfin hesabınızda tekrar oturum açın ve tekrar deneyin.</string>
+    <string name="error_not_found_title">Sunucu adresi bulunamadı</string>
+    <string name="error_not_found_message">Jellyfin sunucu adresinin doğru olup olmadığını kontrol edin.</string>
+    <string name="error_server_title">Sunucu hatası</string>
+    <string name="error_server_message">Jellyfin sunucusu isteği yerine getiremedi. Daha sonra tekrar deneyin.</string>
+    <string name="error_parse_title">Geçersiz sunucu yanıtı</string>
+    <string name="error_parse_message">Sunucu, verileri beklenmeyen bir biçimde döndürdü. Sunucu sürümünü ve adresini kontrol edin.</string>
+    <string name="error_unknown_message">Beklenmeyen bir hata oluştu. Daha fazla bilgi için hata ayrıntılarını açın.</string>
+    <string name="app_name">PerthFin</string>
 </resources>

@@ -109,4 +109,22 @@
     <string name="download_downloading">Se descarcă…</string>
     <string name="download_failed">Descărcarea a eșuat</string>
     <string name="items_per_row">Elemente pe rând</string>
+    <string name="discard">Aruncă</string>
+    <string name="player_controls_orientation">Comutați orientarea</string>
+    <string name="copy">Copie</string>
+    <string name="copied">Copiat</string>
+    <string name="error_details">Detalii despre eroare</string>
+    <string name="back">Spate</string>
+    <string name="error_connection_title">Nu se poate conecta la server</string>
+    <string name="error_connection_message">Verificați conexiunea la rețea și adresa serverului Jellyfin, apoi încercați din nou.</string>
+    <string name="error_auth_title">Conectarea a expirat</string>
+    <string name="error_auth_message">Conectați-vă din nou la contul dvs. Jellyfin și încercați din nou.</string>
+    <string name="error_not_found_title">Adresa serverului nu a fost găsită</string>
+    <string name="error_not_found_message">Verificați dacă adresa serverului Jellyfin este corectă.</string>
+    <string name="error_server_title">Eroare de server</string>
+    <string name="error_server_message">Serverul Jellyfin nu a putut gestiona cererea. Încercați din nou mai târziu.</string>
+    <string name="error_parse_title">Răspuns server nevalid</string>
+    <string name="error_parse_message">Serverul a returnat date într-un format neașteptat. Verificați versiunea și adresa serverului.</string>
+    <string name="error_unknown_message">A apărut o eroare neașteptată. Deschideți detaliile erorii pentru mai multe informații.</string>
+    <string name="app_name">PerthFin</string>
 </resources>

@@ -27,7 +27,7 @@
         <activity
             android:name=".PlayerActivity"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|uiMode|keyboard|keyboardHidden|navigation"
-            android:launchMode="singleTask"
+            android:launchMode="singleTop"
             android:supportsPictureInPicture="true"
             android:autoRemoveFromRecents="true"
             android:theme="@style/Theme.PerthFin.Player" />

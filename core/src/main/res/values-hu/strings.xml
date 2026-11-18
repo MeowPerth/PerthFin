@@ -109,4 +109,30 @@
     <string name="download_downloading">Letöltés…</string>
     <string name="download_failed">Sikertelen letöltés</string>
     <string name="items_per_row">Elemek soronként</string>
+    <string name="discard">Eldobni</string>
+    <string name="player_controls_orientation">Tájolás váltása</string>
+    <string name="copy">Másolás</string>
+    <string name="copied">Másolva</string>
+    <string name="error_details">Hiba részletei
+[[[SZEP_5]]]
+Vissza</string>
+    <string name="error_connection_title">Nem lehet csatlakozni a szerverhez</string>
+    <string name="error_connection_message">Ellenőrizze a hálózati kapcsolatot és a Jellyfin szerver címét, majd próbálja újra.</string>
+    <string name="error_auth_title">A bejelentkezés lejárt
+[[[SZEP_9]]]
+Jelentkezzen be újra Jellyfin-fiókjába, és próbálkozzon újra.</string>
+    <string name="error_not_found_title">A szerver címe nem található</string>
+    <string name="error_not_found_message">Ellenőrizze, hogy a Jellyfin szerver címe helyes-e.</string>
+    <string name="error_server_title">Szerver hiba</string>
+    <string name="error_server_message">A Jellyfin szerver nem tudta kezelni a kérést. Próbálja újra később.</string>
+    <string name="error_parse_title">Érvénytelen szerver válasz
+[[[SZEP_15.]]]
+A szerver váratlan formátumban adott vissza adatokat. Ellenőrizze a szerver verzióját és címét.
+[[[SZEP_16]]]
+Váratlan hiba történt. További információkért nyissa meg a hiba részleteit.</string>
+    <string name="back">Vissza</string>
+    <string name="error_auth_message">Jelentkezzen be újra Jellyfin-fiókjába, és próbálkozzon újra.</string>
+    <string name="error_parse_message">A szerver váratlan formátumban adott vissza adatokat. Ellenőrizze a szerver verzióját és címét.</string>
+    <string name="error_unknown_message">Váratlan hiba történt. További információkért nyissa meg a hiba részleteit.</string>
+    <string name="app_name">PerthFin</string>
 </resources>

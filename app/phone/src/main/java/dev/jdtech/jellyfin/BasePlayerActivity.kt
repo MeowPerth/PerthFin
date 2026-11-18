@@ -10,6 +10,7 @@ import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.updatePadding
 import androidx.media3.session.MediaSession
 import dev.jdtech.jellyfin.player.local.presentation.PlayerViewModel
+import java.util.UUID
 
 abstract class BasePlayerActivity : AppCompatActivity() {
 
@@ -26,7 +27,13 @@ abstract class BasePlayerActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        mediaSession = MediaSession.Builder(this, viewModel.player).build()
+        if (::mediaSession.isInitialized) {
+            mediaSession.release()
+        }
+        // PlayerActivity can be recreated before the previous instance's onStop
+        // releases its session. A stable empty ID would then collide and crash.
+        mediaSession =
+            MediaSession.Builder(this, viewModel.player).setId(UUID.randomUUID().toString()).build()
     }
 
     override fun onResume() {

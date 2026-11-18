@@ -35,4 +35,12 @@
     <string name="welcome_btn_learn_more">Kom meer te weten over Jellyfin</string>
     <string name="confirm">Bevestigen</string>
     <string name="cancel">Annuleren</string>
+    <string name="servers">Servers</string>
+    <string name="welcome_text">PerthFin is een externe klant voor Jellyfin. PerthFin bevat zelf geen media.\n\nOm deze client te kunnen gebruiken, moet u uw eigen Jellyfin-server hosten.</string>
+    <string name="permission_btn_grant">Verleen</string>
+    <string name="permission_btn_not_now">Niet nu</string>
+    <string name="permission_btn_open_settings">Instellingen openen</string>
+    <string name="permission_permanently_denied">%1$s is geweigerd. Om het te gebruiken, moet u het toestaan ​​in de systeeminstellingen.</string>
+    <string name="or">OF</string>
+    <string name="server_subtitle">Server: %s</string>
 </resources>

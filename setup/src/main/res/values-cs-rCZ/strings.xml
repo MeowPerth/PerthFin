@@ -28,4 +28,19 @@
     <string name="add_address">Přidat adresu</string>
     <string name="remove_server_address">Odebrat adresu serveru</string>
     <string name="cancel">Zrušit</string>
+    <string name="servers">servery</string>
+    <string name="servers_no_servers">Nebyly nalezeny žádné servery</string>
+    <string name="servers_btn_add_server">Přidat server</string>
+    <string name="welcome">Vítejte v PerthFin</string>
+    <string name="welcome_btn_continue">Pokračovat</string>
+    <string name="welcome_btn_learn_more">Další informace o Jellyfin</string>
+    <string name="welcome_text">PerthFin je klient třetí strany pro Jellyfin. PerthFin sám o sobě neobsahuje žádná média.\n\nAbyste mohli tohoto klienta používat, musíte hostit svůj vlastní server Jellyfin.</string>
+    <string name="permission_btn_grant">Grant</string>
+    <string name="permission_btn_not_now">Teď ne</string>
+    <string name="permission_btn_open_settings">Otevřete nastavení</string>
+    <string name="permission_permanently_denied">%1$s bylo zamítnuto. Chcete-li jej používat, povolte jej v nastavení systému.</string>
+    <string name="confirm">Potvrďte</string>
+    <string name="or">NEBO</string>
+    <string name="server_subtitle">Server: %s</string>
+    <string name="users_no_users">Nebyli nalezeni žádní uživatelé</string>
 </resources>

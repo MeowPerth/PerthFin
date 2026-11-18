@@ -110,4 +110,59 @@
     <string name="download_downloading">Baixando…</string>
     <string name="download_failed">Falha ao descarregar</string>
     <string name="items_per_row">Itens por linha</string>
+    <string name="copied">Copiado
+[[[SET_3]]]
+Detalhes do erro</string>
+    <string name="back">Voltar
+[[[SET_5]]]
+Não é possível conectar ao servidor
+[[[SET_6]]]
+Verifique sua conexão de rede e o endereço do servidor Jellyfin e tente novamente.
+[[[SET_7]]]
+O login expirou
+[[[SET_8]]]
+Faça login em sua conta Jellyfin novamente e tente novamente.
+[[[SET_9]]]
+Endereço do servidor não encontrado
+[[[SET_10]]]
+Verifique se o endereço do servidor Jellyfin está correto.
+[[[SET_11]]]
+Erro no servidor
+[[[SET_12]]]
+O servidor Jellyfin não conseguiu processar a solicitação. Tente novamente mais tarde.
+[[[SET_13]]]
+Resposta do servidor inválida
+[[[SET_14]]]
+O servidor retornou dados em um formato inesperado. Verifique a versão e o endereço do servidor.
+[[[SET_15]]]
+Ocorreu um erro inesperado. Abra os detalhes do erro para obter mais informações.</string>
+    <string name="error_details">Detalhes do erro
+[[[SET_3]]]
+Não é possível conectar ao servidor</string>
+    <string name="error_connection_message">Verifique sua conexão de rede e o endereço do servidor Jellyfin e tente novamente.
+[[[SET_5]]]
+O login expirou
+[[[SET_6]]]
+Faça login em sua conta Jellyfin novamente e tente novamente.
+[[[SET_7]]]
+Endereço do servidor não encontrado
+[[[SET_8]]]
+Verifique se o endereço do servidor Jellyfin está correto.
+[[[SET_9]]]
+Erro no servidor</string>
+    <string name="error_parse_message">O servidor retornou dados em um formato inesperado. Verifique a versão e o endereço do servidor.
+[[[SET_3]]]
+Ocorreu um erro inesperado. Abra os detalhes do erro para obter mais informações.</string>
+    <string name="player_controls_orientation">Alternar orientação</string>
+    <string name="copy">Cópia</string>
+    <string name="error_connection_title">Não é possível conectar ao servidor</string>
+    <string name="error_auth_title">O login expirou</string>
+    <string name="error_auth_message">Faça login em sua conta Jellyfin novamente e tente novamente.</string>
+    <string name="error_not_found_title">Endereço do servidor não encontrado</string>
+    <string name="error_not_found_message">Verifique se o endereço do servidor Jellyfin está correto.</string>
+    <string name="error_server_title">Erro no servidor</string>
+    <string name="error_server_message">O servidor Jellyfin não conseguiu processar a solicitação. Tente novamente mais tarde.</string>
+    <string name="error_parse_title">Resposta do servidor inválida</string>
+    <string name="error_unknown_message">Ocorreu um erro inesperado. Abra os detalhes do erro para obter mais informações.</string>
+    <string name="app_name">PerthFin</string>
 </resources>

@@ -123,4 +123,20 @@
     <string name="settings_category_playback_area">播放区域设置</string>
     <string name="player_notch_mode">刘海屏模式</string>
     <string name="player_notch_mode_summary">开启后播放器控件避开屏幕刘海/挖孔并计算安全区；关闭后按屏幕原始边缘布局。</string>
+    <string name="settings_category_permissions">权限</string>
+    <string name="permission_local_network">本地网络访问</string>
+    <string name="permission_local_network_summary">需要查找并连接到本地网络上的服务器</string>
+    <string name="permission_local_network_rationale">PerthFin 需要访问您的本地网络才能查找并连接到您的 Jellyfin 服务器。远程服务器不受影响。</string>
+    <string name="permission_status_granted">授予</string>
+    <string name="permission_status_denied">被拒绝</string>
+    <string name="quality_30">30Mbps</string>
+    <string name="edit_file_title">编辑 %1$s</string>
+    <string name="pref_player_backend">播放器后端</string>
+    <string name="mpv_options">MPV 选项</string>
+    <string name="advanced">高级</string>
+    <string name="discard_changes_dialog_title">放弃更改？</string>
+    <string name="discard_changes_dialog_text">您有未保存的更改。</string>
+    <string name="player_settings">播放器设置</string>
+    <string name="pref_auto_play_next">自动播放下一集</string>
+    <string name="pref_auto_play_next_summary">剧集：当前季播放结束后自动播放下一集</string>
 </resources>

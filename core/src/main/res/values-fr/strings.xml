@@ -109,4 +109,22 @@
     <string name="download_downloading">Téléchargement…</string>
     <string name="download_failed">Échec du téléchargement</string>
     <string name="items_per_row">Éléments par ligne</string>
+    <string name="discard">Jeter</string>
+    <string name="player_controls_orientation">Basculer l\'orientation</string>
+    <string name="copy">Copier</string>
+    <string name="copied">Copié</string>
+    <string name="error_details">Détails de l\'erreur</string>
+    <string name="back">Retour</string>
+    <string name="error_connection_title">Impossible de se connecter au serveur</string>
+    <string name="error_connection_message">Vérifiez votre connexion réseau et l\'adresse du serveur Jellyfin, puis réessayez.</string>
+    <string name="error_auth_title">Connexion expirée</string>
+    <string name="error_auth_message">Connectez-vous à nouveau à votre compte Jellyfin et réessayez.</string>
+    <string name="error_not_found_title">Adresse du serveur introuvable</string>
+    <string name="error_not_found_message">Vérifiez que l\'adresse du serveur Jellyfin est correcte.</string>
+    <string name="error_server_title">Erreur de serveur</string>
+    <string name="error_server_message">Le serveur Jellyfin n\'a pas pu traiter la demande. Réessayez plus tard.</string>
+    <string name="error_parse_title">Réponse du serveur invalide</string>
+    <string name="error_parse_message">Le serveur a renvoyé les données dans un format inattendu. Vérifiez la version et l\'adresse du serveur.</string>
+    <string name="error_unknown_message">Une erreur inattendue s\'est produite. Ouvrez les détails de l\'erreur pour plus d\'informations.</string>
+    <string name="app_name">PerthFin</string>
 </resources>

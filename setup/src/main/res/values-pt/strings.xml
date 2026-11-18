@@ -30,4 +30,48 @@
     <string name="add_server_address">Adicionar endereço do servidor</string>
     <string name="addresses">Endereços</string>
     <string name="cancel">Cancelar</string>
+    <string name="welcome">Bem-vindo à PerthFin
+[[[SET_3]]]
+Continuar</string>
+    <string name="welcome_btn_learn_more">Saiba mais sobre Jellyfin
+[[[SET_5]]]
+PerthFin é um cliente terceirizado da Jellyfin. O PerthFin por si só não contém nenhuma mídia.\n\nPara usar este cliente, você precisa hospedar seu próprio servidor Jellyfin.
+[[[SET_6]]]
+Conceder
+[[[SET_7]]]
+Agora não
+[[[SET_8]]]
+Abrir configurações
+[[[SET_9]]]
+[[[PH_0]]] foi negado. Para usá-lo, permita-o nas configurações do sistema.
+[[[SET_10]]]
+Confirmar
+[[[SET_11]]]
+OU
+[[[SET_12]]]
+Servidor: [[[PH_0]]]</string>
+    <string name="app_name">PerthFin</string>
+    <string name="welcome_btn_continue">Continuar
+[[[SET_3]]]
+PerthFin é um cliente terceirizado da Jellyfin. O PerthFin por si só não contém nenhuma mídia.\n\nPara usar este cliente, você precisa hospedar seu próprio servidor Jellyfin.</string>
+    <string name="permission_btn_grant">Conceder
+[[[SET_5]]]
+Agora não
+[[[SET_6]]]
+Abrir configurações
+[[[SET_7]]]
+[[[PH_0]]] foi negado. Para usá-lo, permita-o nas configurações do sistema.
+[[[SET_8]]]
+Confirmar
+[[[SET_9]]]
+OU</string>
+    <string name="servers">Servidores</string>
+    <string name="servers_btn_add_server">Adicionar servidor</string>
+    <string name="welcome_text">PerthFin é um cliente terceirizado da Jellyfin. O PerthFin por si só não contém nenhuma mídia.\n\nPara usar este cliente, você precisa hospedar seu próprio servidor Jellyfin.</string>
+    <string name="permission_btn_not_now">Agora não</string>
+    <string name="permission_btn_open_settings">Abrir configurações</string>
+    <string name="permission_permanently_denied">%1$s foi negado. Para usá-lo, permita-o nas configurações do sistema.</string>
+    <string name="confirm">Confirmar</string>
+    <string name="or">OU</string>
+    <string name="server_subtitle">Servidor: %s</string>
 </resources>

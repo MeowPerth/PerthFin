@@ -39,4 +39,8 @@
     <string name="cancel">取消</string>
     <string name="or">或</string>
     <string name="server_subtitle">服务器：%s</string>
+    <string name="permission_btn_grant">格兰特</string>
+    <string name="permission_btn_not_now">现在不行</string>
+    <string name="permission_btn_open_settings">打开设置</string>
+    <string name="permission_permanently_denied">%1$s 被拒绝。要使用它，请在系统设置中允许它。</string>
 </resources>

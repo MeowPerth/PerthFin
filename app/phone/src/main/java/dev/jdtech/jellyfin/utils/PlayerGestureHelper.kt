@@ -356,6 +356,9 @@ class PlayerGestureHelper(
                         if (!swipeGestureVolumeOpen) {
                             swipeGestureValueTrackerVolume =
                                 audioManager.getStreamVolume(AudioManager.STREAM_MUSIC).toFloat()
+                            // Mark the gesture active before changing system volume so the
+                            // ContentObserver doesn't reset our fractional accumulator.
+                            swipeGestureVolumeOpen = true
                         }
                         val change = ratioChange * maxVolume
                         swipeGestureValueTrackerVolume =
@@ -373,8 +376,6 @@ class PlayerGestureHelper(
                             volume = swipeGestureValueTrackerVolume.toInt(),
                             show = true,
                         )
-
-                        swipeGestureVolumeOpen = true
                     } else {
                         // Swiping on the left, change brightness
                         val window = activity.window
@@ -427,6 +428,7 @@ class PlayerGestureHelper(
 
     /** Keep the gesture volume bar in sync with hardware volume keys. */
     private fun syncVolumeFromSystem() {
+        if (swipeGestureVolumeOpen) return
         updateVolumeIndicator(
             volume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC),
             show = false,
@@ -436,7 +438,9 @@ class PlayerGestureHelper(
     private fun updateVolumeIndicator(volume: Int, show: Boolean) {
         val maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC).coerceAtLeast(1)
         val clampedVolume = volume.coerceIn(0, maxVolume)
-        swipeGestureValueTrackerVolume = clampedVolume.toFloat()
+        if (!show) {
+            swipeGestureValueTrackerVolume = clampedVolume.toFloat()
+        }
 
         if (show) {
             activity.binding.gestureVolumeLayout.visibility = View.VISIBLE

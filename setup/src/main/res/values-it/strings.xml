@@ -39,4 +39,8 @@
     <string name="confirm">Conferma</string>
     <string name="or">O</string>
     <string name="server_subtitle">Server: %s</string>
+    <string name="permission_btn_grant">Concedere</string>
+    <string name="permission_btn_not_now">Non ora</string>
+    <string name="permission_btn_open_settings">Apri le impostazioni</string>
+    <string name="permission_permanently_denied">%1$s è stato negato. Per usarlo, consentilo nelle impostazioni di sistema.</string>
 </resources>

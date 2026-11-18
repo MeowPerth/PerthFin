@@ -29,4 +29,23 @@
     <string name="add_server_address">Szerver címének hozzáadása</string>
     <string name="remove_server_address">Szerver címének eltávolítása</string>
     <string name="remove_server_address_dialog_text">Biztosan el akarod távolítani a %1$s szervert</string>
+    <string name="servers">Szerverek</string>
+    <string name="servers_btn_add_server">Szerver hozzáadása</string>
+    <string name="welcome">Üdvözöljük a PerthFinben</string>
+    <string name="welcome_btn_continue">Folytatás</string>
+    <string name="welcome_btn_learn_more">Tudjon meg többet a Jellyfinről
+[[[SZEP_5]]]
+A PerthFin a Jellyfin harmadik fél kliense. A PerthFin önmagában nem tartalmaz médiát.\n\nA kliens használatához saját Jellyfin szervert kell tárolnia.</string>
+    <string name="permission_btn_grant">Grant</string>
+    <string name="permission_btn_not_now">Most nem</string>
+    <string name="permission_btn_open_settings">Nyissa meg a beállításokat
+[[[SZEP_9]]]
+[[[PH_0]]] elutasítva. Használatához engedélyezze a rendszerbeállításokban.</string>
+    <string name="confirm">Erősítse meg</string>
+    <string name="cancel">Mégse</string>
+    <string name="or">VAGY</string>
+    <string name="server_subtitle">Szerver: %s</string>
+    <string name="app_name">PerthFin</string>
+    <string name="welcome_text">A PerthFin a Jellyfin harmadik fél kliense. A PerthFin önmagában nem tartalmaz médiát.\n\nA kliens használatához saját Jellyfin szervert kell tárolnia.</string>
+    <string name="permission_permanently_denied">%1$s elutasítva. Használatához engedélyezze a rendszerbeállításokban.</string>
 </resources>

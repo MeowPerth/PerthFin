@@ -28,4 +28,19 @@
     <string name="remove_server_address">Удалить адрес сервера</string>
     <string name="remove_server_address_dialog_text">Вы уверены, что хотите удалить адрес %1$s</string>
     <string name="cancel">Отмена</string>
+    <string name="servers">Серверы</string>
+    <string name="servers_no_servers">Серверы не найдены</string>
+    <string name="servers_btn_add_server">Добавить сервер</string>
+    <string name="welcome">Добро пожаловать в ПертФин</string>
+    <string name="welcome_btn_continue">Продолжить</string>
+    <string name="welcome_btn_learn_more">Узнайте больше о Джеллифине</string>
+    <string name="welcome_text">PerthFin — сторонний клиент Jellyfin. PerthFin сам по себе не содержит никаких носителей.\n\nЧтобы использовать этот клиент, вам необходимо разместить собственный сервер Jellyfin.</string>
+    <string name="permission_btn_grant">Грант</string>
+    <string name="permission_btn_not_now">Не сейчас</string>
+    <string name="permission_btn_open_settings">Открыть настройки</string>
+    <string name="permission_permanently_denied">%1$s было отклонено. Чтобы использовать его, разрешите его в настройках системы.</string>
+    <string name="confirm">Подтвердить</string>
+    <string name="or">ИЛИ</string>
+    <string name="server_subtitle">Сервер: %s</string>
+    <string name="users_no_users">Пользователи не найдены</string>
 </resources>

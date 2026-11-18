@@ -25,4 +25,81 @@
     <string name="player_controls_skip_unknown">Saltar</string>
     <string name="select_bitrate">Selecionar taxa de bits</string>
     <string name="select_quality">Qualidade de vídeo</string>
+    <string name="cast_searching">Procurando TVs na sua rede…
+[[[SET_3]]]
+Nenhuma TV DLNA encontrada</string>
+    <string name="cast_no_devices_summary">Certifique-se de que a TV esteja na mesma rede Wi-Fi e tenha DLNA/UPnP ativado.
+[[[SET_5]]]
+Pesquise novamente
+[[[SET_6]]]
+Pare de transmitir
+[[[SET_7]]]
+Sair da transmissão
+[[[SET_8]]]
+Elenco em andamento
+[[[SET_9]]]
+Atualmente transmitindo “[[[PH_0]]]” em [[[PH_1]]]. Em vez disso, transmitir o novo vídeo para a TV?
+[[[SET_10]]]
+Vídeo desconhecido
+[[[SET_11]]]
+televisão
+[[[SET_12]]]
+Transmitir novo vídeo
+[[[SET_13]]]
+Não
+[[[SET_14]]]
+Jogando em [[[PH_0]]]
+[[[SET_15]]]
+Conectando a [[[PH_0]]]…
+[[[SET_16]]]
+Falha na transmissão
+[[[SET_17]]]
+Falha ao pesquisar TVs
+[[[SET_18]]]
+Procure na TV
+[[[SET_19]]]
+Fundição</string>
+    <string name="cast_status_paused">Pausado na TV</string>
+    <string name="cast_stop_and_play_here">Pare de transmitir e jogue aqui</string>
+    <string name="cast_unreachable">Este endereço Jellyfin não pode ser acessado pela TV. Use um endereço de servidor disponível na rede local. A retransmissão do lado do aplicativo ainda não é compatível.</string>
+    <string name="cast_no_playback">A TV não iniciou a reprodução. Verifique se ele consegue acessar o servidor Jellyfin.</string>
+    <string name="app_name">PerthFin</string>
+    <string name="cast_no_devices">Nenhuma TV DLNA encontrada
+[[[SET_3]]]
+Pesquise novamente</string>
+    <string name="cast_stop">Pare de transmitir
+[[[SET_5]]]
+Sair da transmissão
+[[[SET_6]]]
+Elenco em andamento
+[[[SET_7]]]
+Atualmente transmitindo “[[[PH_0]]]” em [[[PH_1]]]. Em vez disso, transmitir o novo vídeo para a TV?
+[[[SET_8]]]
+Vídeo desconhecido
+[[[SET_9]]]
+televisão</string>
+    <string name="cast_playing_on">Jogando em %1$s
+[[[SET_3]]]
+Conectando a %1$s…</string>
+    <string name="cast_error">Falha na transmissão
+[[[SET_5]]]
+Falha ao pesquisar TVs
+[[[SET_6]]]
+Procure na TV
+[[[SET_7]]]
+Fundição</string>
+    <string name="player_controls_cast">Transmitir para TV</string>
+    <string name="cast_to_tv">Transmitir para TV</string>
+    <string name="cast_retry">Pesquise novamente</string>
+    <string name="cast_exit">Sair da transmissão</string>
+    <string name="cast_switch_title">Elenco em andamento</string>
+    <string name="cast_switch_message">Atualmente transmitindo “%1$s” em %2$s. Em vez disso, transmitir o novo vídeo para a TV?</string>
+    <string name="cast_switch_unknown_title">Vídeo desconhecido</string>
+    <string name="cast_switch_unknown_device">TV</string>
+    <string name="cast_switch_confirm">Transmitir novo vídeo</string>
+    <string name="cast_switch_cancel">Não</string>
+    <string name="cast_connecting">Conectando a %1$s…</string>
+    <string name="cast_search_failed">Falha ao pesquisar TVs</string>
+    <string name="cast_seek">Procure na TV</string>
+    <string name="cast_status_playing">Fundição</string>
 </resources>

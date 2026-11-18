@@ -108,7 +108,7 @@
     <string name="media_segments_type_intro">오프닝</string>
     <string name="edit_file_title">%1$s 편집</string>
     <string name="pref_player_backend">플레이어 백엔드</string>
-    <string name="mpv_options">mpv 옵션</string>
+    <string name="mpv_options">MPV 옵션</string>
     <string name="advanced">고급</string>
     <string name="discard_changes_dialog_title">변경 사항을 버리시겠습니까?</string>
     <string name="discard_changes_dialog_text">저장하지 않은 변경 사항이 있습니다.</string>
@@ -118,4 +118,25 @@
     <string name="quality_original">원본</string>
     <string name="player_default_landscape">기본 가로 모드</string>
     <string name="player_default_landscape_summary">선택하지 않으면 마지막 재생 방향을 사용합니다</string>
+    <string name="settings_dlna">DLNA 캐스팅</string>
+    <string name="settings_dlna_enabled">DLNA 캐스팅 활성화</string>
+    <string name="settings_dlna_enabled_summary">플레이어에 전송 버튼을 표시하고 로컬 네트워크에서 TV를 검색합니다.</string>
+    <string name="settings_dlna_discovery_timeout">검색 시간 초과</string>
+    <string name="settings_dlna_discovery_timeout_summary">텔레비전이 응답할 때까지 기다리는 시간. 목록에서 TV가 누락된 경우 이 값을 늘리세요.</string>
+    <string name="settings_dlna_container">트랜스코드 컨테이너</string>
+    <string name="settings_dlna_container_summary">MPEG-TS는 가장 호환되는 선택이며 기본적으로 사용됩니다. 일부 TV(예: Xiaomi)에서는 MP4가 작동하지 않을 수 있습니다.</string>
+    <string name="settings_dlna_container_mp4">MP4</string>
+    <string name="settings_dlna_container_ts">MPEG-TS(권장)</string>
+    <string name="quality_40">40Mbps</string>
+    <string name="quality_30">30Mbps</string>
+    <string name="quality_20">20Mbps</string>
+    <string name="quality_10">10Mbps</string>
+    <string name="quality_4">4Mbps</string>
+    <string name="quality_1_5">1.5Mbps</string>
+    <string name="settings_category_playback_area">재생 영역</string>
+    <string name="player_notch_mode">노치 화면 모드</string>
+    <string name="player_notch_mode_summary">활성화되면 플레이어 컨트롤이 디스플레이 컷아웃을 방지합니다. 비활성화되면 컨트롤은 원시 화면 가장자리를 사용합니다.</string>
+    <string name="player_settings">플레이어 설정</string>
+    <string name="pref_auto_play_next">다음 에피소드 자동 재생</string>
+    <string name="pref_auto_play_next_summary">에피소드: 현재 시즌의 다음 에피소드 자동 재생</string>
 </resources>

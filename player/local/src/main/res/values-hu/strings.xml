@@ -19,4 +19,51 @@
     <string name="none">Nincs</string>
     <string name="select_bitrate">Bitráta kiválasztása</string>
     <string name="select_quality">Videóminőség</string>
+    <string name="player_controls_cast">Cast to TV</string>
+    <string name="cast_to_tv">Cast to TV</string>
+    <string name="cast_searching">Tévék keresése a hálózaton…</string>
+    <string name="cast_no_devices">No DLNA TVs found</string>
+    <string name="cast_no_devices_summary">Győződjön meg arról, hogy a TV ugyanazon a Wi-Fi hálózaton van, és engedélyezve van a DLNA/UPnP.
+[[[SZEP_5]]]
+Search again</string>
+    <string name="cast_stop">Stop casting</string>
+    <string name="cast_exit">Exit casting</string>
+    <string name="cast_switch_title">Casting in progress
+[[[SZEP_9]]]
+Jelenleg a „[[[PH_0]]]” átküldése a következőn: [[[PH_1]]]. Inkább átküldi az új videót a tévére?</string>
+    <string name="cast_switch_unknown_title">Unknown video</string>
+    <string name="cast_switch_unknown_device">TV</string>
+    <string name="cast_switch_confirm">Cast new video</string>
+    <string name="cast_switch_cancel">Nem</string>
+    <string name="cast_playing_on">Playing on %1$s
+[[[SZEP_15.]]]
+Csatlakozás a következőhöz: %1$s…
+[[[SZEP_16]]]
+Cast failed</string>
+    <string name="cast_search_failed">Failed to search for TVs</string>
+    <string name="cast_seek">Seek on TV
+[[[SZEP_19.]]]
+Casting
+[[[SZEP_20]]]
+Paused on TV
+[[[SZEP_21]]]
+Hagyja abba az átküldést, és játsszon itt</string>
+    <string name="cast_unreachable">Ezt a Jellyfin címet a TV nem tudja elérni. Használjon a helyi hálózaton elérhető szervercímet. Az alkalmazásoldali relé még nem támogatott.</string>
+    <string name="cast_no_playback">A TV nem indította el a lejátszást. Ellenőrizze, hogy el tudja-e érni a Jellyfin szervert.</string>
+    <string name="player_controls_skip_outro">Skip outro</string>
+    <string name="player_controls_next_episode">Következő epizód</string>
+    <string name="player_controls_skip_recap">Összefoglaló kihagyása</string>
+    <string name="player_controls_skip_preview">Előnézet kihagyása</string>
+    <string name="player_controls_skip_commercial">Reklám kihagyása</string>
+    <string name="player_controls_skip_unknown">Kihagyás</string>
+    <string name="app_name">PerthFin</string>
+    <string name="cast_retry">Keresés újra</string>
+    <string name="cast_switch_message">Jelenleg a „%1$s” átküldése a következőn: %2$s. Inkább átküldi az új videót a tévére?</string>
+    <string name="cast_connecting">Csatlakozás a következőhöz: %1$s…</string>
+    <string name="cast_error">A szereposztás nem sikerült</string>
+    <string name="cast_status_playing">Öntés
+[[[SZEP_5]]]
+A tévében szünetel</string>
+    <string name="cast_stop_and_play_here">Hagyja abba az átküldést, és játsszon itt</string>
+    <string name="cast_status_paused">A tévében szünetel</string>
 </resources>

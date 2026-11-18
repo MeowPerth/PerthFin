@@ -109,4 +109,28 @@
     <string name="episode_number">Episode %1$d</string>
     <string name="track_selection">[%1$s] %2$s (%3$s)</string>
     <string name="items_per_row">Item per baris</string>
+    <string name="discard">Buang</string>
+    <string name="player_controls_orientation">Alihkan orientasi</string>
+    <string name="copy">Salin</string>
+    <string name="copied">Disalin</string>
+    <string name="error_details">Detail kesalahan</string>
+    <string name="back">Kembali</string>
+    <string name="error_connection_title">Tidak dapat terhubung ke server</string>
+    <string name="error_connection_message">Periksa koneksi jaringan dan alamat server Jellyfin Anda, lalu coba lagi.</string>
+    <string name="error_auth_title">Masa masuk sudah habis</string>
+    <string name="error_auth_message">Masuk ke akun Jellyfin Anda lagi dan coba lagi.</string>
+    <string name="error_not_found_title">Alamat server tidak ditemukan</string>
+    <string name="error_not_found_message">Periksa apakah alamat server Jellyfin sudah benar.</string>
+    <string name="error_server_title">Kesalahan server</string>
+    <string name="error_server_message">Server Jellyfin tidak dapat menangani permintaan tersebut. Coba lagi nanti.
+[[[14 September]]]
+Respons server tidak valid
+[[[15 September]]]
+Server mengembalikan data dalam format yang tidak terduga. Periksa versi dan alamat server.
+[[[16 September]]]
+Terjadi kesalahan yang tidak terduga. Buka detail kesalahan untuk informasi lebih lanjut.</string>
+    <string name="error_parse_title">Respons server tidak valid</string>
+    <string name="error_parse_message">Server mengembalikan data dalam format yang tidak terduga. Periksa versi dan alamat server.</string>
+    <string name="error_unknown_message">Terjadi kesalahan yang tidak terduga. Buka detail kesalahan untuk informasi lebih lanjut.</string>
+    <string name="app_name">PerthFin</string>
 </resources>

@@ -1,6 +1,7 @@
 package dev.jdtech.jellyfin.repository
 
 import android.content.Context
+import android.media.MediaCodecList
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
@@ -317,12 +318,37 @@ class JellyfinRepositoryImpl(
             val directProfiles = localDirectPlayProfiles(backend)
             val subtitleProfiles = localSubtitleProfiles(backend)
 
-            fun profile(allowDirect: Boolean): DeviceProfile =
+            fun profile(
+                allowDirect: Boolean,
+                transcodeMaxHeight: Int? = null,
+            ): DeviceProfile =
                 DeviceProfile(
                     name = "PerthFin $backend ${cap / 1_000_000}Mbps",
                     maxStaticBitrate = cap,
                     maxStreamingBitrate = cap,
-                    codecProfiles = emptyList(),
+                    codecProfiles =
+                        if (transcodeMaxHeight != null) {
+                            listOf(
+                                CodecProfile(
+                                    type = CodecType.VIDEO,
+                                    conditions =
+                                        listOf(
+                                            ProfileCondition(
+                                                ProfileConditionType.LESS_THAN_EQUAL,
+                                                ProfileConditionValue.HEIGHT,
+                                                transcodeMaxHeight.toString(),
+                                                true,
+                                            )
+                                        ),
+                                    applyConditions = emptyList(),
+                                    codec = "h264",
+                                    container = null,
+                                    subContainer = null,
+                                )
+                            )
+                        } else {
+                            emptyList()
+                        },
                     containerProfiles = emptyList(),
                     directPlayProfiles = if (allowDirect) directProfiles else emptyList(),
                     transcodingProfiles =
@@ -335,19 +361,34 @@ class JellyfinRepositoryImpl(
                                 protocol = MediaStreamProtocol.HLS,
                                 context = EncodingContext.STREAMING,
                                 enableSubtitlesInManifest = true,
-                                conditions = emptyList(),
+                                conditions =
+                                    if (transcodeMaxHeight != null) {
+                                        listOf(
+                                            ProfileCondition(
+                                                ProfileConditionType.LESS_THAN_EQUAL,
+                                                ProfileConditionValue.HEIGHT,
+                                                transcodeMaxHeight.toString(),
+                                                true,
+                                            )
+                                        )
+                                    } else {
+                                        emptyList()
+                                    },
                             )
                         ),
                     subtitleProfiles = subtitleProfiles,
                 )
 
-            suspend fun loadSources(allowDirect: Boolean): List<MediaSourceInfo> =
+            suspend fun loadSources(
+                allowDirect: Boolean,
+                transcodeMaxHeight: Int? = null,
+            ): List<MediaSourceInfo> =
                 jellyfinApi.mediaInfoApi
                     .getPostedPlaybackInfo(
                         itemId,
                         PlaybackInfoDto(
                             userId = jellyfinApi.userId!!,
-                            deviceProfile = profile(allowDirect),
+                            deviceProfile = profile(allowDirect, transcodeMaxHeight),
                             maxStreamingBitrate = cap,
                             audioStreamIndex = audioStreamIndex,
                             subtitleStreamIndex = subtitleStreamIndex,
@@ -383,9 +424,18 @@ class JellyfinRepositoryImpl(
                         subtitleStreamIndex >= 0 &&
                         (selectedSubtitle == null ||
                             !localSubtitleSupported(backend, selectedSubtitle.codec))
+                val videoUnsupported = localVideoUnsupported(backend, chosen)
 
-                if (overBitrate || subtitleUnsupported) {
-                    mediaSources = loadSources(allowDirect = false)
+                if (overBitrate || subtitleUnsupported || videoUnsupported) {
+                    val selectedVideo =
+                        chosen.mediaStreams?.firstOrNull { it.type == MediaStreamType.VIDEO }
+                    val transcodeMaxHeight =
+                        if (videoUnsupported && (selectedVideo?.height ?: 0) > 1080) 1080 else null
+                    mediaSources =
+                        loadSources(
+                            allowDirect = false,
+                            transcodeMaxHeight = transcodeMaxHeight,
+                        )
                     chosen =
                         mediaSources.firstOrNull { it.transcodingUrl != null }
                             ?: throw IllegalStateException(
@@ -811,6 +861,43 @@ class JellyfinRepositoryImpl(
             )
         }
     }
+
+    private fun localVideoUnsupported(backend: String, source: MediaSourceInfo): Boolean {
+        if (backend.equals("mpv", ignoreCase = true)) return false
+        val video =
+            source.mediaStreams?.firstOrNull { it.type == MediaStreamType.VIDEO } ?: return false
+        val width = video.width ?: return false
+        val height = video.height ?: return false
+        val mime =
+            when (video.codec?.lowercase() ?: return false) {
+                "h264",
+                "avc" -> "video/avc"
+                "hevc",
+                "h265" -> "video/hevc"
+                "vp9" -> "video/x-vnd.on2.vp9"
+                "av1" -> "video/av01"
+                else -> return false
+            }
+        return !isDecoderSizeSupported(mime, width, height)
+    }
+
+    private fun isDecoderSizeSupported(mime: String, width: Int, height: Int): Boolean =
+        try {
+            MediaCodecList(MediaCodecList.REGULAR_CODECS)
+                .codecInfos
+                .asSequence()
+                .filter {
+                    !it.isEncoder && it.supportedTypes.any { type -> type.equals(mime, true) }
+                }
+                .any { info ->
+                    info
+                        .getCapabilitiesForType(mime)
+                        .videoCapabilities
+                        ?.isSizeSupported(width, height) == true
+                }
+        } catch (_: Exception) {
+            false
+        }
 
     private fun localSubtitleProfiles(backend: String): List<SubtitleProfile> =
         LOCAL_SUBTITLE_CODECS.map { codec ->

@@ -66,4 +66,110 @@
     <string name="quality_original">Оригинал</string>
     <string name="player_default_landscape">Режим по умолчанию — горизонтальный</string>
     <string name="player_default_landscape_summary">Если не отмечено, используется ориентация последнего воспроизведения</string>
+    <string name="settings_dlna">DLNA-кастинг</string>
+    <string name="settings_dlna_enabled">Включить трансляцию DLNA</string>
+    <string name="settings_dlna_enabled_summary">Покажите кнопку трансляции в плеере и выполните поиск телевизоров в локальной сети.</string>
+    <string name="settings_dlna_discovery_timeout">Тайм-аут обнаружения</string>
+    <string name="settings_dlna_discovery_timeout_summary">Как долго ждать, пока телевизоры ответят? Увеличьте это значение, если ваш телевизор отсутствует в списке.</string>
+    <string name="settings_dlna_container">Перекодировать контейнер</string>
+    <string name="settings_dlna_container_summary">MPEG-TS является наиболее совместимым вариантом и используется по умолчанию. MP4 может не работать на некоторых телевизорах (например, Xiaomi).</string>
+    <string name="settings_dlna_container_mp4">МП4</string>
+    <string name="settings_dlna_container_ts">MPEG-TS (рекомендуется)</string>
+    <string name="settings_category_permissions">Разрешения</string>
+    <string name="permission_local_network">Доступ к локальной сети</string>
+    <string name="permission_local_network_summary">Требуется для поиска и подключения к серверам в вашей локальной сети.</string>
+    <string name="permission_local_network_rationale">PerthFin необходим доступ к вашей локальной сети, чтобы найти и подключиться к вашему серверу Jellyfin. Удаленные серверы не затронуты.</string>
+    <string name="permission_status_granted">Предоставлено</string>
+    <string name="permission_status_denied">Отказано</string>
+    <string name="pref_player_gestures_seek_trickplay">Обман при поиске жеста</string>
+    <string name="pref_player_gestures_seek_trickplay_summary">Отображать изображения предварительного просмотра при жесте поиска</string>
+    <string name="quality_40">40 Мбит/с
+[[[18 СЕНТЯБРЯ]]]
+30 Мбит/с
+[[[19 сентября]]]
+20 Мбит/с
+[[[20 сентября]]]
+10 Мбит/с
+[[[21 СЕНТЯБРЯ]]]
+4 Мбит/с
+[[[22 СЕНТЯБРЯ]]]
+1,5 Мбит/с
+[[[23 СЕНТЯБРЯ]]]
+Жест главы
+[[[24 сентября]]]
+Длительное нажатие на левую или правую сторону, чтобы пропустить главы (отменяет жест 2-кратной скорости)</string>
+    <string name="player_start_maximized">Начать развернуто</string>
+    <string name="player_start_maximized_summary">Открыть видео в развернутом режиме по умолчанию</string>
+    <string name="trickplay">Трикплей</string>
+    <string name="users">Пользователи</string>
+    <string name="home">Главная</string>
+    <string name="home_suggestions">Показать предложения</string>
+    <string name="home_continue_watching">Показать продолжение просмотра</string>
+    <string name="home_next_up">Показать следующее</string>
+    <string name="home_latest">Показать последние элементы</string>
+    <string name="picture_in_picture">Картинка в картинке</string>
+    <string name="picture_in_picture_gesture">Домашний жест «картинка в картинке»</string>
+    <string name="picture_in_picture_gesture_summary">Используйте кнопку «Домой» или жест, чтобы войти в режим «картинка в картинке» во время воспроизведения видео.</string>
+    <string name="offline_mode_summary">Смотрите фильмы и сериалы без подключения к серверу</string>
+    <string name="mb">МБ</string>
+    <string name="ms">мс</string>
+    <string name="seconds">с</string>
+    <string name="save">Сохранить</string>
+    <string name="media_segments">Медиа-сегменты
+[[[18 СЕНТЯБРЯ]]]
+Показать кнопку пропуска
+[[[19 сентября]]]
+Предоставьте кнопку для быстрого пропуска частей
+[[[20 сентября]]]
+Тип сегмента для отображения кнопки пропуска
+[[[21 СЕНТЯБРЯ]]]
+Отобразить кнопку пропуска для
+[[[22 СЕНТЯБРЯ]]]
+Автоматический пропуск
+[[[23 СЕНТЯБРЯ]]]
+Включить автоматический пропуск для выбранных типов сегментов
+[[[24 сентября]]]
+Когда автоматически пропускать</string>
+    <string name="pref_player_media_segments_auto_skip_type">Тип сегмента для автоматического пропуска</string>
+    <string name="pref_player_media_segments_next_episode_threshold">Перейти к порогу следующего эпизода</string>
+    <string name="media_segments_auto_skip_pip">только в режиме пипа</string>
+    <string name="media_segments_auto_skip_always">всегда</string>
+    <string name="media_segments_type_unknown">Другие</string>
+    <string name="media_segments_type_commercial">Коммерческий</string>
+    <string name="media_segments_type_preview">Предварительный просмотр</string>
+    <string name="media_segments_type_recap">Резюме</string>
+    <string name="media_segments_type_outro">Аутро</string>
+    <string name="media_segments_type_intro">Введение</string>
+    <string name="none">Нет</string>
+    <string name="edit_file_title">Редактировать %1$s</string>
+    <string name="pref_player_backend">Бэкенд проигрывателя</string>
+    <string name="mpv_options">Параметры MPV</string>
+    <string name="advanced">Расширенный</string>
+    <string name="discard_changes_dialog_title">Отменить изменения?</string>
+    <string name="discard_changes_dialog_text">У вас есть несохраненные изменения.</string>
+    <string name="settings_category_playback_area">Область воспроизведения
+[[[18 СЕНТЯБРЯ]]]
+Режим выреза на экране
+[[[19 сентября]]]
+Если этот параметр включен, элементы управления плеером не вырезают дисплей. Если этот параметр отключен, элементы управления используют необработанные края экрана.</string>
+    <string name="app_name">PerthFin</string>
+    <string name="quality_30">30 Мбит/с</string>
+    <string name="quality_20">20 Мбит/с</string>
+    <string name="quality_10">10 Мбит/с</string>
+    <string name="quality_4">4 Мбит/с</string>
+    <string name="quality_1_5">1,5 Мбит/с</string>
+    <string name="player_gestures_chapter_skip">Жест главы</string>
+    <string name="player_gestures_chapter_skip_summary">Длительное нажатие на левую или правую сторону, чтобы пропустить главы (отменяет жест 2-кратной скорости)</string>
+    <string name="pref_player_media_segments_skip_button">Показать кнопку пропуска</string>
+    <string name="pref_player_media_segments_skip_button_summary">Предоставьте кнопку для быстрого пропуска частей</string>
+    <string name="pref_player_media_segments_skip_button_type">Тип сегмента для отображения кнопки пропуска</string>
+    <string name="pref_player_media_segments_skip_button_duration">Отобразить кнопку пропуска для</string>
+    <string name="pref_player_media_segments_auto_skip">Автоматический пропуск</string>
+    <string name="pref_player_media_segments_auto_skip_summary">Включить автоматический пропуск для выбранных типов сегментов</string>
+    <string name="pref_player_media_segments_auto_skip_mode">Когда автоматически пропускать</string>
+    <string name="player_notch_mode">Режим выреза на экране</string>
+    <string name="player_notch_mode_summary">Если этот параметр включен, элементы управления плеером не вырезают дисплей. Если этот параметр отключен, элементы управления используют необработанные края экрана.</string>
+    <string name="player_settings">Настройки проигрывателя</string>
+    <string name="pref_auto_play_next">Автоматически воспроизводить следующий эпизод</string>
+    <string name="pref_auto_play_next_summary">Эпизод: Автоматически воспроизводить следующий эпизод текущего сезона</string>
 </resources>

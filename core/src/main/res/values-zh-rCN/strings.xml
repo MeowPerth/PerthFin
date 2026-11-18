@@ -61,7 +61,7 @@
     <string name="episodes_label">季</string>
     <string name="add">添加</string>
     <string name="video">视频</string>
-    <string name="audio">音频</string>
+    <string name="audio">音轨</string>
     <string name="subtitle">字幕</string>
     <string name="subtitle_chip_text">隐藏式字幕</string>
     <string name="temp">临时文件</string>
@@ -109,4 +109,22 @@
     <string name="download_downloading">正在下载…</string>
     <string name="download_failed">下载失败</string>
     <string name="items_per_row">每行数量</string>
+    <string name="copy">复制</string>
+    <string name="copied">已复制</string>
+    <string name="error_details">错误详情</string>
+    <string name="back">返回</string>
+    <string name="error_connection_title">无法连接服务器</string>
+    <string name="error_connection_message">请检查网络连接和 Jellyfin 服务器地址后重试。</string>
+    <string name="error_auth_title">登录状态已失效</string>
+    <string name="error_auth_message">请重新登录 Jellyfin 账号后重试。</string>
+    <string name="error_not_found_title">服务器地址无效</string>
+    <string name="error_not_found_message">请检查 Jellyfin 服务器地址是否正确。</string>
+    <string name="error_server_title">服务器返回错误</string>
+    <string name="error_server_message">Jellyfin 服务器暂时无法处理请求，请稍后重试。</string>
+    <string name="error_parse_title">服务器响应无法解析</string>
+    <string name="error_parse_message">服务器返回的数据格式不正确，请检查服务器版本和地址。</string>
+    <string name="error_unknown_message">发生未知错误，请打开错误详情查看具体信息。</string>
+    <string name="discard">丢弃</string>
+    <string name="player_controls_orientation">切换方向</string>
+    <string name="app_name">PerthFin</string>
 </resources>

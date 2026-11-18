@@ -33,6 +33,12 @@ internal constructor(
     private val playerItems: MutableList<PlayerItem> = mutableListOf()
     var currentItemIndex: Int = 0
 
+    fun episodeItems(): List<FindroidEpisode> = items.filterIsInstance<FindroidEpisode>()
+
+    fun removeCachedPlayerItemsExcept(itemId: UUID?) {
+        playerItems.removeAll { it.itemId != itemId }
+    }
+
     suspend fun getInitialItem(
         itemId: UUID,
         itemKind: BaseItemKind,

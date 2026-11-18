@@ -49,4 +49,6 @@
     <string name="player_controls_skip_preview">跳过预告</string>
     <string name="select_bitrate">选择码率</string>
     <string name="select_quality">选择画质</string>
+    <string name="episodes">选集</string>
+    <string name="auto_play_next">自动播放下一集</string>
 </resources>

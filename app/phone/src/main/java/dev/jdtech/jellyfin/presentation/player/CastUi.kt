@@ -73,7 +73,10 @@ fun CastDeviceSheet(
 
     LaunchedEffect(Unit) { viewModel.discover() }
 
-    ModalBottomSheet(onDismissRequest = onDismiss) {
+    ModalBottomSheet(
+        onDismissRequest = onDismiss,
+        dragHandle = { PlayerSheetDragHandle() },
+    ) {
         Column(
             modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp).padding(bottom = 24.dp)
         ) {
@@ -198,6 +201,8 @@ fun CastControls(
     onAudioTrack: () -> Unit,
     onSubtitleTrack: () -> Unit,
     onQuality: () -> Unit,
+    onEpisodes: () -> Unit,
+    showEpisodes: Boolean = true,
     notchModeEnabled: Boolean = true,
 ) {
     var dragPosition by remember { mutableStateOf<Float?>(null) }
@@ -320,7 +325,19 @@ fun CastControls(
                     color = Color.White.copy(alpha = 0.7f),
                     modifier = Modifier.weight(1f).padding(start = buttonWidth + buttonSpacing),
                 )
-                repeat(3) { Spacer(Modifier.width(buttonWidth).height(buttonHeight)) }
+                if (showEpisodes) {
+                    IconButton(
+                        onClick = onEpisodes,
+                        modifier = Modifier.width(buttonWidth).height(buttonHeight),
+                    ) {
+                        Icon(
+                            painter = painterResource(CoreR.drawable.ic_logs),
+                            contentDescription = stringResource(PlayerR.string.episodes),
+                            tint = Color.White,
+                            modifier = Modifier.size(24.dp),
+                        )
+                    }
+                }
             }
 
             Box(

@@ -106,4 +106,44 @@
     <string name="quality_original">Asli</string>
     <string name="player_default_landscape">Lanskap default</string>
     <string name="player_default_landscape_summary">Jika tidak dicentang, orientasi pemutaran terakhir digunakan</string>
+    <string name="settings_dlna">Pengecoran DLNA</string>
+    <string name="settings_dlna_enabled">Aktifkan transmisi DLNA</string>
+    <string name="settings_dlna_enabled_summary">Tampilkan tombol transmisi di pemutar dan pindai televisi di jaringan lokal.</string>
+    <string name="settings_dlna_discovery_timeout">Batas waktu penemuan</string>
+    <string name="settings_dlna_discovery_timeout_summary">Berapa lama menunggu televisi menjawab. Tingkatkan ini jika TV Anda tidak ada dalam daftar.</string>
+    <string name="settings_dlna_container">Wadah transkode</string>
+    <string name="settings_dlna_container_summary">MPEG-TS adalah pilihan yang paling kompatibel dan digunakan secara default. MP4 mungkin gagal di beberapa TV (misalnya Xiaomi).</string>
+    <string name="settings_dlna_container_mp4">MP4</string>
+    <string name="settings_dlna_container_ts">MPEG-TS (disarankan)</string>
+    <string name="settings_category_permissions">Izin</string>
+    <string name="permission_local_network">Akses jaringan lokal</string>
+    <string name="permission_local_network_summary">Diperlukan untuk menemukan dan terhubung ke server di jaringan lokal Anda</string>
+    <string name="permission_local_network_rationale">PerthFin memerlukan akses ke jaringan lokal Anda untuk menemukan dan terhubung ke server Jellyfin Anda. Server jarak jauh tidak terpengaruh.</string>
+    <string name="permission_status_granted">Memang benar
+[[[14 September]]]
+Ditolak
+[[[15 September]]]
+40Mbps
+[[[16 September]]]
+30Mbps</string>
+    <string name="quality_20">20Mbps</string>
+    <string name="quality_10">10Mbps</string>
+    <string name="quality_4">4Mbps</string>
+    <string name="quality_1_5">1,5Mbps</string>
+    <string name="edit_file_title">Sunting %1$s</string>
+    <string name="pref_player_backend">Backend pemutar</string>
+    <string name="mpv_options">Opsi MPV</string>
+    <string name="advanced">Lanjutan</string>
+    <string name="discard_changes_dialog_title">Hapus perubahan?</string>
+    <string name="discard_changes_dialog_text">Anda memiliki perubahan yang belum disimpan.</string>
+    <string name="settings_category_playback_area">Area pemutaran</string>
+    <string name="player_notch_mode">Mode layar takik</string>
+    <string name="player_notch_mode_summary">Saat diaktifkan, kontrol pemutar menghindari potongan tampilan. Saat dinonaktifkan, kontrol menggunakan tepi layar mentah.</string>
+    <string name="app_name">PerthFin</string>
+    <string name="permission_status_denied">Ditolak</string>
+    <string name="quality_40">40Mbps</string>
+    <string name="quality_30">30Mbps</string>
+    <string name="player_settings">Pengaturan pemutar</string>
+    <string name="pref_auto_play_next">Putar episode berikutnya secara otomatis</string>
+    <string name="pref_auto_play_next_summary">Episode: Putar episode berikutnya di musim ini secara otomatis</string>
 </resources>

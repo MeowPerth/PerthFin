@@ -110,4 +110,25 @@
     <string name="download_failed">ダウンロードに失敗しました</string>
     <string name="discard">破棄</string>
     <string name="items_per_row">1行あたりの項目数</string>
+    <string name="player_controls_orientation">向きを切り替える</string>
+    <string name="copy">コピー</string>
+    <string name="copied">コピーされました</string>
+    <string name="error_details">エラーの詳細</string>
+    <string name="back">戻る</string>
+    <string name="error_connection_title">サーバーに接続できません</string>
+    <string name="error_connection_message">ネットワーク接続とJellyfinサーバーのアドレスを確認して、再試行してください。</string>
+    <string name="error_auth_title">サインインの有効期限が切れました
+[[[9月8日]]]
+Jellyfin アカウントに再度サインインして、再試行してください。
+[[[9月9日]]]
+サーバーアドレスが見つかりません</string>
+    <string name="error_not_found_message">Jellyfin サーバーのアドレスが正しいことを確認してください。</string>
+    <string name="error_server_title">サーバーエラー</string>
+    <string name="error_server_message">Jellyfin サーバーはリクエストを処理できませんでした。後でもう一度試してください。</string>
+    <string name="error_parse_title">無効なサーバー応答</string>
+    <string name="error_parse_message">サーバーは予期しない形式でデータを返しました。サーバーのバージョンとアドレスを確認してください。</string>
+    <string name="error_unknown_message">予期しないエラーが発生しました。詳細については、エラーの詳細を開いてください。</string>
+    <string name="error_auth_message">Jellyfin アカウントに再度サインインして、再試行してください。</string>
+    <string name="error_not_found_title">サーバーアドレスが見つかりません</string>
+    <string name="app_name">PerthFin</string>
 </resources>

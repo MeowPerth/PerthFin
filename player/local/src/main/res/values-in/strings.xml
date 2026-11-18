@@ -25,4 +25,35 @@
     <string name="player_controls_picture_in_picture">Masuk ke mode gambar-dalam-gambar</string>
     <string name="select_bitrate">Pilih bitrate</string>
     <string name="select_quality">Kualitas video</string>
+    <string name="player_controls_cast">Transmisikan ke TV</string>
+    <string name="cast_to_tv">Transmisikan ke TV</string>
+    <string name="cast_searching">Mencari TV di jaringan Anda…</string>
+    <string name="cast_no_devices">Tidak ada TV DLNA yang ditemukan</string>
+    <string name="cast_no_devices_summary">Pastikan TV berada di jaringan Wi-Fi yang sama dan DLNA/UPnP diaktifkan.</string>
+    <string name="cast_retry">Cari lagi</string>
+    <string name="cast_stop">Hentikan transmisi</string>
+    <string name="cast_exit">Keluar dari casting</string>
+    <string name="cast_switch_title">Transmisi sedang berlangsung</string>
+    <string name="cast_switch_message">Saat ini melakukan transmisi “%1$s” di %2$s. Transmisikan video baru ke TV?</string>
+    <string name="cast_switch_unknown_title">Video tidak dikenal</string>
+    <string name="cast_switch_unknown_device">televisi</string>
+    <string name="cast_switch_confirm">Transmisikan video baru</string>
+    <string name="cast_switch_cancel">Tidak
+[[[14 September]]]
+Memutar di [[[PH_0]]]
+[[[15 September]]]
+Menyambungkan ke [[[PH_0]]]…
+[[[16 September]]]
+Pemeran gagal</string>
+    <string name="cast_search_failed">Gagal mencari TV</string>
+    <string name="cast_seek">Cari di TV</string>
+    <string name="cast_status_playing">pengecoran</string>
+    <string name="cast_status_paused">Dijeda di TV</string>
+    <string name="cast_stop_and_play_here">Hentikan casting dan mainkan di sini</string>
+    <string name="cast_unreachable">Alamat Jellyfin ini tidak dapat dijangkau oleh TV. Gunakan alamat server yang tersedia di jaringan lokal. Relai sisi aplikasi belum didukung.</string>
+    <string name="cast_no_playback">TV tidak memulai pemutaran. Periksa apakah itu dapat mencapai server Jellyfin.</string>
+    <string name="app_name">PerthFin</string>
+    <string name="cast_playing_on">Memutar di %1$s</string>
+    <string name="cast_connecting">Menyambungkan ke %1$s…</string>
+    <string name="cast_error">Pemeran gagal</string>
 </resources>

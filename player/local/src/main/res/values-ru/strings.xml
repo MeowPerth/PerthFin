@@ -25,4 +25,41 @@
     <string name="player_controls_skip_unknown">Пропустить</string>
     <string name="select_bitrate">Выбрать битрейт</string>
     <string name="select_quality">Качество видео</string>
+    <string name="player_controls_cast">Трансляция на ТВ</string>
+    <string name="cast_to_tv">Трансляция на ТВ</string>
+    <string name="cast_searching">Поиск телевизоров в вашей сети…</string>
+    <string name="cast_no_devices">DLNA-телевизоры не найдены.</string>
+    <string name="cast_no_devices_summary">Убедитесь, что телевизор находится в той же сети Wi-Fi и на нем включен DLNA/UPnP.</string>
+    <string name="cast_retry">Искать еще раз</string>
+    <string name="cast_stop">Прекратить трансляцию</string>
+    <string name="cast_exit">Выход из кастинга</string>
+    <string name="cast_switch_title">Идет кастинг</string>
+    <string name="cast_switch_message">В настоящее время транслируется «%1$s» на %2$s. Вместо этого транслировать новое видео на телевизор?</string>
+    <string name="cast_switch_unknown_title">Неизвестное видео</string>
+    <string name="cast_switch_unknown_device">ТВ</string>
+    <string name="cast_switch_confirm">Каст нового видео</string>
+    <string name="cast_switch_cancel">Нет</string>
+    <string name="cast_playing_on">Играю на %1$s</string>
+    <string name="cast_connecting">Подключение к %1$s…</string>
+    <string name="cast_error">Трансляция не удалась</string>
+    <string name="cast_search_failed">Не удалось найти телевизоры.
+[[[18 СЕНТЯБРЯ]]]
+Ищите по телевизору
+[[[19 сентября]]]
+Кастинг
+[[[20 сентября]]]
+Приостановлено на ТВ
+[[[21 СЕНТЯБРЯ]]]
+Прекратите кастинг и играйте здесь
+[[[22 СЕНТЯБРЯ]]]
+Этот адрес Jellyfin не может быть доступен телевизору. Используйте адрес сервера, доступный в локальной сети. Ретрансляция на стороне приложения пока не поддерживается.
+[[[23 СЕНТЯБРЯ]]]
+Телевизор не начал воспроизведение. Убедитесь, что он может достичь сервера Jellyfin.</string>
+    <string name="app_name">PerthFin</string>
+    <string name="cast_seek">Ищите по телевизору</string>
+    <string name="cast_status_playing">Кастинг</string>
+    <string name="cast_status_paused">Приостановлено на ТВ</string>
+    <string name="cast_stop_and_play_here">Прекратите кастинг и играйте здесь</string>
+    <string name="cast_unreachable">Этот адрес Jellyfin не может быть доступен телевизору. Используйте адрес сервера, доступный в локальной сети. Ретрансляция на стороне приложения пока не поддерживается.</string>
+    <string name="cast_no_playback">Телевизор не начал воспроизведение. Убедитесь, что он может достичь сервера Jellyfin.</string>
 </resources>

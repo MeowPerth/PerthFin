@@ -29,4 +29,18 @@
    <string name="add_server_address">Agregar dirección del servidor</string>
    <string name="remove_server_address">Remover dirección del servidor</string>
    <string name="remove_server_address_dialog_text">¿Está seguro de remover el servidor con dirección %1$s</string>
+    <string name="servers">Servidores</string>
+    <string name="servers_btn_add_server">Agregar servidor</string>
+    <string name="welcome">Bienvenido a PerthFin</string>
+    <string name="welcome_btn_continue">Continuar</string>
+    <string name="welcome_btn_learn_more">Más información sobre Jellyfin</string>
+    <string name="welcome_text">PerthFin es un cliente externo de Jellyfin. PerthFin por sí solo no contiene ningún medio.\n\nPara utilizar este cliente, necesita alojar su propio servidor Jellyfin.</string>
+    <string name="permission_btn_grant">subvención</string>
+    <string name="permission_btn_not_now">Ahora no</string>
+    <string name="permission_btn_open_settings">Abrir configuración</string>
+    <string name="permission_permanently_denied">%1$s fue rechazado. Para usarlo, permítalo en la configuración del sistema.</string>
+    <string name="confirm">Confirmar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="or">O</string>
+    <string name="server_subtitle">Servidor: %s</string>
 </resources>

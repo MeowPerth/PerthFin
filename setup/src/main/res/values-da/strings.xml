@@ -28,4 +28,19 @@
    <string name="add_server_address">Tilføj server-adresse</string>
    <string name="remove_server_address">Fjern server-adresse</string>
    <string name="remove_server_address_dialog_text">Er du sikker på, at du vil fjerne server-adressen %1$s</string>
+    <string name="login_btn_quick_connect">Hurtig tilslutning</string>
+    <string name="servers">Servere</string>
+    <string name="servers_btn_add_server">Tilføj server</string>
+    <string name="welcome">Velkommen til PerthFin</string>
+    <string name="welcome_btn_continue">Fortsæt</string>
+    <string name="welcome_btn_learn_more">Lær mere om Jellyfin</string>
+    <string name="welcome_text">PerthFin er en tredjepartsklient til Jellyfin. PerthFin i sig selv indeholder ingen medier.\n\nFor at bruge denne klient skal du være vært for din egen Jellyfin-server.</string>
+    <string name="permission_btn_grant">Grant</string>
+    <string name="permission_btn_not_now">Ikke nu</string>
+    <string name="permission_btn_open_settings">Åbn indstillinger</string>
+    <string name="permission_permanently_denied">%1$s blev afvist. For at bruge det, tillad det i systemindstillingerne.</string>
+    <string name="confirm">Bekræft</string>
+    <string name="cancel">Annuller</string>
+    <string name="or">ELLER</string>
+    <string name="server_subtitle">Server: %s</string>
 </resources>

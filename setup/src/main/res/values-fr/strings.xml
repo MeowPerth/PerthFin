@@ -39,4 +39,8 @@
     <string name="confirm">Confirmer</string>
     <string name="or">OU</string>
     <string name="server_subtitle">Serveur : %s</string>
+    <string name="permission_btn_grant">Subvention</string>
+    <string name="permission_btn_not_now">Pas maintenant</string>
+    <string name="permission_btn_open_settings">Ouvrir les paramètres</string>
+    <string name="permission_permanently_denied">%1$s a été refusé. Pour l\'utiliser, autorisez-le dans les paramètres système.</string>
 </resources>

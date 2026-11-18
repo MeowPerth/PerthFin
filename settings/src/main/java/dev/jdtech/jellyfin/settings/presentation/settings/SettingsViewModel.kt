@@ -268,6 +268,7 @@ class SettingsViewModel @Inject constructor(private val appPreferences: AppPrefe
                                             )
                                     ),
                                     PreferenceGroup(
+                                        nameStringResource = R.string.player_settings,
                                         preferences =
                                             listOf(
                                                 PreferenceSelect(
@@ -288,6 +289,14 @@ class SettingsViewModel @Inject constructor(private val appPreferences: AppPrefe
                                                     supportedDeviceTypes = listOf(DeviceType.PHONE),
                                                     backendPreference =
                                                         appPreferences.playerDefaultLandscape,
+                                                ),
+                                                PreferenceSwitch(
+                                                    nameStringResource =
+                                                        R.string.pref_auto_play_next,
+                                                    descriptionStringRes =
+                                                        R.string.pref_auto_play_next_summary,
+                                                    supportedDeviceTypes = listOf(DeviceType.PHONE),
+                                                    backendPreference = appPreferences.autoPlayNext,
                                                 ),
                                                 PreferenceSelect(
                                                     nameStringResource =
@@ -404,7 +413,7 @@ class SettingsViewModel @Inject constructor(private val appPreferences: AppPrefe
                                                             ),
                                                         ),
                                                 ),
-                                            )
+                                            ),
                                     ),
                                     PreferenceGroup(
                                         nameStringResource = R.string.gestures,
@@ -451,6 +460,17 @@ class SettingsViewModel @Inject constructor(private val appPreferences: AppPrefe
                                                 ),
                                                 PreferenceSwitch(
                                                     nameStringResource =
+                                                        R.string.player_start_maximized,
+                                                    descriptionStringRes =
+                                                        R.string.player_start_maximized_summary,
+                                                    dependencies =
+                                                        listOf(appPreferences.playerGestures),
+                                                    supportedDeviceTypes = listOf(DeviceType.PHONE),
+                                                    backendPreference =
+                                                        appPreferences.playerGesturesStartMaximized,
+                                                ),
+                                                PreferenceSwitch(
+                                                    nameStringResource =
                                                         R.string.player_gestures_chapter_skip,
                                                     descriptionStringRes =
                                                         R.string
@@ -473,17 +493,6 @@ class SettingsViewModel @Inject constructor(private val appPreferences: AppPrefe
                                                     backendPreference =
                                                         appPreferences
                                                             .playerGesturesBrightnessRemember,
-                                                ),
-                                                PreferenceSwitch(
-                                                    nameStringResource =
-                                                        R.string.player_start_maximized,
-                                                    descriptionStringRes =
-                                                        R.string.player_start_maximized_summary,
-                                                    dependencies =
-                                                        listOf(appPreferences.playerGestures),
-                                                    supportedDeviceTypes = listOf(DeviceType.PHONE),
-                                                    backendPreference =
-                                                        appPreferences.playerGesturesStartMaximized,
                                                 ),
                                             ),
                                     ),

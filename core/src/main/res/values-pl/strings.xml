@@ -109,4 +109,22 @@
     <string name="download_downloading">Pobieranie…</string>
     <string name="download_failed">Błąd pobierania</string>
     <string name="items_per_row">Elementy w wierszu</string>
+    <string name="discard">Odrzuć</string>
+    <string name="player_controls_orientation">Przełącz orientację</string>
+    <string name="copy">Kopiuj</string>
+    <string name="copied">Skopiowano</string>
+    <string name="error_details">Szczegóły błędu</string>
+    <string name="back">Powrót</string>
+    <string name="error_connection_title">Nie można połączyć się z serwerem</string>
+    <string name="error_connection_message">Sprawdź połączenie sieciowe i adres serwera Jellyfin, a następnie spróbuj ponownie.</string>
+    <string name="error_auth_title">Logowanie wygasło</string>
+    <string name="error_auth_message">Zaloguj się ponownie na swoje konto Jellyfin i spróbuj ponownie.</string>
+    <string name="error_not_found_title">Nie znaleziono adresu serwera</string>
+    <string name="error_not_found_message">Sprawdź, czy adres serwera Jellyfin jest poprawny.</string>
+    <string name="error_server_title">Błąd serwera</string>
+    <string name="error_server_message">Serwer Jellyfin nie mógł obsłużyć żądania. Spróbuj ponownie później.</string>
+    <string name="error_parse_title">Nieprawidłowa odpowiedź serwera</string>
+    <string name="error_parse_message">Serwer zwrócił dane w nieoczekiwanym formacie. Sprawdź wersję i adres serwera.</string>
+    <string name="error_unknown_message">Wystąpił nieoczekiwany błąd. Otwórz szczegóły błędu, aby uzyskać więcej informacji.</string>
+    <string name="app_name">PerthFin</string>
 </resources>

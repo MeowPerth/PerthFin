@@ -109,4 +109,22 @@
     <string name="download_downloading">Lastar ned…</string>
     <string name="download_failed">Feil ved nedlasting</string>
     <string name="items_per_row">Element per rad</string>
+    <string name="discard">Kast</string>
+    <string name="player_controls_orientation">Bytt orientering</string>
+    <string name="copy">Kopier</string>
+    <string name="copied">Kopiert</string>
+    <string name="error_details">Feildetaljer</string>
+    <string name="back">Tilbake</string>
+    <string name="error_connection_title">Kan ikke koble til server</string>
+    <string name="error_connection_message">Sjekk nettverkstilkoblingen og Jellyfin-serveradressen, og prøv på nytt.</string>
+    <string name="error_auth_title">Pålogging utløpt</string>
+    <string name="error_auth_message">Logg på Jellyfin-kontoen din igjen og prøv på nytt.</string>
+    <string name="error_not_found_title">Finner ikke serveradresse</string>
+    <string name="error_not_found_message">Sjekk at Jellyfin-serveradressen er riktig.</string>
+    <string name="error_server_title">Serverfeil</string>
+    <string name="error_server_message">Jellyfin-serveren kunne ikke håndtere forespørselen. Prøv igjen senere.</string>
+    <string name="error_parse_title">Ugyldig serversvar</string>
+    <string name="error_parse_message">Serveren returnerte data i et uventet format. Sjekk serverversjonen og adressen.</string>
+    <string name="error_unknown_message">Det oppstod en uventet feil. Åpne feildetaljene for mer informasjon.</string>
+    <string name="app_name">PerthFin</string>
 </resources>

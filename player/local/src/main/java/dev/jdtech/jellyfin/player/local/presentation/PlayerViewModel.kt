@@ -81,6 +81,58 @@ constructor(
 
     val castState: StateFlow<CastState> = castSession.state
 
+    data class EpisodeChoice(
+        val id: UUID,
+        val title: String,
+        val indexNumber: Int,
+        val seasonName: String?,
+    )
+
+    private val _episodes = MutableStateFlow<List<EpisodeChoice>>(emptyList())
+    val episodes: StateFlow<List<EpisodeChoice>> = _episodes.asStateFlow()
+
+    private val _currentEpisodeId = MutableStateFlow<UUID?>(null)
+    val currentEpisodeId: StateFlow<UUID?> = _currentEpisodeId.asStateFlow()
+
+    private val _isEpisodeContent = MutableStateFlow(false)
+    val isEpisodeContent: StateFlow<Boolean> = _isEpisodeContent.asStateFlow()
+
+    private val _autoPlayNext =
+        MutableStateFlow(appPreferences.getValue(appPreferences.autoPlayNext))
+    val autoPlayNext: StateFlow<Boolean> = _autoPlayNext.asStateFlow()
+    private var lastCastAutoNextItemId: UUID? = null
+
+    fun setAutoPlayNext(enabled: Boolean) {
+        if (_autoPlayNext.value == enabled) return
+        _autoPlayNext.value = enabled
+        appPreferences.setValue(appPreferences.autoPlayNext, enabled)
+
+        if (!enabled) {
+            // ExoPlayer's playlist may already contain the next episode. Drop it so
+            // turning the switch off takes effect immediately, not next episode.
+            val currentIndex = player.currentMediaItemIndex
+            while (player.mediaItemCount > currentIndex + 1) {
+                player.removeMediaItem(currentIndex + 1)
+            }
+            while (items.size > currentIndex + 1) {
+                items.removeAt(items.lastIndex)
+            }
+            playlistManager.removeCachedPlayerItemsExcept(currentItemId)
+        } else if (player.mediaItemCount <= player.currentMediaItemIndex + 1) {
+            addNextMediaItemIfEnabled()
+        }
+    }
+
+    private fun addNextMediaItemIfEnabled() {
+        if (!_autoPlayNext.value || currentItemId == null) return
+        viewModelScope.launch {
+            val nextItem = playlistManager.getNextPlayerItem() ?: return@launch
+            val insertIndex = player.currentMediaItemIndex + 1
+            if (insertIndex > items.size) items.add(nextItem) else items.add(insertIndex, nextItem)
+            player.addMediaItem(insertIndex, nextItem.toMediaItem())
+        }
+    }
+
     val isCasting: Boolean
         get() = castSession.state.value.isActive
 
@@ -125,6 +177,31 @@ constructor(
     var isInPictureInPictureMode: Boolean = false
 
     init {
+        viewModelScope.launch {
+            castSession.state.collect { cast ->
+                if (
+                    !_autoPlayNext.value ||
+                        !cast.isActive ||
+                        !cast.isPlaying ||
+                        cast.durationMs <= 0L ||
+                        cast.positionMs < cast.durationMs - 1_000L
+                ) {
+                    return@collect
+                }
+                val itemId = cast.itemId ?: return@collect
+                if (lastCastAutoNextItemId == itemId) return@collect
+                val index = _episodes.value.indexOfFirst { it.id == itemId }
+                val next = _episodes.value.getOrNull(index + 1) ?: return@collect
+                lastCastAutoNextItemId = itemId
+                initializePlayer(
+                    itemId = next.id,
+                    itemKind = BaseItemKind.EPISODE.serialName,
+                    startFromBeginning = true,
+                    castOnStart = true,
+                )
+            }
+        }
+
         segmentsSkipButton = appPreferences.getValue(appPreferences.playerMediaSegmentsSkipButton)
         segmentsSkipButtonTypes =
             appPreferences.getValue(appPreferences.playerMediaSegmentsSkipButtonType)
@@ -194,6 +271,14 @@ constructor(
 
                 else -> throw RuntimeException("$playerBackend is not a valid player backend")
             }
+
+        viewModelScope.launch {
+            appPreferences.observe(appPreferences.autoPlayNext).collect { enabled ->
+                if (enabled != _autoPlayNext.value) {
+                    setAutoPlayNext(enabled)
+                }
+            }
+        }
     }
 
     fun initializePlayer(
@@ -218,6 +303,8 @@ constructor(
                 // Starting a different item hands playback back to the phone.
                 castSession.stop()
             } else if (currentCast.isActive && currentCast.itemId == itemId) {
+                _isEpisodeContent.value = BaseItemKind.fromName(itemKind) == BaseItemKind.EPISODE
+                loadEpisodeChoices(itemId)
                 _uiState.update { it.copy(currentItemTitle = currentCast.title, fileLoaded = true) }
                 return@launch
             }
@@ -245,6 +332,19 @@ constructor(
 
             currentItemId = startItem.itemId
             currentItemKind = startItem.itemKind
+            _isEpisodeContent.value = startItem.itemKind == BaseItemKind.EPISODE.serialName
+            _currentEpisodeId.value = startItem.itemId
+            val playlistEpisodes = playlistManager.episodeItems()
+            if (playlistEpisodes.isNotEmpty()) {
+                _episodes.value = playlistEpisodes.map { item ->
+                    EpisodeChoice(
+                        id = item.id,
+                        title = item.name,
+                        indexNumber = item.indexNumber,
+                        seasonName = item.seasonName,
+                    )
+                }
+            }
             selectedAudioStreamIndex =
                 startItem.selectedAudioStreamIndex
                     ?: audioStreamIndex
@@ -617,6 +717,10 @@ constructor(
         savedStateHandle["mediaItemIndex"] = player.currentMediaItemIndex
         viewModelScope.launch {
             try {
+                _currentEpisodeId.value =
+                    player.currentMediaItem?.mediaId?.let {
+                        runCatching { UUID.fromString(it) }.getOrNull()
+                    }
                 items
                     .first { it.itemId.toString() == player.currentMediaItem?.mediaId }
                     .let { item ->
@@ -660,13 +764,15 @@ constructor(
                             )
                         }
 
-                        val nextItem = playlistManager.getNextPlayerItem()
-                        if (nextItem != null) {
-                            items.add(player.currentMediaItemIndex + 1, nextItem)
-                            player.addMediaItem(
-                                player.currentMediaItemIndex + 1,
-                                nextItem.toMediaItem(),
-                            )
+                        if (_autoPlayNext.value) {
+                            val nextItem = playlistManager.getNextPlayerItem()
+                            if (nextItem != null) {
+                                items.add(player.currentMediaItemIndex + 1, nextItem)
+                                player.addMediaItem(
+                                    player.currentMediaItemIndex + 1,
+                                    nextItem.toMediaItem(),
+                                )
+                            }
                         }
 
                         Timber.tag("PlayerItems").d(items.map { it.indexNumber }.toString())
@@ -703,6 +809,57 @@ constructor(
         }
     }
 
+    private suspend fun loadEpisodeChoices(itemId: UUID) {
+        try {
+            val episode = repository.getEpisode(itemId)
+            val choices =
+                repository
+                    .getEpisodes(
+                        seriesId = episode.seriesId,
+                        seasonId = episode.seasonId,
+                        fields = null,
+                    )
+                    .filter { !it.missing }
+                    .map { item ->
+                        EpisodeChoice(
+                            id = item.id,
+                            title = item.name,
+                            indexNumber = item.indexNumber,
+                            seasonName = item.seasonName,
+                        )
+                    }
+            _episodes.value = choices
+        } catch (e: Exception) {
+            _episodes.value = emptyList()
+            Timber.d(e, "No episode list for $itemId")
+        }
+    }
+
+    fun selectEpisode(episode: EpisodeChoice) {
+        val castActive = castSession.state.value.isActive
+        initializePlayer(
+            itemId = episode.id,
+            itemKind = BaseItemKind.EPISODE.serialName,
+            startFromBeginning = true,
+            castOnStart = castActive,
+        )
+    }
+
+    private fun playNextEpisodeIfEnabled(): Boolean {
+        if (!_autoPlayNext.value) return false
+        if (currentItemKind != BaseItemKind.EPISODE.serialName) return false
+        val currentId = currentItemId ?: return false
+        val list = _episodes.value
+        val index = list.indexOfFirst { it.id == currentId }
+        val next = list.getOrNull(index + 1) ?: return false
+        initializePlayer(
+            itemId = next.id,
+            itemKind = BaseItemKind.EPISODE.serialName,
+            startFromBeginning = true,
+        )
+        return true
+    }
+
     override fun onPlaybackStateChanged(state: Int) {
         var stateString = "UNKNOWN_STATE             -"
         when (state) {
@@ -718,7 +875,9 @@ constructor(
             }
             ExoPlayer.STATE_ENDED -> {
                 stateString = "ExoPlayer.STATE_ENDED     -"
-                eventsChannel.trySend(PlayerEvents.NavigateBack)
+                if (!playNextEpisodeIfEnabled()) {
+                    eventsChannel.trySend(PlayerEvents.NavigateBack)
+                }
             }
         }
         Timber.d("Changed player state to $stateString")

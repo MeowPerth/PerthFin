@@ -110,4 +110,21 @@
     <string name="none">Keine</string>
     <string name="discard">Verwerfen</string>
     <string name="items_per_row">Elemente pro Zeile</string>
+    <string name="player_controls_orientation">Ausrichtung umschalten</string>
+    <string name="copy">Kopieren</string>
+    <string name="copied">Kopiert</string>
+    <string name="error_details">Fehlerdetails</string>
+    <string name="back">Zurück</string>
+    <string name="error_connection_title">Es kann keine Verbindung zum Server hergestellt werden</string>
+    <string name="error_connection_message">Überprüfen Sie Ihre Netzwerkverbindung und die Jellyfin-Serveradresse und versuchen Sie es dann erneut.</string>
+    <string name="error_auth_title">Anmeldung abgelaufen</string>
+    <string name="error_auth_message">Melden Sie sich erneut bei Ihrem Jellyfin-Konto an und versuchen Sie es erneut.</string>
+    <string name="error_not_found_title">Serveradresse nicht gefunden</string>
+    <string name="error_not_found_message">Überprüfen Sie, ob die Jellyfin-Serveradresse korrekt ist.</string>
+    <string name="error_server_title">Serverfehler</string>
+    <string name="error_server_message">Der Jellyfin-Server konnte die Anfrage nicht verarbeiten. Versuchen Sie es später noch einmal.</string>
+    <string name="error_parse_title">Ungültige Serverantwort</string>
+    <string name="error_parse_message">Der Server hat Daten in einem unerwarteten Format zurückgegeben. Überprüfen Sie die Serverversion und -adresse.</string>
+    <string name="error_unknown_message">Es ist ein unerwarteter Fehler aufgetreten. Öffnen Sie die Fehlerdetails, um weitere Informationen zu erhalten.</string>
+    <string name="app_name">PerthFin</string>
 </resources>

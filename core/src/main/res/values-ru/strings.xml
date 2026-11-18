@@ -110,4 +110,21 @@
     <string name="download_failed">Не удалось скачать</string>
     <string name="discard">Отказаться</string>
     <string name="items_per_row">Элементов в строке</string>
+    <string name="player_controls_orientation">Переключить ориентацию</string>
+    <string name="copy">Копировать</string>
+    <string name="copied">Скопировано</string>
+    <string name="error_details">Подробности ошибки</string>
+    <string name="back">Назад</string>
+    <string name="error_connection_title">Не могу подключиться к серверу</string>
+    <string name="error_connection_message">Проверьте сетевое соединение и адрес сервера Jellyfin, затем повторите попытку.</string>
+    <string name="error_auth_title">Срок действия входа истек</string>
+    <string name="error_auth_message">Войдите в свою учетную запись Jellyfin еще раз и повторите попытку.</string>
+    <string name="error_not_found_title">Адрес сервера не найден</string>
+    <string name="error_not_found_message">Проверьте правильность адреса сервера Jellyfin.</string>
+    <string name="error_server_title">Ошибка сервера</string>
+    <string name="error_server_message">Сервер Jellyfin не смог обработать запрос. Повторите попытку позже.</string>
+    <string name="error_parse_title">Неверный ответ сервера</string>
+    <string name="error_parse_message">Сервер вернул данные в неожиданном формате. Проверьте версию и адрес сервера.</string>
+    <string name="error_unknown_message">Произошла непредвиденная ошибка. Откройте сведения об ошибке для получения дополнительной информации.</string>
+    <string name="app_name">PerthFin</string>
 </resources>

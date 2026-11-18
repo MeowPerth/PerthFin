@@ -95,7 +95,7 @@
     <string name="media_segments_type_commercial">Comercial</string>
     <string name="media_segments_type_intro">Abertura</string>
     <string name="edit_file_title">Editar %1$s</string>
-    <string name="mpv_options">Opções do mpv</string>
+    <string name="mpv_options">Opções do MPV</string>
     <string name="advanced">Avançado</string>
     <string name="pref_player_bitrate">Taxa de bits de vídeo</string>
     <string name="pref_player_quality">Qualidade de vídeo</string>
@@ -103,4 +103,105 @@
     <string name="quality_original">Original</string>
     <string name="player_default_landscape">Modo horizontal padrão</string>
     <string name="player_default_landscape_summary">Se desmarcado, usa a orientação da última reprodução</string>
+    <string name="settings_dlna_enabled_summary">Mostre o botão de transmissão no player e procure televisões na rede local.
+[[[SET_3]]]
+Tempo limite de descoberta</string>
+    <string name="settings_dlna_discovery_timeout_summary">Quanto tempo esperar que as televisões respondam. Aumente se sua TV estiver faltando na lista.
+[[[SET_5]]]
+Contêiner de transcodificação
+[[[SET_6]]]
+MPEG-TS é a escolha mais compatível e é usada por padrão. O MP4 pode falhar em algumas TVs (por exemplo, Xiaomi).
+[[[SET_7]]]
+MP4
+[[[SET_8]]]
+MPEG-TS (recomendado)
+[[[SET_9]]]
+Permissões
+[[[SET_10]]]
+Acesso à rede local
+[[[SET_11]]]
+Necessário para localizar e conectar-se a servidores em sua rede local
+[[[SET_12]]]
+PerthFin precisa de acesso à sua rede local para localizar e conectar-se ao seu servidor Jellyfin. Os servidores remotos não são afetados.
+[[[SET_13]]]
+Concedido
+[[[SET_14]]]
+Negado
+[[[SET_15]]]
+40Mbps
+[[[SET_16]]]
+30Mbps
+[[[SET_17]]]
+20Mbps
+[[[SET_18]]]
+10Mbps
+[[[SET_19]]]
+4Mbps</string>
+    <string name="quality_1_5">1,5Mbps</string>
+    <string name="pref_player_media_segments_skip_button_type">Tipo de segmento para exibir o botão pular</string>
+    <string name="pref_player_media_segments_skip_button_duration">Exibir botão de pular para</string>
+    <string name="pref_player_media_segments_auto_skip">Pular automaticamente</string>
+    <string name="media_segments_type_preview">Visualização</string>
+    <string name="pref_player_backend">Backend do reprodutor</string>
+    <string name="discard_changes_dialog_text">Você tem alterações não salvas.
+[[[SET_5]]]
+Área de reprodução
+[[[SET_6]]]
+Modo de tela notch
+[[[SET_7]]]
+Quando ativado, os controles do player evitam o corte da tela. Quando desativados, os controles usam as bordas brutas da tela.</string>
+    <string name="app_name">PerthFin</string>
+    <string name="settings_dlna_discovery_timeout">Tempo limite de descoberta
+[[[SET_3]]]
+Contêiner de transcodificação</string>
+    <string name="settings_dlna_container_summary">MPEG-TS é a escolha mais compatível e é usada por padrão. O MP4 pode falhar em algumas TVs (por exemplo, Xiaomi).
+[[[SET_5]]]
+MP4
+[[[SET_6]]]
+MPEG-TS (recomendado)
+[[[SET_7]]]
+Permissões
+[[[SET_8]]]
+Acesso à rede local
+[[[SET_9]]]
+Necessário para localizar e conectar-se a servidores em sua rede local</string>
+    <string name="permission_status_denied">Negado
+[[[SET_3]]]
+40Mbps</string>
+    <string name="quality_30">30Mbps
+[[[SET_5]]]
+20Mbps
+[[[SET_6]]]
+10Mbps
+[[[SET_7]]]
+4Mbps
+[[[SET_8]]]
+Recapitulação
+[[[SET_9]]]
+Outro</string>
+    <string name="player_notch_mode">Modo de tela notch
+[[[SET_3]]]
+Quando ativado, os controles do player evitam o corte da tela. Quando desativados, os controles usam as bordas brutas da tela.</string>
+    <string name="settings_dlna">Transmissão DLNA</string>
+    <string name="settings_dlna_enabled">Ativar transmissão de DLNA</string>
+    <string name="settings_dlna_container">Contêiner de transcodificação</string>
+    <string name="settings_dlna_container_mp4">MP4</string>
+    <string name="settings_dlna_container_ts">MPEG-TS (recomendado)</string>
+    <string name="settings_category_permissions">Permissões</string>
+    <string name="permission_local_network">Acesso à rede local</string>
+    <string name="permission_local_network_summary">Necessário para localizar e conectar-se a servidores em sua rede local</string>
+    <string name="permission_local_network_rationale">PerthFin precisa de acesso à sua rede local para localizar e conectar-se ao seu servidor Jellyfin. Os servidores remotos não são afetados.</string>
+    <string name="permission_status_granted">Garantido</string>
+    <string name="quality_40">40Mbps</string>
+    <string name="quality_20">20Mbps</string>
+    <string name="quality_10">10Mbps</string>
+    <string name="quality_4">4Mbps</string>
+    <string name="media_segments_type_recap">Recapitular</string>
+    <string name="media_segments_type_outro">Outro</string>
+    <string name="discard_changes_dialog_title">Descartar alterações?</string>
+    <string name="settings_category_playback_area">Área de reprodução</string>
+    <string name="player_notch_mode_summary">Quando ativado, os controles do player evitam o corte da tela. Quando desativados, os controles usam as bordas brutas da tela.</string>
+    <string name="player_settings">Definições do reprodutor</string>
+    <string name="pref_auto_play_next">Reproduzir automaticamente o próximo episódio</string>
+    <string name="pref_auto_play_next_summary">Episódio: Reproduzir automaticamente o próximo episódio da temporada atual</string>
 </resources>

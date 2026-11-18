@@ -109,4 +109,22 @@
     <string name="download_downloading">Изтегляне…</string>
     <string name="download_failed">Неуспешно изтегляне</string>
     <string name="items_per_row">Елементи на ред</string>
+    <string name="discard">Изхвърлете</string>
+    <string name="player_controls_orientation">Превключване на ориентацията</string>
+    <string name="copy">копие</string>
+    <string name="copied">Копирано</string>
+    <string name="error_details">Подробности за грешката</string>
+    <string name="back">Назад</string>
+    <string name="error_connection_title">Не може да се свърже със сървъра</string>
+    <string name="error_connection_message">Проверете вашата мрежова връзка и адреса на сървъра Jellyfin, след което опитайте отново.</string>
+    <string name="error_auth_title">Входът е изтекъл</string>
+    <string name="error_auth_message">Влезте отново във вашия Jellyfin акаунт и опитайте отново.</string>
+    <string name="error_not_found_title">Адресът на сървъра не е намерен</string>
+    <string name="error_not_found_message">Проверете дали адресът на сървъра Jellyfin е правилен.</string>
+    <string name="error_server_title">Грешка в сървъра</string>
+    <string name="error_server_message">Сървърът Jellyfin не можа да обработи заявката. Опитайте отново по-късно.</string>
+    <string name="error_parse_title">Невалиден отговор на сървъра</string>
+    <string name="error_parse_message">Сървърът върна данни в неочакван формат. Проверете версията и адреса на сървъра.</string>
+    <string name="error_unknown_message">Възникна неочаквана грешка. Отворете подробностите за грешката за повече информация.</string>
+    <string name="app_name">PerthFin</string>
 </resources>
