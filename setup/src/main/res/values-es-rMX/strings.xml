@@ -35,7 +35,7 @@
     <string name="welcome_btn_continue">Continuar</string>
     <string name="welcome_btn_learn_more">Más información sobre Jellyfin</string>
     <string name="welcome_text">PerthFin es un cliente externo de Jellyfin. PerthFin por sí solo no contiene ningún medio.\n\nPara utilizar este cliente, necesita alojar su propio servidor Jellyfin.</string>
-    <string name="permission_btn_grant">subvención</string>
+    <string name="permission_btn_grant">Permitir</string>
     <string name="permission_btn_not_now">Ahora no</string>
     <string name="permission_btn_open_settings">Abrir configuración</string>
     <string name="permission_permanently_denied">%1$s fue rechazado. Para usarlo, permítalo en la configuración del sistema.</string>

@@ -30,7 +30,7 @@
     <string name="welcome_btn_continue">जारी रखें</string>
     <string name="welcome_btn_learn_more">जेलीफिन के बारे में और जानें</string>
     <string name="welcome_text">पर्थफिन जेलीफिन के लिए एक तृतीय-पक्ष ग्राहक है। पर्थफिन में स्वयं कोई मीडिया नहीं है।\n\nइस क्लाइंट का उपयोग करने के लिए, आपको अपना स्वयं का जेलीफिन सर्वर होस्ट करना होगा।</string>
-    <string name="permission_btn_grant">अनुदान</string>
+    <string name="permission_btn_grant">अनुमति दें</string>
     <string name="permission_btn_not_now">अभी नहीं</string>
     <string name="permission_btn_open_settings">सेटिंग्स खोलें</string>
     <string name="permission_permanently_denied">%1$s को अस्वीकार कर दिया गया। इसका उपयोग करने के लिए, इसे सिस्टम सेटिंग्स में अनुमति दें।</string>

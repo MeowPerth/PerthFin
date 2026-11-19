@@ -54,17 +54,7 @@ Servidor: [[[PH_0]]]</string>
     <string name="welcome_btn_continue">Continuar
 [[[SET_3]]]
 PerthFin é um cliente terceirizado da Jellyfin. O PerthFin por si só não contém nenhuma mídia.\n\nPara usar este cliente, você precisa hospedar seu próprio servidor Jellyfin.</string>
-    <string name="permission_btn_grant">Conceder
-[[[SET_5]]]
-Agora não
-[[[SET_6]]]
-Abrir configurações
-[[[SET_7]]]
-[[[PH_0]]] foi negado. Para usá-lo, permita-o nas configurações do sistema.
-[[[SET_8]]]
-Confirmar
-[[[SET_9]]]
-OU</string>
+    <string name="permission_btn_grant">Permitir</string>
     <string name="servers">Servidores</string>
     <string name="servers_btn_add_server">Adicionar servidor</string>
     <string name="welcome_text">PerthFin é um cliente terceirizado da Jellyfin. O PerthFin por si só não contém nenhuma mídia.\n\nPara usar este cliente, você precisa hospedar seu próprio servidor Jellyfin.</string>

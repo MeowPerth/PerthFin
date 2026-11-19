@@ -35,7 +35,7 @@
     <string name="welcome_btn_continue">Продолжить</string>
     <string name="welcome_btn_learn_more">Узнайте больше о Джеллифине</string>
     <string name="welcome_text">PerthFin — сторонний клиент Jellyfin. PerthFin сам по себе не содержит никаких носителей.\n\nЧтобы использовать этот клиент, вам необходимо разместить собственный сервер Jellyfin.</string>
-    <string name="permission_btn_grant">Грант</string>
+    <string name="permission_btn_grant">Разрешить</string>
     <string name="permission_btn_not_now">Не сейчас</string>
     <string name="permission_btn_open_settings">Открыть настройки</string>
     <string name="permission_permanently_denied">%1$s было отклонено. Чтобы использовать его, разрешите его в настройках системы.</string>

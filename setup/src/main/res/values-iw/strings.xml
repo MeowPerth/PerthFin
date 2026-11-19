@@ -34,7 +34,7 @@
     <string name="welcome_btn_continue">המשך</string>
     <string name="welcome_btn_learn_more">למידע נוסף על Jellyfin</string>
     <string name="welcome_text">PerthFin הוא לקוח צד שלישי עבור Jellyfin. PerthFin כשלעצמו אינו מכיל מדיה כלשהי.\n\nכדי להשתמש בלקוח זה, עליך לארח שרת Jellyfin משלך.</string>
-    <string name="permission_btn_grant">גרנט</string>
+    <string name="permission_btn_grant">אשר</string>
     <string name="permission_btn_not_now">לא עכשיו</string>
     <string name="permission_btn_open_settings">פתח את ההגדרות</string>
     <string name="permission_permanently_denied">%1$s נדחה. כדי להשתמש בו, אפשר זאת בהגדרות המערכת.</string>

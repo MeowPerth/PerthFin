@@ -39,7 +39,7 @@
     <string name="or">ELLER</string>
     <string name="server_subtitle">Server: %s</string>
     <string name="users_no_users">Inga användare hittades</string>
-    <string name="permission_btn_grant">Grant</string>
+    <string name="permission_btn_grant">Tillåt</string>
     <string name="permission_btn_not_now">Inte nu</string>
     <string name="permission_btn_open_settings">Open settings</string>
     <string name="permission_permanently_denied">%1$s was denied. För att använda det, tillåt det i systeminställningarna.</string>

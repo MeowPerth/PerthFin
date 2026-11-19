@@ -35,7 +35,7 @@
     <string name="welcome_btn_continue">Fortsæt</string>
     <string name="welcome_btn_learn_more">Lær mere om Jellyfin</string>
     <string name="welcome_text">PerthFin er en tredjepartsklient til Jellyfin. PerthFin i sig selv indeholder ingen medier.\n\nFor at bruge denne klient skal du være vært for din egen Jellyfin-server.</string>
-    <string name="permission_btn_grant">Grant</string>
+    <string name="permission_btn_grant">Tillad</string>
     <string name="permission_btn_not_now">Ikke nu</string>
     <string name="permission_btn_open_settings">Åbn indstillinger</string>
     <string name="permission_permanently_denied">%1$s blev afvist. For at bruge det, tillad det i systemindstillingerne.</string>

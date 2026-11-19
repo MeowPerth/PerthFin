@@ -39,7 +39,7 @@
     <string name="welcome_btn_continue">Weiter</string>
     <string name="welcome_btn_learn_more">Erfahren Sie mehr über Jellyfin</string>
     <string name="welcome_text">PerthFin ist ein Drittanbieter-Client für Jellyfin. PerthFin enthält selbst keine Medien.\n\nUm diesen Client zu verwenden, müssen Sie Ihren eigenen Jellyfin-Server hosten.</string>
-    <string name="permission_btn_grant">Grant</string>
+    <string name="permission_btn_grant">Erlauben</string>
     <string name="permission_btn_not_now">Nicht jetzt</string>
     <string name="permission_btn_open_settings">Einstellungen öffnen</string>
     <string name="permission_permanently_denied">%1$s wurde abgelehnt. Um es zu verwenden, erlauben Sie es in den Systemeinstellungen.</string>

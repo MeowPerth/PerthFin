@@ -35,7 +35,7 @@
     <string name="welcome_btn_continue">Pokračovať</string>
     <string name="welcome_btn_learn_more">Zistite viac o Jellyfin</string>
     <string name="welcome_text">PerthFin je klient tretej strany pre Jellyfin. PerthFin sám o sebe neobsahuje žiadne médiá.\n\nAby ste mohli používať tohto klienta, musíte hostiť svoj vlastný server Jellyfin.</string>
-    <string name="permission_btn_grant">Grant</string>
+    <string name="permission_btn_grant">Povoliť</string>
     <string name="permission_btn_not_now">Teraz nie</string>
     <string name="permission_btn_open_settings">Otvorte nastavenia</string>
     <string name="permission_permanently_denied">%1$s bolo zamietnuté. Ak ju chcete použiť, povoľte ju v systémových nastaveniach.</string>

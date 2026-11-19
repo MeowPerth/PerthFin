@@ -39,7 +39,7 @@
     <string name="cancel">Anuluj</string>
     <string name="or">LUB</string>
     <string name="server_subtitle">Serwer: %s</string>
-    <string name="permission_btn_grant">Przyznaj</string>
+    <string name="permission_btn_grant">Zezwól</string>
     <string name="permission_btn_not_now">Nie teraz</string>
     <string name="permission_btn_open_settings">Otwórz ustawienia</string>
     <string name="permission_permanently_denied">%1$s zostało odrzucone. Aby z niego skorzystać, zezwól na to w ustawieniach systemu.</string>

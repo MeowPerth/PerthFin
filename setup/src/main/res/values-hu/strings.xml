@@ -36,7 +36,7 @@
     <string name="welcome_btn_learn_more">Tudjon meg többet a Jellyfinről
 [[[SZEP_5]]]
 A PerthFin a Jellyfin harmadik fél kliense. A PerthFin önmagában nem tartalmaz médiát.\n\nA kliens használatához saját Jellyfin szervert kell tárolnia.</string>
-    <string name="permission_btn_grant">Grant</string>
+    <string name="permission_btn_grant">Engedélyezés</string>
     <string name="permission_btn_not_now">Most nem</string>
     <string name="permission_btn_open_settings">Nyissa meg a beállításokat
 [[[SZEP_9]]]

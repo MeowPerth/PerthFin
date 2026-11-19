@@ -34,7 +34,7 @@
     <string name="welcome_btn_continue">Nadaljuj</string>
     <string name="welcome_btn_learn_more">Izvedite več o Jellyfin</string>
     <string name="welcome_text">PerthFin je odjemalec tretje osebe za Jellyfin. PerthFin sam po sebi ne vsebuje nobenega medija.\n\nČe želite uporabljati tega odjemalca, morate gostiti lasten strežnik Jellyfin.</string>
-    <string name="permission_btn_grant">Grant</string>
+    <string name="permission_btn_grant">Dovoli</string>
     <string name="permission_btn_not_now">Ne zdaj</string>
     <string name="permission_btn_open_settings">Odprite nastavitve</string>
     <string name="permission_permanently_denied">%1$s je bil zavrnjen. Če ga želite uporabljati, ga dovolite v sistemskih nastavitvah.</string>

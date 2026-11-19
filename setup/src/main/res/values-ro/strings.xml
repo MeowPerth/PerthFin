@@ -35,7 +35,7 @@
     <string name="welcome_btn_continue">Continua</string>
     <string name="welcome_btn_learn_more">Aflați mai multe despre Jellyfin</string>
     <string name="welcome_text">PerthFin este un client terță parte pentru Jellyfin. PerthFin în sine nu conține niciun media.\n\nPentru a utiliza acest client, trebuie să vă găzduiți propriul server Jellyfin.</string>
-    <string name="permission_btn_grant">Acorda</string>
+    <string name="permission_btn_grant">Permite</string>
     <string name="permission_btn_not_now">Nu acum</string>
     <string name="permission_btn_open_settings">Deschideți setările</string>
     <string name="permission_permanently_denied">[[PH_0]]] a fost refuzat. Pentru a-l folosi, permiteți-l în setările sistemului.</string>
